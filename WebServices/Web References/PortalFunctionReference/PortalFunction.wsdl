@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/PortalFunction" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="PostingGeneral">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="paymentEntryNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PostingGeneral_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="PostingGeneral">
+    <part name="parameters" element="tns:PostingGeneral" />
+  </message>
+  <message name="PostingGeneral_Result">
+    <part name="parameters" element="tns:PostingGeneral_Result" />
+  </message>
+  <portType name="PortalFunction_Port">
+    <operation name="PostingGeneral">
+      <input name="PostingGeneral" message="tns:PostingGeneral" />
+      <output name="PostingGeneral_Result" message="tns:PostingGeneral_Result" />
+    </operation>
+  </portType>
+  <binding name="PortalFunction_Binding" type="tns:PortalFunction_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="PostingGeneral">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PortalFunction:PostingGeneral" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostingGeneral">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostingGeneral_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="PortalFunction">
+    <port name="PortalFunction_Port" binding="tns:PortalFunction_Binding">
+      <address location="http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Codeunit/PortalFunction" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

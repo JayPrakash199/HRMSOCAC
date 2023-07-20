@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="FeeDemand">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="academicYear" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="customerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FeeDemand_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FeeGeneration">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="academicYear" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="semester" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="feeClassification" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="courseCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="studentNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FeeGeneration_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="MoneyReceipt">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="customerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="postingDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="MoneyReceipt_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="FeeDemand">
+    <part name="parameters" element="tns:FeeDemand" />
+  </message>
+  <message name="FeeDemand_Result">
+    <part name="parameters" element="tns:FeeDemand_Result" />
+  </message>
+  <message name="FeeGeneration">
+    <part name="parameters" element="tns:FeeGeneration" />
+  </message>
+  <message name="FeeGeneration_Result">
+    <part name="parameters" element="tns:FeeGeneration_Result" />
+  </message>
+  <message name="MoneyReceipt">
+    <part name="parameters" element="tns:MoneyReceipt" />
+  </message>
+  <message name="MoneyReceipt_Result">
+    <part name="parameters" element="tns:MoneyReceipt_Result" />
+  </message>
+  <portType name="FeeManagementCodeUnit_Port">
+    <operation name="FeeDemand">
+      <input name="FeeDemand" message="tns:FeeDemand" />
+      <output name="FeeDemand_Result" message="tns:FeeDemand_Result" />
+    </operation>
+    <operation name="FeeGeneration">
+      <input name="FeeGeneration" message="tns:FeeGeneration" />
+      <output name="FeeGeneration_Result" message="tns:FeeGeneration_Result" />
+    </operation>
+    <operation name="MoneyReceipt">
+      <input name="MoneyReceipt" message="tns:MoneyReceipt" />
+      <output name="MoneyReceipt_Result" message="tns:MoneyReceipt_Result" />
+    </operation>
+  </portType>
+  <binding name="FeeManagementCodeUnit_Binding" type="tns:FeeManagementCodeUnit_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="FeeDemand">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit:FeeDemand" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FeeDemand">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="FeeDemand_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="FeeGeneration">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit:FeeGeneration" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FeeGeneration">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="FeeGeneration_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="MoneyReceipt">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit:MoneyReceipt" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="MoneyReceipt">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="MoneyReceipt_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="FeeManagementCodeUnit">
+    <port name="FeeManagementCodeUnit_Port" binding="tns:FeeManagementCodeUnit_Binding">
+      <address location="http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Codeunit/FeeManagementCodeUnit" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

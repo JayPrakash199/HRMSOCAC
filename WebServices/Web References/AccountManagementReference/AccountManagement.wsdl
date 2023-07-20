@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/AccountManagement" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/AccountManagement" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/AccountManagement" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="DeleteCautionRefundLine">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="refundSlNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="lineNo" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DeleteCautionRefundLine_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetLines">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="academicYear" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="refundSlNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetLines_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostToJournal">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="posted" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="refundSlNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="externalDocNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="postingDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="narration" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="paymentMethod" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="accountNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="chequeNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="chequeDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PostToJournal_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostedCautionMoneyReport">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="refundSlNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PostedCautionMoneyReport_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SubMitCautionMoney">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="studentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="academicYear" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SubMitCautionMoney_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="UnpostedCautionMoneyReport">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="refundSlNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UnpostedCautionMoneyReport_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="DeleteCautionRefundLine">
+    <part name="parameters" element="tns:DeleteCautionRefundLine" />
+  </message>
+  <message name="DeleteCautionRefundLine_Result">
+    <part name="parameters" element="tns:DeleteCautionRefundLine_Result" />
+  </message>
+  <message name="GetLines">
+    <part name="parameters" element="tns:GetLines" />
+  </message>
+  <message name="GetLines_Result">
+    <part name="parameters" element="tns:GetLines_Result" />
+  </message>
+  <message name="PostToJournal">
+    <part name="parameters" element="tns:PostToJournal" />
+  </message>
+  <message name="PostToJournal_Result">
+    <part name="parameters" element="tns:PostToJournal_Result" />
+  </message>
+  <message name="PostedCautionMoneyReport">
+    <part name="parameters" element="tns:PostedCautionMoneyReport" />
+  </message>
+  <message name="PostedCautionMoneyReport_Result">
+    <part name="parameters" element="tns:PostedCautionMoneyReport_Result" />
+  </message>
+  <message name="SubMitCautionMoney">
+    <part name="parameters" element="tns:SubMitCautionMoney" />
+  </message>
+  <message name="SubMitCautionMoney_Result">
+    <part name="parameters" element="tns:SubMitCautionMoney_Result" />
+  </message>
+  <message name="UnpostedCautionMoneyReport">
+    <part name="parameters" element="tns:UnpostedCautionMoneyReport" />
+  </message>
+  <message name="UnpostedCautionMoneyReport_Result">
+    <part name="parameters" element="tns:UnpostedCautionMoneyReport_Result" />
+  </message>
+  <portType name="AccountManagement_Port">
+    <operation name="DeleteCautionRefundLine">
+      <input name="DeleteCautionRefundLine" message="tns:DeleteCautionRefundLine" />
+      <output name="DeleteCautionRefundLine_Result" message="tns:DeleteCautionRefundLine_Result" />
+    </operation>
+    <operation name="GetLines">
+      <input name="GetLines" message="tns:GetLines" />
+      <output name="GetLines_Result" message="tns:GetLines_Result" />
+    </operation>
+    <operation name="PostToJournal">
+      <input name="PostToJournal" message="tns:PostToJournal" />
+      <output name="PostToJournal_Result" message="tns:PostToJournal_Result" />
+    </operation>
+    <operation name="PostedCautionMoneyReport">
+      <input name="PostedCautionMoneyReport" message="tns:PostedCautionMoneyReport" />
+      <output name="PostedCautionMoneyReport_Result" message="tns:PostedCautionMoneyReport_Result" />
+    </operation>
+    <operation name="SubMitCautionMoney">
+      <input name="SubMitCautionMoney" message="tns:SubMitCautionMoney" />
+      <output name="SubMitCautionMoney_Result" message="tns:SubMitCautionMoney_Result" />
+    </operation>
+    <operation name="UnpostedCautionMoneyReport">
+      <input name="UnpostedCautionMoneyReport" message="tns:UnpostedCautionMoneyReport" />
+      <output name="UnpostedCautionMoneyReport_Result" message="tns:UnpostedCautionMoneyReport_Result" />
+    </operation>
+  </portType>
+  <binding name="AccountManagement_Binding" type="tns:AccountManagement_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="DeleteCautionRefundLine">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AccountManagement:DeleteCautionRefundLine" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DeleteCautionRefundLine">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DeleteCautionRefundLine_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetLines">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AccountManagement:GetLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetLines">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostToJournal">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AccountManagement:PostToJournal" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostToJournal">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostToJournal_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostedCautionMoneyReport">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AccountManagement:PostedCautionMoneyReport" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostedCautionMoneyReport">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostedCautionMoneyReport_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="SubMitCautionMoney">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AccountManagement:SubMitCautionMoney" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="SubMitCautionMoney">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="SubMitCautionMoney_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UnpostedCautionMoneyReport">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AccountManagement:UnpostedCautionMoneyReport" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UnpostedCautionMoneyReport">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UnpostedCautionMoneyReport_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AccountManagement">
+    <port name="AccountManagement_Port" binding="tns:AccountManagement_Binding">
+      <address location="http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Codeunit/AccountManagement" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>
