@@ -197,6 +197,11 @@
     <Compile Include="Web References\InfraProjectprogressdetailsReference\Reference.cs" />
     <Compile Include="Web References\InfraServiceReference\Reference.cs" />
     <Compile Include="Web References\InfraStaffQuarterReference\Reference.cs" />
+    <Compile Include="Web References\LibraryCodeunitReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\LibraryMgmtReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -443,6 +448,11 @@
     <None Include="Web References\InfraStaffQuarterReference\Reference.map" />
     <None Include="Web References\InfraStaffQuarterReference\StaffQuarterCard.datasource" />
     <None Include="Web References\InfraStaffQuarterReference\StaffQuarterCard.wsdl" />
+    <None Include="Web References\LibraryCodeunitReference\LibraryCodeunit.wsdl" />
+    <None Include="Web References\LibraryCodeunitReference\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Web References\LibraryMgmtReference\LibraryMgmt.wsdl" />
     <None Include="Web References\LibraryMgmtReference\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -638,6 +648,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>WebServices_FeeManagementCodeUnitReference2_FeeManagementCodeUnit</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Codeunit/LibraryCodeunit">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LibraryCodeunitReference\</RelPath>
+      <UpdateFromURL>http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Codeunit/LibraryCodeunit</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>WebServices_LibraryCodeunitReference_LibraryCodeunit</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Codeunit/PortalFunction">
       <UrlBehavior>Dynamic</UrlBehavior>

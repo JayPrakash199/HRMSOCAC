@@ -60,6 +60,8 @@ namespace HRMS
             }).ToList();
 
             ddlNo.DataSource = lst1;
+            ddlNo.DataTextField = "No";
+            ddlNo.DataValueField = "Name";
             ddlNo.DataBind();
         }
 

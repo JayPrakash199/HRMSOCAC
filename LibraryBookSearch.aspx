@@ -15,6 +15,7 @@
         table thead tr th, .table > tbody > tr > th {
             border-top: none !important;
         }
+
         .container.box {
             margin-top: 61px;
             margin-bottom: 26px;
@@ -333,13 +334,18 @@
                                                                         <asp:TextBox ID="txtmdAuthorName2" CssClass="form-control" runat="server"> </asp:TextBox>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <asp:Label runat="server" Text="Publisher Name"></asp:Label>
-                                                                        <asp:DropDownList ID="ddlPublisherName" AutoPostBack="false" CssClass="form-control" runat="server">
+                                                                        <asp:Label runat="server" Text="Publisher Code"></asp:Label>
+                                                                        <asp:DropDownList ID="ddlPublisherCode" OnSelectedIndexChanged="ddlPublisherCode_SelectedIndexChanged" AutoPostBack="false" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                     <div class="form-group">
+                                                                        <asp:Label runat="server" Text="Publisher Name"></asp:Label>
+                                                                        <asp:TextBox ID="txtPublisherName" CssClass="form-control" runat="server">
+                                                                        </asp:TextBox>
+                                                                    </div>
+                                                                    <div class="form-group">
                                                                         <asp:Label runat="server" Text="Book Category Code"></asp:Label>
-                                                                        <asp:DropDownList ID="ddlBookcategoryCode" AutoPostBack="false" CssClass="form-control" runat="server">
+                                                                        <asp:DropDownList ID="ddlBookcategoryCode" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                     <div class="form-group">

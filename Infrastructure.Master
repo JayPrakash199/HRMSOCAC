@@ -365,7 +365,7 @@
 </head>
 <body>
     <div class="loader">
-        <img src="images/loader_icon.gif" class="fa-spinner" />
+        <img src="assets/images/loader.gif" class="fa-spinner" />
         <%--<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>--%>
     </div>
     <div id="wrappergb" runat="server"></div>
@@ -453,7 +453,7 @@
                                             <li><a href="Infra-AMCList.aspx">Maintenance&AMC List</a></li>
                                         </ul>
                                     </li>
-                                   <%-- <li>
+                                  <%--  <li>
                                         <a href="Infra-Reports.aspx">Reports</a>
                                     </li>--%>
                                 </ul>

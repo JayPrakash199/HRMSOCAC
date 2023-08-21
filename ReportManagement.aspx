@@ -120,9 +120,6 @@
             font-weight: 600;
             padding: 2%;
         }
-
-
-        
     </style>
     <script>
         function customAlert(msgType, txtMSG) {
@@ -215,8 +212,8 @@
 
                         <ul class="nav nav-tabs" style="margin-left: 2%; margin-right: 2%; font-size: 15px; font-weight: 700;">
                             <li class="nav-item active"><a data-toggle="tab" href="#InfraReport">Infra Report</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#HRMSReport">HRMSReport</a></li>
-
+                            <li class="nav-item"><a data-toggle="tab" href="#HRMSReport">HRMS Report</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#LibraryReport">Library Report</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -295,6 +292,23 @@
                                             <li>
                                                 <asp:LinkButton ID="btnFinanceUpgrade" OnClick="btnFinanceUpgrade_OnClick" runat="server">Download DTET Financial Upgradation details Report</asp:LinkButton>
                                                 <i class="fa fa-download" aria-hidden="true" style="font-size: 16px; color: #105be6;"></i></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="LibraryReport" class="tab-pane fade">
+                                <div class="row md-12 marginx">
+                                    <div class="containerList">
+                                        <ul class="myUL">
+                                            <li>
+                                                <asp:LinkButton ID="lbLibrary" OnClick="lbLibrary_Click" runat="server">Download Library List Report
+                                                </asp:LinkButton>
+                                                <i class="fa fa-download" aria-hidden="true" style="font-size: 16px; color: #105be6;"></i>
+                                            </li>
+
 
                                         </ul>
                                     </div>

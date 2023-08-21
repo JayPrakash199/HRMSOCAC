@@ -477,5 +477,16 @@ namespace WebServices.Properties {
                 return ((string)(this["WebServices_UserAuthenticationCardReference_UserAuthenticationCard_Service"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Codeunit/LibraryCodeun" +
+            "it")]
+        public string WebServices_LibraryCodeunitReference_LibraryCodeunit {
+            get {
+                return ((string)(this["WebServices_LibraryCodeunitReference_LibraryCodeunit"]));
+            }
+        }
     }
 }

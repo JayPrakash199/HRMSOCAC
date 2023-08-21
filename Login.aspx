@@ -71,7 +71,7 @@
                                                 <asp:TextBox ID="txtCaptch" runat="server" Style="width: 70%" class="form-control form-control-lg" placeholder="Captch"></asp:TextBox>
                                             </div>
                                             <div>
-                                                <BotDetect:WebFormsCaptcha ID="captchaBox" runat="server"></BotDetect:WebFormsCaptcha>
+                                                <botdetect:webformscaptcha id="captchaBox" runat="server"></botdetect:webformscaptcha>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +79,8 @@
 
 
                                 <asp:Button runat="server" ID="btnLogin" OnClick="btnLogin_Click" class="btn btn-outline-light btn-lg px-5" Text="Login" />
-                                 <br /><br />
+                                <br />
+                                <br />
                                 <asp:HyperLink runat="server" ID="Button1" NavigateUrl="~/ForgotPassword.aspx" Text="Forgot assword?" />
                             </div>
                             <div runat="server" id="alertMsg" visible="false" class="alert alert-danger" role="alert">
@@ -101,8 +102,8 @@
         <div class="modal-dialog" style="width: 800px">
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header" style="background-color: darkgreen">
-                    <button type="button" class="close" data-dismiss="modal">
+                <div class="modal-header" style="background-color: darkslateblue">
+                    <button type="button" style="background-color: darkslateblue !important" class="close" data-dismiss="modal">
                         &times;</button>
                     <h4 class="modal-title"></h4>
                 </div>
@@ -134,7 +135,7 @@
                 </div>
                 <div class="form-group" style="margin: 0; position: absolute; bottom: 10%; right: 5%;">
                     <div>
-                        <asp:Button runat="server" ID="btnOkay" Text="Submit" OnClientClick="redirectOnSuccess(); return false;" class="btn btn-success"></asp:Button>
+                        <asp:Button runat="server" style="background-color: darkslateblue !important" ID="btnOkay" Text="Submit" OnClientClick="redirectOnSuccess(); return false;" class="btn btn-success"></asp:Button>
                     </div>
                 </div>
 

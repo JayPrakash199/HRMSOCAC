@@ -1667,6 +1667,16 @@ namespace WebServices
             return obj.ExportDTETFinancialUpgradationDetails();
         }
         #endregion
+
+
+
+        public static string ExportLibrary(string companyName)
+        {
+            LibraryCodeunitReference.LibraryCodeunit obj = new LibraryCodeunitReference.LibraryCodeunit();
+            obj = (LibraryCodeunitReference.LibraryCodeunit)Configuration
+                .getNavService(new LibraryCodeunitReference.LibraryCodeunit(), "LibraryCodeunit", "Codeunit", companyName);
+            return obj.DTETBookDetails();
+        }
         public static string ResetUserPassword(UserAuthenticationCardReference.UserAuthenticationCard input, string companyName)
         {
             UserAuthenticationCardReference.UserAuthenticationCard_Service _obj_Binding = (UserAuthenticationCardReference.UserAuthenticationCard_Service)Configuration

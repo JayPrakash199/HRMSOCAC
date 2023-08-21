@@ -2,6 +2,7 @@
 using InfrastructureManagement.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 using WebServices;
 
@@ -36,14 +37,17 @@ namespace HRMS
 
         protected void LibrarySearchListView_ItemEditing(object sender, ListViewEditEventArgs e)
         {
-            // showPopup("Library Book card", "");
+            BindPublisherDropdown();
+            BindBookcatagoryDropdown();
+            BindLanguageDropDown();
+            BindLocationDropDown();
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#MyPopup').modal('show')", true);
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showLoader();", true);
             string slNo = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblNo") as Label).Text;
             string BookName = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblBookName") as Label).Text;
             string AuthorName = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblAuthorName") as Label).Text;
             string aName = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblAuthorName2") as Label).Text;
-            string PublisherName = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblPublisherName") as Label).Text;
+            string PublisherCode = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblPublisherName") as Label).Text;
             string bookCategory = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblCategory") as Label).Text;
             string language = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblLanguage") as Label).Text;
             string locationCode = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblLocationCode") as Label).Text;
@@ -55,9 +59,11 @@ namespace HRMS
             string unitCost = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblUnit_Cost") as Label).Text;
 
 
-            if (!string.IsNullOrEmpty(PublisherName))
+            if (!string.IsNullOrEmpty(PublisherCode))
             {
-                ddlPublisherName.SelectedValue = PublisherName;
+                ddlPublisherCode.SelectedValue = PublisherCode;
+                var list= ddlPublisherCode.DataSource as List<HRMSODATA.PublisherName>;
+                txtPublisherName.Text = list.Where(x => x.Code == PublisherCode).Select(s => s.Description).FirstOrDefault().ToString();
             }
             if (!string.IsNullOrEmpty(bookCategory) && bookCategory != "0")
             {
@@ -85,10 +91,7 @@ namespace HRMS
             txtmdAuthorName2.Text = aName;
             txtno.Text = slNo;
             txtUnitCost.Text = unitCost;
-            BindPublisherDropdown();
-            BindBookcatagoryDropdown();
-            BindLanguageDropDown();
-            BindLocationDropDown();
+
             //BindBookTypeDropDown();
         }
 
@@ -128,11 +131,14 @@ namespace HRMS
 
         private void BindPublisherDropdown()
         {
-            ddlPublisherName.DataSource = ODataServices.GetPublisherNames(Session["SessionCompanyName"] as string);
-            ddlPublisherName.DataTextField = "Code";
-            ddlPublisherName.DataValueField = "Code";
-            ddlPublisherName.DataBind();
-            ddlPublisherName.Items.Insert(0, new ListItem("Select", "NA"));
+            var list = ODataServices.GetPublisherNames(Session["SessionCompanyName"] as string);
+            ddlPublisherCode.DataSource = list;
+            ddlPublisherCode.DataTextField = "Code";
+            ddlPublisherCode.DataValueField = "Code";
+            ddlPublisherCode.DataBind();
+            ddlPublisherCode.Items.Insert(0, new ListItem("Select", "NA"));
+
+            
         }
         private void BindBookcatagoryDropdown()
         {
@@ -174,7 +180,7 @@ namespace HRMS
             string BookName = txtmdBookName.Text;
             string AuthorName = txtmdAuthorName.Text;
             string AuthorName_2 = txtmdAuthorName2.Text;
-            string PublisherName = ddlPublisherName.SelectedItem.Text == "Select" ? "" : ddlPublisherName.SelectedItem.Text;
+            string PublisherName = ddlPublisherCode.SelectedItem.Text == "Select" ? "" : ddlPublisherCode.SelectedItem.Text;
             string Bookcategorycode = ddlBookcategoryCode.SelectedItem.Text == "Select" ? "" : ddlBookcategoryCode.SelectedItem.Text;
             string NoofPages = txtNoOfpages.Text;
             bool NoOfPageSpecified = !string.IsNullOrEmpty(NoofPages) ? true : false;
@@ -198,7 +204,7 @@ namespace HRMS
                 Call_No = callNo,
                 Shelf = shelf,
                 Langauge = Language,
-                Book_Type = bookType == "HindiFiction"? WebServices.BookCardReference1.Book_Type.Hindi_Fiction
+                Book_Type = bookType == "HindiFiction" ? WebServices.BookCardReference1.Book_Type.Hindi_Fiction
                 : bookType == "EnglishFiction" ? WebServices.BookCardReference1.Book_Type.English_Fiction
                 : bookType == "ReferenceBooks" ? WebServices.BookCardReference1.Book_Type.Reference_Books
                 : bookType == "TextBooks" ? WebServices.BookCardReference1.Book_Type.Text_Books
@@ -234,6 +240,13 @@ namespace HRMS
                 string message = string.Format("Message: {0}\\n\\n", ex.Message);
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
             }
+
+        }
+
+        protected void ddlPublisherCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var list = ddlPublisherCode.DataSource as List<HRMSODATA.PublisherName>;
+            txtPublisherName.Text = list.Where(x => x.Code == ddlPublisherCode.SelectedValue).Select(s=> s.Description).FirstOrDefault().ToString();
 
         }
     }

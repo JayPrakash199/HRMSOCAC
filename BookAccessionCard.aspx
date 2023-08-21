@@ -270,7 +270,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Book Source</label>
-                                                    <asp:TextBox ID="txtBookSource" CssClass="form-control blockInputClass" runat="server"></asp:TextBox>
+                                                    <asp:DropDownList ID="ddlBookSource" CssClass="form-control" runat="server">
+                                                         <asp:ListItem Text="Select" Value="Select"></asp:ListItem>
+                                                        <asp:ListItem Text="Purchased" Value="Purchased"></asp:ListItem>
+                                                        <asp:ListItem Text="Donated" Value="Donated"></asp:ListItem>
+                                                        <asp:ListItem Text="Gifted" Value="Gifted"></asp:ListItem>
+                                                        <asp:ListItem Text="Sponsored" Value="Sponsored"></asp:ListItem>
+                                                    </asp:DropDownList>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Source By</label>

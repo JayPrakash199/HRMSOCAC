@@ -39,7 +39,8 @@ namespace HRMS
                         txtBillNo.Text = bookAccessionCard.Bill_No;
                         txtBillDate.Text = DateTimeParser.ConvertDateTimeToText(bookAccessionCard.Bill_Date);
 
-                        txtBookSource.Text = bookAccessionCard.Book_Source;
+                        if (!string.IsNullOrEmpty(bookAccessionCard.Book_Source))
+                            ddlBookSource.SelectedValue = bookAccessionCard.Book_Source;
                         txtSourceBy.Text = bookAccessionCard.Source_By;
                         txtISBN.Text = bookAccessionCard.ISBN;
                         txtISSN.Text = bookAccessionCard.ISSN;

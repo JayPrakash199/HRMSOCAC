@@ -171,5 +171,12 @@ namespace HRMS
             var fileName = "DTETFinanceUpgrade.XLS";
             this.FileExport(servicePath, fileName);
         }
+
+        protected void lbLibrary_Click(object sender, EventArgs e)
+        {
+            var servicePath = SOAPServices.ExportLibrary(Session["SessionCompanyName"] as string);
+            var fileName = "DTETLibrary.XLS";
+            this.FileExport(servicePath, fileName);
+        }
     }
 }

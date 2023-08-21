@@ -350,13 +350,7 @@ namespace WebServices
         {
             if (!string.IsNullOrEmpty(inputVal))
             {
-                var filterBookList = GetBookList(companyName).Where(x => string.Equals(x.No,inputVal, StringComparison.OrdinalIgnoreCase) |
-                                                            string.Equals(x.Book_Name, inputVal, StringComparison.OrdinalIgnoreCase) |
-                                                           string.Equals(x.Author_Name, inputVal, StringComparison.OrdinalIgnoreCase) |
-                                                            string.Equals(x.Place__x0026__Publisher_Name, inputVal, StringComparison.OrdinalIgnoreCase) |
-                                                            string.Equals(x.User_ID, inputVal, StringComparison.OrdinalIgnoreCase) |
-                                                             string.Equals(x.Portal_ID, inputVal, StringComparison.OrdinalIgnoreCase)).ToList();
-                var jj = GetBookList(companyName).Where(ss => string.Equals(ss.Book_Name, inputVal));
+                var filterBookList = GetBookList(companyName).Where(x => x.Book_Name.IndexOf(inputVal, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
                 return filterBookList;
             }
             else

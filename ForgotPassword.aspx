@@ -26,14 +26,14 @@
                             <h2 class=" mb-2 ">Forgot Your password?</h2>
                             <p class="text-white-50">Please enter your Username!</p>
                             <div class="form-outline form-white mb-4">
-                                <asp:TextBox Style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" ID="txtEmailAddress" runat="server" class="form-control form-control-lg" placeholder="User Name"></asp:TextBox>
+                                <asp:TextBox  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" ID="txtEmailAddress" runat="server" class="form-control form-control-lg" placeholder="User Name"></asp:TextBox>
                             </div>
                             <asp:Button runat="server" ID="btnForgot" OnClick="btnForgot_Click"
-                                Style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-color: #f4ecce;"
+                                Style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-color: #f4ecce; "
                                 class="btn btn-outline-light btn-lg px-5" Text="Submit" />
                             <br />
                             <br />
-                            <div>
+                            <div >
                                 <asp:HyperLink runat="server" ID="btnLogin" ForeColor="Blue" NavigateUrl="~/Login.aspx" Text="Back to login?" />
                             </div>
                         </div>
@@ -55,22 +55,22 @@
                             <h2 class=" mb-2 ">Reset Your password !</h2>
                             <p class="text-white-50">Please enter your new password!</p>
                             <div class="form-outline form-white mb-4">
-                                <asp:TextBox Style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" ID="txtCurrentPassword" runat="server" class="form-control form-control-lg" placeholder="Old Password"></asp:TextBox>
+                                <asp:TextBox style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" ID="txtCurrentPassword" runat="server" class="form-control form-control-lg" placeholder="Old Password"></asp:TextBox>
                             </div>
                             <div class="form-outline form-white mb-4">
-                                <asp:TextBox Style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" ID="txtresetPassword" runat="server" type="password" class="form-control form-control-lg" placeholder="New Password"></asp:TextBox>
+                                <asp:TextBox style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" ID="txtresetPassword" runat="server" type="password" class="form-control form-control-lg" placeholder="New Password"></asp:TextBox>
                             </div>
                             <div class="form-outline form-white mb-4">
-                                <asp:TextBox Style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" ID="txtConfirmresetPassword" type="password" runat="server" class="form-control form-control-lg" placeholder="Confirm New Password"></asp:TextBox>
+                                <asp:TextBox style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" ID="txtConfirmresetPassword" type="password" runat="server" class="form-control form-control-lg" placeholder="Confirm New Password"></asp:TextBox>
                             </div>
                             <asp:CompareValidator ID="passwordCompareValidator" runat="server" ControlToCompare="txtresetPassword"
                                 ControlToValidate="txtConfirmresetPassword" Display="Dynamic" ErrorMessage="Ensure both password should be same!" ForeColor="Red"
                                 Operator="Equal" Type="String"></asp:CompareValidator>
                             <asp:Button runat="server" ID="btnReset" OnClick="btnReset_Click" class="btn btn-outline-light btn-lg px-5"
-                                Style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-color: #f4ecce;"
+                                Style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-color: #f4ecce; "
                                 Text="Set password" />
                             <br />
-                            <div style="padding-top: 5%;">
+                            <div>
                                 <asp:HyperLink runat="server" ID="HyperLink1" ForeColor="Blue" NavigateUrl="~/Login.aspx" Text="Back to login?" />
                             </div>
                         </div>

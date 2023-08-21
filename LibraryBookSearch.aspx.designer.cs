@@ -87,13 +87,22 @@ namespace HRMS
         protected global::System.Web.UI.WebControls.TextBox txtmdAuthorName2;
 
         /// <summary>
-        /// ddlPublisherName control.
+        /// ddlPublisherCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPublisherName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPublisherCode;
+
+        /// <summary>
+        /// txtPublisherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPublisherName;
 
         /// <summary>
         /// ddlBookcategoryCode control.
