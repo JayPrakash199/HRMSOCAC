@@ -517,7 +517,7 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="Book_Type" Type="Edm.String">
+        <Property Name="Book_Type" Type="Edm.String" MaxLength="20">
           <Annotation Term="NAV.LabelId" String="Book Type" />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/String</EnumMember>
@@ -3311,7 +3311,7 @@
           </Annotation>
           <Annotation Term="NAV.AllowEdit" Bool="false" />
         </Property>
-        <Property Name="Accession_Book_Type" Type="Edm.String">
+        <Property Name="Accession_Book_Type" Type="Edm.String" MaxLength="20">
           <Annotation Term="NAV.LabelId" String="Book Type" />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/String</EnumMember>
@@ -3460,7 +3460,13 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="Place__x0026__Publisher_Name" Type="Edm.String" MaxLength="150">
+        <Property Name="Place__x0026__Publisher_Code" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="Publisher Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="_Publisher_Name" Type="Edm.String" MaxLength="150">
           <Annotation Term="NAV.LabelId" String="Publisher Name" />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/String</EnumMember>
@@ -3530,12 +3536,6 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="Location_Code11039" Type="Edm.String" MaxLength="20">
-          <Annotation Term="NAV.LabelId" String="Location Code" />
-          <Annotation Term="NAV.NavType">
-            <EnumMember>NAV.NavType/String</EnumMember>
-          </Annotation>
-        </Property>
         <Property Name="Langauge" Type="Edm.String" MaxLength="20">
           <Annotation Term="NAV.LabelId" String="Langauge" />
           <Annotation Term="NAV.NavType">
@@ -3562,11 +3562,18 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="Book_Type" Type="Edm.String">
+        <Property Name="Book_Type" Type="Edm.String" MaxLength="20">
           <Annotation Term="NAV.LabelId" String="Book Type" />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
+        </Property>
+        <Property Name="Book_Type_Description" Type="Edm.String" MaxLength="100">
+          <Annotation Term="NAV.LabelId" String="Book Type" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
         </Property>
         <Property Name="Topic_Code" Type="Edm.String" MaxLength="20">
           <Annotation Term="NAV.LabelId" String="Topic Code" />
@@ -3655,14 +3662,11 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
-        <NavigationProperty Name="Place__x0026__Publisher_Name_Link" Type="Collection(NAV.PublisherName)" ContainsTarget="true">
-          <ReferentialConstraint Property="Place__x0026__Publisher_Name" ReferencedProperty="Code" />
+        <NavigationProperty Name="Place__x0026__Publisher_Code_Link" Type="Collection(NAV.PublisherName)" ContainsTarget="true">
+          <ReferentialConstraint Property="Place__x0026__Publisher_Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="Book_Category_Code_Link" Type="Collection(NAV.BookCategoryList)" ContainsTarget="true">
           <ReferentialConstraint Property="Book_Category_Code" ReferencedProperty="Code" />
-        </NavigationProperty>
-        <NavigationProperty Name="Location_Code11039_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
-          <ReferentialConstraint Property="Location_Code11039" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="Langauge_Link" Type="Collection(NAV.Language)" ContainsTarget="true">
           <ReferentialConstraint Property="Langauge" ReferencedProperty="Code" />
@@ -3970,7 +3974,7 @@
           </Annotation>
           <Annotation Term="NAV.AllowEdit" Bool="false" />
         </Property>
-        <Property Name="Place__x0026__Publisher_Name" Type="Edm.String" MaxLength="150">
+        <Property Name="Place__x0026__Publisher_Name" Type="Edm.String" MaxLength="50">
           <Annotation Term="NAV.LabelId" String="Publisher Name" />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/String</EnumMember>
@@ -4012,7 +4016,7 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="Book_Type" Type="Edm.String">
+        <Property Name="Book_Type" Type="Edm.String" MaxLength="20">
           <Annotation Term="NAV.LabelId" String="Book Type" />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/String</EnumMember>
@@ -4046,6 +4050,12 @@
           <Annotation Term="NAV.LabelId" String="Unit Cost" />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="_Publisher_Name" Type="Edm.String" MaxLength="150">
+          <Annotation Term="NAV.LabelId" String="Publisher Name" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
         <NavigationProperty Name="Place__x0026__Publisher_Name_Link" Type="Collection(NAV.PublisherName)" ContainsTarget="true">
@@ -10755,7 +10765,7 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="Book_Type" Type="Edm.String">
+        <Property Name="Book_Type" Type="Edm.String" MaxLength="20">
           <Annotation Term="NAV.LabelId" String="Book Type" />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/String</EnumMember>
@@ -11731,6 +11741,48 @@
         </Property>
         <Property Name="Description" Type="Edm.String" MaxLength="250">
           <Annotation Term="NAV.LabelId" String="Description" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Address" Type="Edm.String" MaxLength="100">
+          <Annotation Term="NAV.LabelId" String="Address" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Address_2" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="Address 2" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Country_Region_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Country/Region Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="City" Type="Edm.String" MaxLength="30">
+          <Annotation Term="NAV.LabelId" String="City" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Phone_No" Type="Edm.String" MaxLength="30">
+          <Annotation Term="NAV.LabelId" String="Phone No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Contact_Person" Type="Edm.String" MaxLength="100">
+          <Annotation Term="NAV.LabelId" String="Contact" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Contact_Person_Phone_No" Type="Edm.String" MaxLength="30">
+          <Annotation Term="NAV.LabelId" String="Phone No." />
           <Annotation Term="NAV.NavType">
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
@@ -40676,6 +40728,9 @@
         <Parameter Name="quarterCode" Type="Edm.String" />
         <Parameter Name="fileName" Type="Edm.String" />
       </Action>
+      <Action Name="LibraryCodeunit_DTETBookDetails">
+        <ReturnType Type="Edm.String" />
+      </Action>
       <Action Name="LibraryMgmt_AccessionList">
         <Parameter Name="bookNo" Type="Edm.String" />
       </Action>
@@ -40700,6 +40755,11 @@
       </Action>
       <Action Name="LibraryMgmt_ItemUpload">
         <Parameter Name="fileName" Type="Edm.String" />
+      </Action>
+      <Action Name="PortalFunction_ChangePassword">
+        <Parameter Name="userName" Type="Edm.String" />
+        <Parameter Name="pass1" Type="Edm.String" />
+        <Parameter Name="pass2" Type="Edm.String" />
       </Action>
       <Action Name="PortalFunction_PostingGeneral">
         <Parameter Name="paymentEntryNo" Type="Edm.String" />
@@ -40924,6 +40984,7 @@
         <ActionImport Name="InfraCodeunit_Upload_Project_Entry_File" Action="NAV.InfraCodeunit_Upload_Project_Entry_File" />
         <ActionImport Name="InfraCodeunit_Upload_Project_File" Action="NAV.InfraCodeunit_Upload_Project_File" />
         <ActionImport Name="InfraCodeunit_Upload_Staff_Buliding_File" Action="NAV.InfraCodeunit_Upload_Staff_Buliding_File" />
+        <ActionImport Name="LibraryCodeunit_DTETBookDetails" Action="NAV.LibraryCodeunit_DTETBookDetails" />
         <ActionImport Name="LibraryMgmt_AccessionList" Action="NAV.LibraryMgmt_AccessionList" />
         <ActionImport Name="LibraryMgmt_AccessionPost" Action="NAV.LibraryMgmt_AccessionPost" />
         <ActionImport Name="LibraryMgmt_Book_Issue" Action="NAV.LibraryMgmt_Book_Issue" />
@@ -40932,6 +40993,7 @@
         <ActionImport Name="LibraryMgmt_CreateBookBatch" Action="NAV.LibraryMgmt_CreateBookBatch" />
         <ActionImport Name="LibraryMgmt_ItemJournalBook" Action="NAV.LibraryMgmt_ItemJournalBook" />
         <ActionImport Name="LibraryMgmt_ItemUpload" Action="NAV.LibraryMgmt_ItemUpload" />
+        <ActionImport Name="PortalFunction_ChangePassword" Action="NAV.PortalFunction_ChangePassword" />
         <ActionImport Name="PortalFunction_PostingGeneral" Action="NAV.PortalFunction_PostingGeneral" />
         <ActionImport Name="BCPTTestSuite_AddLineToTestSuiteHeader_1490807849" Action="NAV.BCPTTestSuite_AddLineToTestSuiteHeader_1490807849" />
         <ActionImport Name="BCPTTestSuite_AddLineToTestSuiteHeader" Action="NAV.BCPTTestSuite_AddLineToTestSuiteHeader" />
@@ -45279,9 +45341,6 @@
       <Annotations Target="NAV.AccessionList/Company">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
-      <Annotations Target="NAV.AccessionList/Book_Type">
-        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
-      </Annotations>
       <Annotations Target="NAV.AccessionList/Book_Status">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
@@ -45510,9 +45569,6 @@
       <Annotations Target="NAV.BookAccessionList/Condition">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
-      <Annotations Target="NAV.BookAccessionList/Accession_Book_Type">
-        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
-      </Annotations>
       <Annotations Target="NAV.BookAccessionList/Book_Current_Status">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
@@ -45520,9 +45576,6 @@
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.BookAccessionList/Book_Source">
-        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
-      </Annotations>
-      <Annotations Target="NAV.BookCard/Book_Type">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.BookCard/Type_of_Subscription">
@@ -45535,9 +45588,6 @@
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.BookIssueList/Transaction_Entry_Type">
-        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
-      </Annotations>
-      <Annotations Target="NAV.BookList/Book_Type">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.BookRenewalList/User_Type">
@@ -46063,9 +46113,6 @@
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.PostedBookAccessionList/Company">
-        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
-      </Annotations>
-      <Annotations Target="NAV.PostedBookAccessionList/Book_Type">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.PostedBookAccessionList/Book_Status">

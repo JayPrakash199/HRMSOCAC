@@ -119,6 +119,33 @@
         function HideLoader() {
             $('#loader').hide();
         };
+        function LoadPublisherCode() {
+            debugger;
+            showLoader();
+            var publishcode = $("#ContentPlaceHolder1_ddlPublisherCode option:selected").text();
+            $.ajax({
+                type: "POST",
+                url: "LibraryBookSearch.aspx/LoadPublisherCode",
+                data: "{'publishcode':'" + publishcode + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    HideLoader();
+                    alert(response.responseText);
+                },
+                error: function (d) {
+                    HideLoader();
+                    alert(d.responseText);
+                }
+            });
+        }
+        function OnSuccess(data) {
+            
+            let txtPublish = document.getElementById('ContentPlaceHolder1_txtPublisherName');
+            txtPublish.value = data.d;
+            HideLoader();
+        }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <contenttemplate>
@@ -165,6 +192,7 @@
                                                                 <th runat="server">Author Name 2</th>
                                                                 <th runat="server">Inventory</th>
                                                                 <th runat="server">Available Count</th>
+                                                                <th runat="server">Publisher Code</th>
                                                                 <th runat="server">Publisher Name</th>
                                                                 <th runat="server">User ID</th>
                                                                 <th runat="server">Portal ID</th>
@@ -203,8 +231,11 @@
                                                             <td>
                                                                 <asp:Label ID="lblAvailableCount" runat="server" Text='<%# Eval("Available_Count")%>'> </asp:Label>
                                                             </td>
+                                                             <td>
+                                                                <asp:Label ID="lblPublisherCode" runat="server" Text='<%# Eval("Place__x0026__Publisher_Name")%>'> </asp:Label>
+                                                            </td>
                                                             <td>
-                                                                <asp:Label ID="lblPublisherName" runat="server" Text='<%# Eval("Place__x0026__Publisher_Name")%>'> </asp:Label>
+                                                                <asp:Label ID="lblPublisherName" runat="server" Text='<%# Eval("_Publisher_Name")%>'> </asp:Label>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="lblUserId" runat="server" Text='<%# Eval("User_ID")%>'> </asp:Label>
@@ -335,7 +366,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <asp:Label runat="server" Text="Publisher Code"></asp:Label>
-                                                                        <asp:DropDownList ID="ddlPublisherCode" OnSelectedIndexChanged="ddlPublisherCode_SelectedIndexChanged" AutoPostBack="false" CssClass="form-control" runat="server">
+                                                                        <asp:DropDownList ID="ddlPublisherCode" onchange="LoadPublisherCode();" AutoPostBack="false" CssClass="form-control" runat="server">
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                     <div class="form-group">

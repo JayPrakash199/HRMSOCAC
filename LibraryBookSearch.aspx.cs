@@ -3,6 +3,9 @@ using InfrastructureManagement.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI.WebControls;
 using WebServices;
 
@@ -47,7 +50,7 @@ namespace HRMS
             string BookName = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblBookName") as Label).Text;
             string AuthorName = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblAuthorName") as Label).Text;
             string aName = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblAuthorName2") as Label).Text;
-            string PublisherCode = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblPublisherName") as Label).Text;
+            string PublisherCode = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblPublisherCode") as Label).Text;
             string bookCategory = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblCategory") as Label).Text;
             string language = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblLanguage") as Label).Text;
             string locationCode = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblLocationCode") as Label).Text;
@@ -62,7 +65,7 @@ namespace HRMS
             if (!string.IsNullOrEmpty(PublisherCode))
             {
                 ddlPublisherCode.SelectedValue = PublisherCode;
-                var list= ddlPublisherCode.DataSource as List<HRMSODATA.PublisherName>;
+                var list = ddlPublisherCode.DataSource as List<HRMSODATA.PublisherName>;
                 txtPublisherName.Text = list.Where(x => x.Code == PublisherCode).Select(s => s.Description).FirstOrDefault().ToString();
             }
             if (!string.IsNullOrEmpty(bookCategory) && bookCategory != "0")
@@ -138,7 +141,7 @@ namespace HRMS
             ddlPublisherCode.DataBind();
             ddlPublisherCode.Items.Insert(0, new ListItem("Select", "NA"));
 
-            
+
         }
         private void BindBookcatagoryDropdown()
         {
@@ -243,11 +246,13 @@ namespace HRMS
 
         }
 
-        protected void ddlPublisherCode_SelectedIndexChanged(object sender, EventArgs e)
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = false)]
+        public static string LoadPublisherCode(string publishcode)
         {
-            var list = ddlPublisherCode.DataSource as List<HRMSODATA.PublisherName>;
-            txtPublisherName.Text = list.Where(x => x.Code == ddlPublisherCode.SelectedValue).Select(s=> s.Description).FirstOrDefault().ToString();
-
+            var list = ODataServices.GetPublisherNames(System.Web.HttpContext.Current.Session["SessionCompanyName"] as string);
+            string returnval = list.Where(x => x.Code == publishcode).Select(s => s.Description).FirstOrDefault().ToString();
+            return !string.IsNullOrEmpty(returnval) ? returnval : "";
         }
     }
 }
