@@ -16,13 +16,14 @@
     <link href="assets/vendor/css/bootstrap-multiselect.css" rel="stylesheet" />
     <script src="assets/vendor/js/jsapi.js"></script>
     <link rel="stylesheet" href="assets/toastr/toastr.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="assets/toastr/toastr.min.css" />
     <script src="assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="assets/toastr/toastr.min.js"></script>
+
     <style>
         .summary-box {
             margin: 4%;
@@ -119,6 +120,37 @@
             line-height: 2.5rem;
             font-weight: 600;
             padding: 2%;
+        }
+
+        .modal-dialog {
+            width: 100%;
+            height: 420px;
+            margin: 0;
+            padding: 0;
+            padding: 4%;
+        }
+
+        .modal-content {
+            height: auto;
+            min-height: 420px;
+            border-radius: 0;
+        }
+
+        .modal-body {
+            overflow-y: scroll;
+            overflow-x: scroll;
+            height: 400px;
+        }
+
+        .modal-header {
+            height: 39px !important;
+            text-align: center;
+            vertical-align: middle;
+            padding: 5px !important;
+        }
+
+        .modal-footer {
+            padding: 5px !important;
         }
     </style>
     <script>
@@ -253,6 +285,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div id="HRMSReport" class="tab-pane fade">
                                 <div class="row md-12 marginx">
                                     <div class="containerList">
@@ -260,7 +293,12 @@
                                             <li>
                                                 <asp:LinkButton ID="btnEmployeLst" OnClick="btnEmployeLst_OnClick" runat="server">Download DTET Employee List Report
                                                 </asp:LinkButton>
-                                                <i class="fa fa-download" aria-hidden="true" style="font-size: 16px; color: #105be6;"></i>
+                                                <i class="fa fa-download" aria-hidden="true" style="font-size: 16px; color: #105be6; display: inline-block !important"></i>
+
+                                                <button runat="server" id="btnViewEmployeLst" class="btn btn-mini" onserverclick="btnViewEmployeLst_ServerClick" title="Search">
+                                                    <i class="fa fa-eye" aria-hidden="true" style="font-size: 16px; color: #105be6; display: inline-block !important"></i>
+                                                </button>
+
                                             </li>
                                             <li>
                                                 <asp:LinkButton ID="btnStafProfile" OnClick="btnStafProfile_OnClick" runat="server">Download DTET Staff Profile Details
@@ -315,12 +353,34 @@
                                 </div>
                             </div>
 
+
+
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal fade modal-fullscreen" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                    </div>
+                    <div class="modal-body">
+                        <asp:GridView ID="GridView1" CssClass="myGridClass" runat="server">
+
+                            <AlternatingRowStyle BackColor="HighlightText" />
+                        </asp:GridView>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </form>
 </body>
 </html>

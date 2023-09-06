@@ -81,7 +81,7 @@
                                 <asp:Button runat="server" ID="btnLogin" OnClick="btnLogin_Click" class="btn btn-outline-light btn-lg px-5" Text="Login" />
                                 <br />
                                 <br />
-                                <asp:HyperLink runat="server" ID="Button1" NavigateUrl="~/ForgotPassword.aspx" Text="Forgot assword?" />
+                                <asp:HyperLink runat="server" ID="Button1" NavigateUrl="~/ForgotPassword.aspx" Text="Forget Password?" />
                             </div>
                             <div runat="server" id="alertMsg" visible="false" class="alert alert-danger" role="alert">
                                 You have entered an invalid username or password!

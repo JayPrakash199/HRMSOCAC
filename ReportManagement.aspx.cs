@@ -1,21 +1,24 @@
 ﻿using HRMS.Common;
 using System;
 using System.Configuration;
+using System.Data.OleDb;
+using System.Data;
+using System.IO;
 using System.Net;
 using WebServices;
-
+using Microsoft.Office.Interop.Excel;
 namespace HRMS
 {
     public partial class ReportManagement : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
-            {
-                string message = string.Format("Message: {0}\\n\\n", "Please select a company");
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
-                Response.Redirect("Default.aspx");
-            }
+            //if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+            //{
+            //    string message = string.Format("Message: {0}\\n\\n", "Please select a company");
+            //    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
+            //    Response.Redirect("Default.aspx");
+            //}
         }
 
         protected void btnEstimatePreparation_Click(object sender, EventArgs e)
@@ -115,7 +118,7 @@ namespace HRMS
             var fileName = "DTETEmployeeList.XLS";
             this.FileExport(servicePath, fileName);
         }
-
+        
         protected void btnEmpTransfr_OnClick(object sender, EventArgs e)
         {
             var servicePath = SOAPServices.ExportDtetTransferDetails(Session["SessionCompanyName"] as string);
@@ -177,6 +180,47 @@ namespace HRMS
             var servicePath = SOAPServices.ExportLibrary(Session["SessionCompanyName"] as string);
             var fileName = "DTETLibrary.XLS";
             this.FileExport(servicePath, fileName);
+        }
+
+
+        protected void btnViewEmployeLst_ServerClick(object sender, EventArgs e)
+        {
+            var servicePath = SOAPServices.ExportDtetEmployeeList(Session["SessionCompanyName"] as string);
+            string  path= Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Report\\test.xls");
+            string exportedFilePath = ConfigurationManager.AppSettings["ExportFilePath"].ToString() + StringHelper.GetFileNameFromURL(servicePath);
+            var sheetname = exportedFilePath.Substring(exportedFilePath.IndexOf("PDF/") + 4, exportedFilePath.Length - (exportedFilePath.IndexOf("PDF/") + 4));
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#myModal').modal('show')", true);
+            GridView1.DataSource = ReadExcelFile("Sheet1", servicePath);
+            GridView1.DataBind();
+        }
+
+        private System.Data.DataTable ReadExcelFile(string sheetName, string path)
+        {
+            using (OleDbConnection conn = new OleDbConnection())
+            {
+                System.Data.DataTable dt = new System.Data.DataTable();
+                string Import_FileName = path;
+                string fileExtension = Path.GetExtension(Import_FileName);
+                if (fileExtension.ToLower() == ".xls")
+                    conn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 8.0;HDR=YES;'";
+                if (fileExtension.ToLower() == ".xlsx")
+                    conn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+                using (OleDbCommand comm = new OleDbCommand())
+                {
+                    comm.CommandText = "Select * from [" + sheetName + "$]";
+
+                    comm.Connection = conn;
+
+                    using (OleDbDataAdapter da = new OleDbDataAdapter())
+                    {
+                        da.SelectCommand = comm;
+                        da.Fill(dt);
+                        return dt;
+                    }
+
+                }
+            }
+
         }
     }
 }
