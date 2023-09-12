@@ -157,7 +157,7 @@ namespace WebServices.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://10.100.0.5:8047/BC200/WS/CRONUS%20India%20Ltd./Codeunit/HRMSCodeunit")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Codeunit/HRMSCodeunit")]
         public string WebServices_HRMSCodeunitReference_HRMSCodeunit {
             get {
                 return ((string)(this["WebServices_HRMSCodeunitReference_HRMSCodeunit"]));

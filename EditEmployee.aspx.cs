@@ -1,7 +1,9 @@
 ﻿using HRMS.Common;
+using HRMSODATA;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.WebControls;
 using WebServices;
 
 namespace HRMS
@@ -10,42 +12,62 @@ namespace HRMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+            if (!IsPostBack)
             {
-                string message = string.Format("Message: {0}\\n\\n", "Please select a company");
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
-                Response.Redirect("Default.aspx");
+                if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+                {
+                    string message = string.Format("Message: {0}\\n\\n", "Please select a company");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
+                    Response.Redirect("Default.aspx");
+                }
+
+                Dictionary<int, string> employeedData = new Dictionary<int, string>();
+                employeedData.Add(0, "select");
+                employeedData.Add(1, "Ad hoc");
+                employeedData.Add(2, "Temporary status");
+                employeedData.Add(3, "Initial appointee");
+                employeedData.Add(4, "Regular");
+                ddlempStatus.DataTextField = "Value";
+                ddlempStatus.DataValueField = "Key";
+                ddlempStatus.DataSource = employeedData;
+                ddlempStatus.DataBind();
+
+
+
+                //ddlEmplyomentStatus.ClearSelection();
+                //ddlEmplyomentStatus.Items.Insert(0, new ListItem("select", "0"));
+                //ddlEmplyomentStatus.Items.Insert(1, new ListItem("Ad hoc", "1"));
+                //ddlEmplyomentStatus.Items.Insert(2, new ListItem("Temporary status", "2"));
+                //ddlEmplyomentStatus.Items.Insert(3, new ListItem("Initial appointee", "3"));
+                //ddlEmplyomentStatus.Items.Insert(4, new ListItem("Regular", "4"));
+
+                ddlMACPStatus.ClearSelection();
+                ddlMACPStatus.Items.Insert(0, new ListItem("Nil", "0"));
+                ddlMACPStatus.Items.Insert(1, new ListItem("1st", "1"));
+                ddlMACPStatus.Items.Insert(2, new ListItem("2nd", "2"));
+                ddlMACPStatus.Items.Insert(3, new ListItem("3rd", "3"));
             }
         }
 
         protected void btnEditEmployeeSearch_Click(object sender, EventArgs e)
         {
-            //var additionalEmployeeResult = ODataServices.GetAdditionalEmployeeInfo(txtHRMSIDSearch.Text);
             var lstUserRole = ODataServices.GetUserAuthorizationList();
-            var roleActive = lstUserRole
+            var role = lstUserRole
                 .FirstOrDefault(x => string.Equals(x.Page_Name.Trim(), "Update Additional Employee Details", StringComparison.OrdinalIgnoreCase)
                                      && string.Equals(x.Module_Name.Trim().Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
-            if (roleActive != null && Convert.ToBoolean(roleActive.Read))
+            if (role == null)
             {
                 var employeeResult = ODataServices.GetAdditionalEmployeeInfo(txtHRMSIDSearch.Text, Session["SessionCompanyName"] as string);
                 if (employeeResult != null)
                 {
-                    txtEmployeeName.Text = employeeResult.Employee_Name;
-                    ddlEmplyomentStatus.SelectedItem.Text = employeeResult.Employment_Status;
-                    txtDateOfIncrement.Text = DateTimeParser.ConvertDateTimeToText(employeeResult.Date_of_increment);
-                    ddlMACPStatus.SelectedItem.Text = employeeResult.MACP_Status;
-                    hdnEntryNo.Value = Convert.ToString(employeeResult.Entry_No);
-                    LblMessage.Text = string.Empty;
-                    ddlEmplyomentStatus.Enabled = true;
-                    txtDateOfIncrement.Enabled = true;
-                    ddlMACPStatus.Enabled = true;
+                    SearchRecord(employeeResult);
                 }
                 else
                 {
                     txtEmployeeName.Text = string.Empty;
                     txtDateOfIncrement.Text = string.Empty;
                     LblMessage.Text = string.Empty;
-                    ddlEmplyomentStatus.Enabled = false;
+                    ddlempStatus.Enabled = false;
                     txtDateOfIncrement.Enabled = false;
                     ddlMACPStatus.Enabled = false;
                     LblMessage.Text = "No record found. Try searching with valid HRMS ID.";
@@ -53,17 +75,51 @@ namespace HRMS
             }
             else
             {
-                Alert.ShowAlert(this, "W", "You do not have permission to read the content. Kindly contact the system administrator.");
+                if (!Convert.ToBoolean(role.Read))
+                {
+                    Alert.ShowAlert(this, "W", "You do not have permission to read the content. Kindly contact the system administrator.");
+                    return;
+                }
+                var employeeResult = ODataServices.GetAdditionalEmployeeInfo(txtHRMSIDSearch.Text, Session["SessionCompanyName"] as string);
+                if (employeeResult != null)
+                {
+                    SearchRecord(employeeResult);
+                }
+                else
+                {
+                    txtEmployeeName.Text = string.Empty;
+                    txtDateOfIncrement.Text = string.Empty;
+                    LblMessage.Text = string.Empty;
+                    ddlempStatus.Enabled = false;
+                    txtDateOfIncrement.Enabled = false;
+                    ddlMACPStatus.Enabled = false;
+                    LblMessage.Text = "No record found. Try searching with valid HRMS ID.";
+                }
             }
+        }
 
+        private void SearchRecord(EmployeeAdditionalInfoList employeeResult)
+        {
+            txtEmployeeName.Text = employeeResult.Employee_Name;
+            ddlempStatus.ClearSelection();
+            ddlempStatus.Items.FindByText(employeeResult.Employment_Status).Selected = true;
+            txtDateOfIncrement.Text = DateTimeParser.ConvertDateTimeToText(employeeResult.Date_of_increment);
+            ddlMACPStatus.ClearSelection();
+            ddlMACPStatus.Items.FindByText(employeeResult.MACP_Status).Selected = true;
+            hdnEntryNo.Value = Convert.ToString(employeeResult.Entry_No);
+            LblMessage.Text = string.Empty;
+            ddlempStatus.Enabled = true;
+            txtDateOfIncrement.Enabled = true;
+            ddlMACPStatus.Enabled = true;
         }
 
         protected void btnEditAdditionalEmployee_Click(object sender, EventArgs e)
         {
             var lstUserRole = ODataServices.GetUserAuthorizationList();
             var role = lstUserRole
-                .FirstOrDefault(x => string.Equals(x.Page_Name.Trim(), "Update Additional Employee Details", StringComparison.OrdinalIgnoreCase)
-                                     && string.Equals(x.Module_Name.Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(x => string.Equals(x.User_Name, Helper.UserName, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(x.Page_Name.Trim(), "Update Additional Employee Details", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(x.Module_Name.Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
 
             if (role == null)
             {
@@ -87,23 +143,23 @@ namespace HRMS
             {
                 HRMS_ID = txtHRMSIDSearch.Text,
                 Entry_No = Convert.ToInt32(hdnEntryNo.Value),
-                Employment_Status = ddlEmplyomentStatus.SelectedItem.Value == "Ad_hoc"
+                Employment_Status = ddlempStatus.SelectedItem.Text == "Ad hoc"
                     ? WebServices.EmployeeAdditionalCardReference.Employment_Status.Ad_hoc
-                    : ddlEmplyomentStatus.SelectedItem.Value == "Temporary_status"
+                    : ddlempStatus.SelectedItem.Text == "Temporary status"
                         ? WebServices.EmployeeAdditionalCardReference.Employment_Status.Temporary_status
-                        : ddlEmplyomentStatus.SelectedItem.Value == "Initial_appointee"
+                        : ddlempStatus.SelectedItem.Text == "Initial appointee"
                             ? WebServices.EmployeeAdditionalCardReference.Employment_Status.Initial_appointee
-                            : ddlEmplyomentStatus.SelectedItem.Value == "Regular"
+                            : ddlempStatus.SelectedItem.Text == "Regular"
                                 ? WebServices.EmployeeAdditionalCardReference.Employment_Status.Regular
                                 : WebServices.EmployeeAdditionalCardReference.Employment_Status._blank_,
                 Date_of_increment = DateTimeParser.ParseDateTime(txtDateOfIncrement.Text),
-                MACP_Status = ddlMACPStatus.SelectedValue == "Nil"
+                MACP_Status = ddlMACPStatus.SelectedItem.Text == "Nil"
                     ? WebServices.EmployeeAdditionalCardReference.MACP_Status.Nil
-                    : ddlMACPStatus.SelectedValue == "1st"
+                    : ddlMACPStatus.SelectedItem.Text == "1st"
                         ? WebServices.EmployeeAdditionalCardReference.MACP_Status._x0031_st
-                        : ddlMACPStatus.SelectedValue == "2nd"
+                        : ddlMACPStatus.SelectedItem.Text == "2nd"
                             ? WebServices.EmployeeAdditionalCardReference.MACP_Status._x0032_nd
-                            : ddlMACPStatus.SelectedValue == "3rd"
+                            : ddlMACPStatus.SelectedItem.Text == "3rd"
                                 ? WebServices.EmployeeAdditionalCardReference.MACP_Status._x0033_rd
                                 : WebServices.EmployeeAdditionalCardReference.MACP_Status._blank_
             };

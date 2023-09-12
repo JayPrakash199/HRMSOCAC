@@ -259,12 +259,7 @@
                                                 <div class="form-group">
                                                     <asp:HiddenField runat="server" ID="hdnEntryNo" />
                                                     <label for="exampleAccount">Employment Status</label>
-                                                    <asp:DropDownList ID="ddlEmplyomentStatus" CssClass="form-control" runat="server">
-                                                        <asp:ListItem>Select</asp:ListItem>
-                                                        <asp:ListItem Value="Ad_hoc">Ad hoc</asp:ListItem>
-                                                        <asp:ListItem Value="Temporary_status">Temporary status</asp:ListItem>
-                                                        <asp:ListItem Value="Initial_appointee">Initial appointee</asp:ListItem>
-                                                        <asp:ListItem Value="Regular">Regular</asp:ListItem>
+                                                    <asp:DropDownList ID="ddlempStatus" CssClass="form-control" runat="server">
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="form-group">
@@ -274,10 +269,6 @@
                                                 <div class="form-group">
                                                     <label for="exampleAccount">MACP Status Updates(If Any)</label>
                                                     <asp:DropDownList ID="ddlMACPStatus" CssClass="form-control" runat="server">
-                                                        <asp:ListItem Value="Nil">Nil</asp:ListItem>
-                                                        <asp:ListItem Value="1st">1st</asp:ListItem>
-                                                        <asp:ListItem Value="2nd">2nd</asp:ListItem>
-                                                        <asp:ListItem Value="3rd">3rd</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>

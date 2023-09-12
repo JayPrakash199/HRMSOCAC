@@ -44,6 +44,7 @@ namespace HRMS
             BindBookcatagoryDropdown();
             BindLanguageDropDown();
             BindLocationDropDown();
+            BindBookTypeDropDown();
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#MyPopup').modal('show')", true);
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showLoader();", true);
             string slNo = (LibrarySearchListView.Items[e.NewEditIndex].FindControl("lblNo") as Label).Text;
@@ -169,12 +170,11 @@ namespace HRMS
         }
         private void BindBookTypeDropDown()
         {
-            //ddlBookType.DataSource = ODataServices.GetBookTypes(Session["SessionCompanyName"] as string);
-            //List<string> bookType = new List<string> {"Hindi Fiction","English Fiction","Reference Books","Text Books","Subject Books" }; 
-            //ddlBookType.DataTextField = "Code";
-            //ddlBookType.DataValueField = "Code";
-            //ddlBookType.DataBind();
-            //ddlBookType.Items.Insert(0, new ListItem("Select", "NA"));
+            ddlBookType.DataSource = ODataServices.GetBookTypes(Session["SessionCompanyName"] as string);
+            ddlBookType.DataTextField = "Descripion";
+            ddlBookType.DataValueField = "Code";
+            ddlBookType.DataBind();
+            ddlBookType.Items.Insert(0, new ListItem("Select", "NA"));
         }
 
 

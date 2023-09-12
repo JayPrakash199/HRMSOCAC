@@ -32,13 +32,14 @@ namespace HRMS
                 ddlFromStation.DataBind();
             }
         }
-        
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             List<HRMSODATA.UserAuthorizationList> lstUserRole = ODataServices.GetUserAuthorizationList();
             var role = lstUserRole
-                .FirstOrDefault(x => string.Equals(x.Page_Name.Trim(), "Joining Form", StringComparison.OrdinalIgnoreCase)
-                                     && string.Equals(x.Module_Name.Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(x => string.Equals(x.User_Name, Helper.UserName, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(x.Page_Name.Trim(), "Joining Form", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(x.Module_Name.Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
             if (role == null)
             {
                 SearchData();
@@ -55,7 +56,7 @@ namespace HRMS
             }
 
         }
-        
+
         private void SearchData()
         {
             if (string.IsNullOrEmpty(txtHRMSIDSearch.Text)) return;
@@ -74,7 +75,8 @@ namespace HRMS
             txtReliefOrderDate.Text = DateTimeParser.ConvertDateTimeToText(result.Relief_Order_Date);
             txtReliefOrderNo.Text = result.Relief_Order_No;
             txtPromotionToDesignation.Text = result.To_Designation;
-            txtJoiningDate.Text = DateTimeParser.ConvertDateTimeToText(result.Joining_Date);
+            if (result.Joining_Date.ToString() != "0001-01-01")
+                txtJoiningDate.Text = DateTimeParser.ConvertDateTimeToText(result.Joining_Date);
             txtReliefOrderDate.Text = DateTimeParser.ConvertDateTimeToText(result.Relief_Order_Date);
             txtPromotionOrderDate.Text = DateTimeParser.ConvertDateTimeToText(result.Transfer_Order_Date);
         }
@@ -83,8 +85,9 @@ namespace HRMS
         {
             List<HRMSODATA.UserAuthorizationList> lstUserRole = ODataServices.GetUserAuthorizationList();
             var role = lstUserRole
-                .FirstOrDefault(x => string.Equals(x.Page_Name.Trim(), "Joining Form", StringComparison.OrdinalIgnoreCase)
-                                     && string.Equals(x.Module_Name.Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(x => string.Equals(x.User_Name, Helper.UserName, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(x.Page_Name.Trim(), "Joining Form", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(x.Module_Name.Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
             if (role == null)
             {
                 InsertJoiningData();

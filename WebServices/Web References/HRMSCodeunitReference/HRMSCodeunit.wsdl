@@ -374,6 +374,33 @@
           <sequence />
         </complexType>
       </element>
+      <element name="UpdateAddEmpDetailsLatest">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="hRMSID" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="incDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="mAPC" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="empStatus" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateAddEmpDetailsLatest_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="UpdateAddEmpDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="hRMSID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateAddEmpDetails_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="Upload_Employee_Training_History_Certificate">
         <complexType>
           <sequence>
@@ -623,6 +650,18 @@
   <message name="HRMSDataImportFromGovtPortal_Result">
     <part name="parameters" element="tns:HRMSDataImportFromGovtPortal_Result" />
   </message>
+  <message name="UpdateAddEmpDetailsLatest">
+    <part name="parameters" element="tns:UpdateAddEmpDetailsLatest" />
+  </message>
+  <message name="UpdateAddEmpDetailsLatest_Result">
+    <part name="parameters" element="tns:UpdateAddEmpDetailsLatest_Result" />
+  </message>
+  <message name="UpdateAddEmpDetails">
+    <part name="parameters" element="tns:UpdateAddEmpDetails" />
+  </message>
+  <message name="UpdateAddEmpDetails_Result">
+    <part name="parameters" element="tns:UpdateAddEmpDetails_Result" />
+  </message>
   <message name="Upload_Employee_Training_History_Certificate">
     <part name="parameters" element="tns:Upload_Employee_Training_History_Certificate" />
   </message>
@@ -773,6 +812,14 @@
     <operation name="HRMSDataImportFromGovtPortal">
       <input name="HRMSDataImportFromGovtPortal" message="tns:HRMSDataImportFromGovtPortal" />
       <output name="HRMSDataImportFromGovtPortal_Result" message="tns:HRMSDataImportFromGovtPortal_Result" />
+    </operation>
+    <operation name="UpdateAddEmpDetailsLatest">
+      <input name="UpdateAddEmpDetailsLatest" message="tns:UpdateAddEmpDetailsLatest" />
+      <output name="UpdateAddEmpDetailsLatest_Result" message="tns:UpdateAddEmpDetailsLatest_Result" />
+    </operation>
+    <operation name="UpdateAddEmpDetails">
+      <input name="UpdateAddEmpDetails" message="tns:UpdateAddEmpDetails" />
+      <output name="UpdateAddEmpDetails_Result" message="tns:UpdateAddEmpDetails_Result" />
     </operation>
     <operation name="Upload_Employee_Training_History_Certificate">
       <input name="Upload_Employee_Training_History_Certificate" message="tns:Upload_Employee_Training_History_Certificate" />
@@ -1067,6 +1114,24 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="UpdateAddEmpDetailsLatest">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit:UpdateAddEmpDetailsLatest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateAddEmpDetailsLatest">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateAddEmpDetailsLatest_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateAddEmpDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit:UpdateAddEmpDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateAddEmpDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateAddEmpDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="Upload_Employee_Training_History_Certificate">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit:Upload_Employee_Training_History_Certificate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="Upload_Employee_Training_History_Certificate">
@@ -1115,7 +1180,7 @@
   </binding>
   <service name="HRMSCodeunit">
     <port name="HRMSCodeunit_Port" binding="tns:HRMSCodeunit_Binding">
-      <address location="http://10.100.0.5:8047/BC200/WS/CRONUS%20India%20Ltd./Codeunit/HRMSCodeunit" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <address location="http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Codeunit/HRMSCodeunit" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
     </port>
   </service>
 </definitions>

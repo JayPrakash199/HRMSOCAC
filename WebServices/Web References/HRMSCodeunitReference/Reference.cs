@@ -89,6 +89,10 @@ namespace WebServices.HRMSCodeunitReference {
         
         private System.Threading.SendOrPostCallback HRMSDataImportFromGovtPortalOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UpdateAddEmpDetailsLatestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateAddEmpDetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Upload_Employee_Training_History_CertificateOperationCompleted;
         
         private System.Threading.SendOrPostCallback Upload_Financial_Upgradation_ApplicationOperationCompleted;
@@ -226,6 +230,12 @@ namespace WebServices.HRMSCodeunitReference {
         
         /// <remarks/>
         public event HRMSDataImportFromGovtPortalCompletedEventHandler HRMSDataImportFromGovtPortalCompleted;
+        
+        /// <remarks/>
+        public event UpdateAddEmpDetailsLatestCompletedEventHandler UpdateAddEmpDetailsLatestCompleted;
+        
+        /// <remarks/>
+        public event UpdateAddEmpDetailsCompletedEventHandler UpdateAddEmpDetailsCompleted;
         
         /// <remarks/>
         public event Upload_Employee_Training_History_CertificateCompletedEventHandler Upload_Employee_Training_History_CertificateCompleted;
@@ -1115,6 +1125,68 @@ namespace WebServices.HRMSCodeunitReference {
             if ((this.HRMSDataImportFromGovtPortalCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HRMSDataImportFromGovtPortalCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit:UpdateAddEmpDetailsLatest", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit", ResponseElementName="UpdateAddEmpDetailsLatest_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateAddEmpDetailsLatest(string hRMSID, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime incDate, int mAPC, int empStatus) {
+            this.Invoke("UpdateAddEmpDetailsLatest", new object[] {
+                        hRMSID,
+                        incDate,
+                        mAPC,
+                        empStatus});
+        }
+        
+        /// <remarks/>
+        public void UpdateAddEmpDetailsLatestAsync(string hRMSID, System.DateTime incDate, int mAPC, int empStatus) {
+            this.UpdateAddEmpDetailsLatestAsync(hRMSID, incDate, mAPC, empStatus, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateAddEmpDetailsLatestAsync(string hRMSID, System.DateTime incDate, int mAPC, int empStatus, object userState) {
+            if ((this.UpdateAddEmpDetailsLatestOperationCompleted == null)) {
+                this.UpdateAddEmpDetailsLatestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateAddEmpDetailsLatestOperationCompleted);
+            }
+            this.InvokeAsync("UpdateAddEmpDetailsLatest", new object[] {
+                        hRMSID,
+                        incDate,
+                        mAPC,
+                        empStatus}, this.UpdateAddEmpDetailsLatestOperationCompleted, userState);
+        }
+        
+        private void OnUpdateAddEmpDetailsLatestOperationCompleted(object arg) {
+            if ((this.UpdateAddEmpDetailsLatestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateAddEmpDetailsLatestCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit:UpdateAddEmpDetails", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit", ResponseElementName="UpdateAddEmpDetails_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/HRMSCodeunit", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateAddEmpDetails(string hRMSID) {
+            this.Invoke("UpdateAddEmpDetails", new object[] {
+                        hRMSID});
+        }
+        
+        /// <remarks/>
+        public void UpdateAddEmpDetailsAsync(string hRMSID) {
+            this.UpdateAddEmpDetailsAsync(hRMSID, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateAddEmpDetailsAsync(string hRMSID, object userState) {
+            if ((this.UpdateAddEmpDetailsOperationCompleted == null)) {
+                this.UpdateAddEmpDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateAddEmpDetailsOperationCompleted);
+            }
+            this.InvokeAsync("UpdateAddEmpDetails", new object[] {
+                        hRMSID}, this.UpdateAddEmpDetailsOperationCompleted, userState);
+        }
+        
+        private void OnUpdateAddEmpDetailsOperationCompleted(object arg) {
+            if ((this.UpdateAddEmpDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateAddEmpDetailsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2051,6 +2123,14 @@ namespace WebServices.HRMSCodeunitReference {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void HRMSDataImportFromGovtPortalCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void UpdateAddEmpDetailsLatestCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void UpdateAddEmpDetailsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]

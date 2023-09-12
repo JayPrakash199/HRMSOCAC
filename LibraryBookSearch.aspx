@@ -414,12 +414,6 @@
                                                                     <div class="form-group">
                                                                         <asp:Label runat="server" Text="Book Type"></asp:Label>
                                                                         <asp:DropDownList ID="ddlBookType" AutoPostBack="false" CssClass="form-control" runat="server">
-                                                                            <asp:ListItem>Select</asp:ListItem>
-                                                                            <asp:ListItem Value="HindiFiction">Hindi Fiction</asp:ListItem>
-                                                                            <asp:ListItem Value="EnglishFiction">English Fiction</asp:ListItem>
-                                                                            <asp:ListItem Value="ReferenceBooks">Reference Books</asp:ListItem>
-                                                                            <asp:ListItem Value="TextBooks">Text Books</asp:ListItem>
-                                                                            <asp:ListItem Value="SubjectBooks">Subject Books</asp:ListItem>
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                     <div class="form-group">

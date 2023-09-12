@@ -21,9 +21,9 @@ namespace HRMS
                 }
                 var lstUserRole = ODataServices.GetUserAuthorizationList();
                 var role = lstUserRole
-                    .FirstOrDefault(x =>
-                        string.Equals(x.Page_Name.Trim(), "RTI Monitoring List", StringComparison.OrdinalIgnoreCase)
-                        && string.Equals(x.Module_Name.Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
+                    .FirstOrDefault(x => string.Equals(x.User_Name, Helper.UserName, StringComparison.OrdinalIgnoreCase) &&
+                     string.Equals(x.Page_Name.Trim(), "RTI Monitoring List", StringComparison.OrdinalIgnoreCase)
+                     && string.Equals(x.Module_Name.Trim(), "HRMS", StringComparison.OrdinalIgnoreCase));
                 if (role == null)
                 {
                     BindListView();

@@ -269,7 +269,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleAccount">Joining Date</label>
-                                                        <asp:TextBox ID="txtJoiningDate" type="date" CssClass="form-control ajax__calendar_body blockInputClass" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtJoiningDate" type="date" CssClass="form-control ajax__calendar_body " runat="server"></asp:TextBox>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleAccount">Relief Order Date</label>
@@ -330,14 +330,5 @@
             </div>
         </div>
     </div>
-    <script language="Javascript">
-        function isDecimalNumberKey(evt) {
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode != 46 && charCode > 31
-                && (charCode < 48 || charCode > 57))
-                return false;
-
-            return true;
-        }
-    </script>
+    
 </asp:Content>

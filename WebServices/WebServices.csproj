@@ -495,10 +495,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/CRONUS%2520India%2520Ltd./Codeunit/HRMSCodeunit">
+    <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Codeunit/HRMSCodeunit">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\HRMSCodeunitReference\</RelPath>
-      <UpdateFromURL>http://10.100.0.5:8047/BC200/WS/CRONUS%2520India%2520Ltd./Codeunit/HRMSCodeunit</UpdateFromURL>
+      <UpdateFromURL>http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Codeunit/HRMSCodeunit</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

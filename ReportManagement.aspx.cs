@@ -13,12 +13,12 @@ namespace HRMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
-            //{
-            //    string message = string.Format("Message: {0}\\n\\n", "Please select a company");
-            //    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
-            //    Response.Redirect("Default.aspx");
-            //}
+            if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+            {
+                string message = string.Format("Message: {0}\\n\\n", "Please select a company");
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void btnEstimatePreparation_Click(object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace HRMS
             var fileName = "DTETEmployeeList.XLS";
             this.FileExport(servicePath, fileName);
         }
-        
+
         protected void btnEmpTransfr_OnClick(object sender, EventArgs e)
         {
             var servicePath = SOAPServices.ExportDtetTransferDetails(Session["SessionCompanyName"] as string);
@@ -186,12 +186,22 @@ namespace HRMS
         protected void btnViewEmployeLst_ServerClick(object sender, EventArgs e)
         {
             var servicePath = SOAPServices.ExportDtetEmployeeList(Session["SessionCompanyName"] as string);
-            string  path= Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Report\\test.xls");
             string exportedFilePath = ConfigurationManager.AppSettings["ExportFilePath"].ToString() + StringHelper.GetFileNameFromURL(servicePath);
             var sheetname = exportedFilePath.Substring(exportedFilePath.IndexOf("PDF/") + 4, exportedFilePath.Length - (exportedFilePath.IndexOf("PDF/") + 4));
+            Response.Write(exportedFilePath);
+            string path1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PDF\\" + sheetname);
+            Response.Write(path1);
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#myModal').modal('show')", true);
-            GridView1.DataSource = ReadExcelFile("Sheet1", servicePath);
-            GridView1.DataBind();
+            try
+            {
+                GridView1.DataSource = ReadExcelFile("Sheet1", servicePath);
+                GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write(ex.Message);
+            }
         }
 
         private System.Data.DataTable ReadExcelFile(string sheetName, string path)

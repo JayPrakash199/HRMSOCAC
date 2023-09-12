@@ -480,6 +480,16 @@ namespace WebServices
             return locationList;
         }
 
+        public static object GetBookTypes(string companyName)
+        {
+            string serviceUrl = GetOdataURL(companyName);
+            Uri uri = new Uri(serviceUrl);
+            var container = new HRMSODATA.NAV(uri);
+            container.BuildingRequest += Context_BuildingRequest;
+            List<HRMSODATA.BookType> booktypelist = container.CreateQuery<HRMSODATA.BookType>("BookType").ToList();
+            return booktypelist;
+        }
+
         #endregion
 
         #region Fee Management

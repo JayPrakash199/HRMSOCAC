@@ -9,7 +9,9 @@
     "IgnoreUnexpectedElementsAndAttributes": true,
     "IncludeT4File": false,
     "ExcludedOperationImports": [],
-    "ExcludedBoundOperations": [],
+    "ExcludedBoundOperations": [
+      "SetComplete(NAV.UserTaskSetComplete)"
+    ],
     "ServiceName": "OData Service",
     "Endpoint": "http://10.100.0.5:8048/BC200/ODataV4/$metadata",
     "EdmxVersion": {

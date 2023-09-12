@@ -28,6 +28,12 @@ namespace WebServices
                 EmployeeAdditionalCardReference.EmployeeAdditionalInfoCard_Service _obj_Binding = (EmployeeAdditionalCardReference.EmployeeAdditionalInfoCard_Service)Configuration
                     .getNavService(new EmployeeAdditionalCardReference.EmployeeAdditionalInfoCard_Service(), "EmployeeAdditionalInfoCard", "Page", companyName);
                 _obj_Binding.Create(ref obj);
+
+                HRMSCodeunitReference.HRMSCodeunit objhrms = new HRMSCodeunitReference.HRMSCodeunit();
+                objhrms = (HRMSCodeunitReference.HRMSCodeunit)Configuration
+                    .getNavService(new HRMSCodeunitReference.HRMSCodeunit(), "HRMSCodeunit", "Codeunit", companyName);
+                objhrms.UpdateAddEmpDetails(obj.HRMS_ID);
+
                 return ResultMessages.SuccessfullMessage;
             }
             catch (Exception ex)
@@ -68,20 +74,10 @@ namespace WebServices
         {
             try
             {
-                EmployeeAdditionalCardReference.EmployeeAdditionalInfoCard_Service _obj_Binding =
-                    (EmployeeAdditionalCardReference.EmployeeAdditionalInfoCard_Service)Configuration
-                    .getNavService(new EmployeeAdditionalCardReference.EmployeeAdditionalInfoCard_Service(), "EmployeeAdditionalInfoCard", "Page", companyName);
-                EmployeeAdditionalCardReference.EmployeeAdditionalInfoCard obj = new EmployeeAdditionalCardReference.EmployeeAdditionalInfoCard();
-                //IList<HRMSODATA.EmployeeAdditionalInfoList> objList = ODataServices.GetAdditionalEmployeeList()
-                //                                                        .Where(x => string.Equals(x.HRMS_ID, input.HRMS_ID, StringComparison.OrdinalIgnoreCase))
-                //                                                        .ToList();
-
-                obj = _obj_Binding.Read(input.Entry_No, input.HRMS_ID);
-                obj.Employment_Status = input.Employment_Status;
-                obj.Date_of_increment = input.Date_of_increment;
-                obj.MACP_Status = input.MACP_Status;
-
-                _obj_Binding.Update(ref obj);
+                HRMSCodeunitReference.HRMSCodeunit objhrms = new HRMSCodeunitReference.HRMSCodeunit();
+                objhrms = (HRMSCodeunitReference.HRMSCodeunit)Configuration
+                    .getNavService(new HRMSCodeunitReference.HRMSCodeunit(), "HRMSCodeunit", "Codeunit", companyName);
+                objhrms.UpdateAddEmpDetailsLatest(input.HRMS_ID, input.Date_of_increment, (int)input.MACP_Status, (int)input.Employment_Status);
 
                 return ResultMessages.UpdateSuccessfullMessage;
             }

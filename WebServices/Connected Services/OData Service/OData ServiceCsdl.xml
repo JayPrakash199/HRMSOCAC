@@ -199,6 +199,7 @@
         <NavigationProperty Name="BookList" Type="Collection(NAV.BookList)" ContainsTarget="true" />
         <NavigationProperty Name="BookRenewalList" Type="Collection(NAV.BookRenewalList)" ContainsTarget="true" />
         <NavigationProperty Name="BookReturnList" Type="Collection(NAV.BookReturnList)" ContainsTarget="true" />
+        <NavigationProperty Name="BookType" Type="Collection(NAV.BookType)" ContainsTarget="true" />
         <NavigationProperty Name="CautionMoneyApplication" Type="Collection(NAV.CautionMoneyApplication)" ContainsTarget="true" />
         <NavigationProperty Name="CautionMoneyApplicationList" Type="Collection(NAV.CautionMoneyApplicationList)" ContainsTarget="true" />
         <NavigationProperty Name="CautionRefundOrder" Type="Collection(NAV.CautionRefundOrder)" ContainsTarget="true" />
@@ -603,6 +604,9 @@
         </NavigationProperty>
         <NavigationProperty Name="Damaged_Lost_By_Link" Type="Collection(NAV.StudentList)" ContainsTarget="true">
           <ReferentialConstraint Property="Damaged_Lost_By" ReferencedProperty="No" />
+        </NavigationProperty>
+        <NavigationProperty Name="Book_Type_Link" Type="Collection(NAV.BookType)" ContainsTarget="true">
+          <ReferentialConstraint Property="Book_Type" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="Location_Code_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="Location_Code" ReferencedProperty="Code" />
@@ -3412,6 +3416,9 @@
         <NavigationProperty Name="Book_No_Link" Type="Collection(NAV.BookList)" ContainsTarget="true">
           <ReferentialConstraint Property="Book_No" ReferencedProperty="No" />
         </NavigationProperty>
+        <NavigationProperty Name="Accession_Book_Type_Link" Type="Collection(NAV.BookType)" ContainsTarget="true">
+          <ReferentialConstraint Property="Accession_Book_Type" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="Location_Code_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="Location_Code" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -3670,6 +3677,9 @@
         </NavigationProperty>
         <NavigationProperty Name="Langauge_Link" Type="Collection(NAV.Language)" ContainsTarget="true">
           <ReferentialConstraint Property="Langauge" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Book_Type_Link" Type="Collection(NAV.BookType)" ContainsTarget="true">
+          <ReferentialConstraint Property="Book_Type" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="Classification_Link" Type="Collection(NAV.BookCategoryList)" ContainsTarget="true">
           <ReferentialConstraint Property="Classification" ReferencedProperty="Code" />
@@ -4070,6 +4080,9 @@
         <NavigationProperty Name="Langauge_Link" Type="Collection(NAV.Language)" ContainsTarget="true">
           <ReferentialConstraint Property="Langauge" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Book_Type_Link" Type="Collection(NAV.BookType)" ContainsTarget="true">
+          <ReferentialConstraint Property="Book_Type" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="LibraryBookMovementList" Type="NAV.LibraryBookMovementList" Partner="Book_No_Link" ContainsTarget="true">
           <ReferentialConstraint Property="No" ReferencedProperty="Book_No" />
         </NavigationProperty>
@@ -4284,6 +4297,25 @@
         </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="BookReturnList" />
         <Annotation Term="NAV.IsReadOnly" Bool="true" />
+      </EntityType>
+      <EntityType Name="BookType">
+        <Key>
+          <PropertyRef Name="Code" />
+        </Key>
+        <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="Descripion" Type="Edm.String" MaxLength="100">
+          <Annotation Term="NAV.LabelId" String="Descripion" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Annotation Term="NAV.LabelId" String="BookType" />
       </EntityType>
       <EntityType Name="CautionMoneyApplication">
         <Key>
@@ -6117,6 +6149,21 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
+        <Property Name="User_ID" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="User ID" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Location" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Location" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <NavigationProperty Name="Location_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
+          <ReferentialConstraint Property="Location" ReferencedProperty="Code" />
+        </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="DepartmentList" />
       </EntityType>
       <EntityType Name="Districtlist">
@@ -10851,6 +10898,9 @@
         </NavigationProperty>
         <NavigationProperty Name="Damaged_Lost_By_Link" Type="Collection(NAV.StudentList)" ContainsTarget="true">
           <ReferentialConstraint Property="Damaged_Lost_By" ReferencedProperty="No" />
+        </NavigationProperty>
+        <NavigationProperty Name="Book_Type_Link" Type="Collection(NAV.BookType)" ContainsTarget="true">
+          <ReferentialConstraint Property="Book_Type" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="Location_Code_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="Location_Code" ReferencedProperty="Code" />
@@ -40494,6 +40544,15 @@
       <Action Name="HRMSCodeunit_HRMSDataImportFromGovtPortal">
         <Parameter Name="fileName" Type="Edm.String" />
       </Action>
+      <Action Name="HRMSCodeunit_UpdateAddEmpDetailsLatest">
+        <Parameter Name="hRMSID" Type="Edm.String" />
+        <Parameter Name="incDate" Type="Edm.Date" />
+        <Parameter Name="mAPC" Type="Edm.Int32" />
+        <Parameter Name="empStatus" Type="Edm.Int32" />
+      </Action>
+      <Action Name="HRMSCodeunit_UpdateAddEmpDetails">
+        <Parameter Name="hRMSID" Type="Edm.String" />
+      </Action>
       <Action Name="HRMSCodeunit_Upload_Employee_Training_History_Certificate">
         <Parameter Name="entrynopar" Type="Edm.Int32" />
         <Parameter Name="filenamePar" Type="Edm.String" />
@@ -40915,6 +40974,8 @@
         <ActionImport Name="HRMSCodeunit_ExportStaffAchivementDetails" Action="NAV.HRMSCodeunit_ExportStaffAchivementDetails" />
         <ActionImport Name="HRMSCodeunit_ExportTransferConsolidatedList" Action="NAV.HRMSCodeunit_ExportTransferConsolidatedList" />
         <ActionImport Name="HRMSCodeunit_HRMSDataImportFromGovtPortal" Action="NAV.HRMSCodeunit_HRMSDataImportFromGovtPortal" />
+        <ActionImport Name="HRMSCodeunit_UpdateAddEmpDetailsLatest" Action="NAV.HRMSCodeunit_UpdateAddEmpDetailsLatest" />
+        <ActionImport Name="HRMSCodeunit_UpdateAddEmpDetails" Action="NAV.HRMSCodeunit_UpdateAddEmpDetails" />
         <ActionImport Name="HRMSCodeunit_Upload_Employee_Training_History_Certificate" Action="NAV.HRMSCodeunit_Upload_Employee_Training_History_Certificate" />
         <ActionImport Name="HRMSCodeunit_Upload_Financial_Upgradation_Application" Action="NAV.HRMSCodeunit_Upload_Financial_Upgradation_Application" />
         <ActionImport Name="HRMSCodeunit_Upload_Promotion_Order" Action="NAV.HRMSCodeunit_Upload_Promotion_Order" />
@@ -41629,6 +41690,28 @@
           <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
             <Record>
               <PropertyValue Property="Updatable" Bool="false" />
+            </Record>
+          </Annotation>
+        </EntitySet>
+        <EntitySet Name="BookType" EntityType="NAV.BookType">
+          <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
+            <Record>
+              <PropertyValue Property="Supported" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record>
+              <PropertyValue Property="Deletable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record>
+              <PropertyValue Property="Insertable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record>
+              <PropertyValue Property="Updatable" Bool="true" />
             </Record>
           </Annotation>
         </EntitySet>
