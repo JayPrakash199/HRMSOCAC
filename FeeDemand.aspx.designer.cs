@@ -33,13 +33,13 @@ namespace HRMS
         protected global::System.Web.UI.WebControls.DropDownList ddlStudentNo;
 
         /// <summary>
-        /// txtDocumentNo control.
+        /// ddlDocumentNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDocumentNo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDocumentNo;
 
         /// <summary>
         /// btnExport control.

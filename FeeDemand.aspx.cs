@@ -1,8 +1,10 @@
 ﻿using HRMS.Common;
+using HRMSODATA;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Web.UI.WebControls;
 using WebServices;
@@ -23,6 +25,7 @@ namespace HRMS
                 }
                 BindStudentDropDownList();
                 BindFianacialYear();
+                BindDocumentDropDownList();
             }
         }
 
@@ -43,15 +46,38 @@ namespace HRMS
             ddlStudentNo.Items.Insert(0, new ListItem("Select Student", "0"));
         }
 
+        public void BindDocumentDropDownList()
+        {
+            var list = ODataServices.GetDocumentData(Session["SessionCompanyName"] as string);
+            var data = list.Where(x => string.Equals(x.Customer_No, ddlStudentNo.SelectedValue, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            var DcList = new List<DocumentList>();
+
+            foreach (var dc in data)
+            {
+                DcList.Add(new HRMS.DocumentList
+                {
+                    DocumentNo = dc.Document_No,
+                    DocumentName = dc.Document_No + " " + dc.Document_Type + " " + dc.Customer_No + " " + dc.Amount_LCY
+                });
+            }
+
+            ddlDocumentNo.DataSource = DcList;
+            ddlDocumentNo.DataTextField = "DocumentName";
+            ddlDocumentNo.DataValueField = "DocumentNo";
+            ddlDocumentNo.DataBind();
+            ddlDocumentNo.Items.Insert(0, new ListItem("Select Document", "0"));
+        }
+
         protected void btnExport_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(ddlacademicYear.SelectedItem.Text) &&
                 !string.IsNullOrEmpty(ddlStudentNo.SelectedValue) &&
-                !string.IsNullOrEmpty(txtDocumentNo.Text))
+                !string.IsNullOrEmpty(ddlDocumentNo.SelectedItem.Text))
             {
                 var servicePath = SOAPServices.GetFeeDemand(ddlacademicYear.SelectedItem.Text,
                                                             ddlStudentNo.SelectedValue,
-                                                            txtDocumentNo.Text,
+                                                            ddlDocumentNo.SelectedItem.Text,
                                                             Session["SessionCompanyName"] as string);
                 var FileName = "Fee-Demand.pdf";
                 string exportedFilePath = ConfigurationManager.AppSettings["ExportFilePath"].ToString() + StringHelper.GetFileNameFromURL(servicePath);
@@ -82,5 +108,18 @@ namespace HRMS
                 }
             }
         }
+
+        protected void ddlStudentNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindDocumentDropDownList();
+        }
+    }
+
+
+    public class DocumentList
+    {
+
+        public string DocumentNo { get; set; }
+        public string DocumentName { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using InfrastructureManagement.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.WebControls;
 using WebServices;
 
 namespace HRMS
@@ -11,12 +12,35 @@ namespace HRMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+            if (!IsPostBack)
             {
-                string message = string.Format("Message: {0}\\n\\n", "Please select a company");
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
-                Response.Redirect("Default.aspx");
+                if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+                {
+                    string message = string.Format("Message: {0}\\n\\n", "Please select a company");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
+                    Response.Redirect("Default.aspx");
+                }
+                BindDesignation();
+                BindAcademicyear();
             }
+        }
+
+        private void BindAcademicyear()
+        {
+            var FyList = ODataServices.GetFinancialYearList(Session["SessionCompanyName"] as string);
+            ddlFinancialYear.DataSource = FyList;
+            ddlFinancialYear.DataTextField = "Financial_Code";
+            ddlFinancialYear.DataValueField = "Financial_Code";
+            ddlFinancialYear.DataBind();
+        }
+        private void BindDesignation()
+        {
+            var lstDesignation = ODataServices.GetDesignation(Session["SessionCompanyName"] as string);
+            ddlDesignation.DataSource = lstDesignation;
+            ddlDesignation.DataTextField = "Description";
+            ddlDesignation.DataValueField = "Code";
+            ddlDesignation.DataBind();
+            ddlDesignation.Items.Insert(0, new ListItem("Select Designation", "0"));
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -47,6 +71,7 @@ namespace HRMS
         {
             var obj = new WebServices.AnnualEstablishmentReviewReference.AnnualEstablishmentReviewCard
             {
+                Persons_in_PositionSpecified=true,
                 Establishment_TypeSpecified = true,
                 Employee_CatagorySpecified = true,
                 Pay_Scale_level_7th_paySpecified = true,
@@ -61,7 +86,8 @@ namespace HRMS
                             ? WebServices.AnnualEstablishmentReviewReference.Employee_Catagory.Group_C
                             : WebServices.AnnualEstablishmentReviewReference.Employee_Catagory.Group_D,
                 Remark = txtRemark.Text,
-                Designation = ddlDesignation.SelectedItem.Text,
+                Designation = ddlDesignation.SelectedItem.Value,
+                Persons_in_Position= !string.IsNullOrEmpty(txtPersonsinPosition.Text) ? NumericHandler.ConvertToInteger(txtPersonsinPosition.Text) : 0,
                 Pay_Scale_level_7th_pay = NumericHandler.ConvertToDecimal(txtPayScaleLevel7thPay.Text)
             };
             var resultMessage = SOAPServices.AddAnnualEstablishmentReviewRecord(obj, Session["SessionCompanyName"] as string);

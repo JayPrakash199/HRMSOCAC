@@ -250,13 +250,5 @@
             return true;
         }
 
-        var yearsLength = 30;
-        var currentYear = new Date().getFullYear();
-        for (var i = 0; i < 10; i++) {
-            var next = currentYear + 1;
-            var year = currentYear + '-' + next.toString().slice(-2);
-            $("#<%= ddlFinancialYear.ClientID %>").append(new Option(year, year));
-            currentYear--;
-        }
     </script>
 </asp:Content>

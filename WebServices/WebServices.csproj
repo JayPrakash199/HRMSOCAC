@@ -217,6 +217,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\StudentFeeCollectionCardReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\StudentFeeCollectionReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -471,6 +476,14 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\RTIMonitoringReference\RTIMonitoringCard.wsdl" />
+    <None Include="Web References\StudentFeeCollectionCardReference\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\StudentFeeCollectionCardReference\StudentFeeCollectionCard.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StudentFeeCollectionCardReference\StudentFeeCollectionCard.wsdl" />
     <None Include="Web References\StudentFeeCollectionReference\FeeCollection.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -528,10 +541,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>WebServices_LibraryMgmtReference_LibraryMgmt</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/CRONUS%2520India%2520Ltd./Page/AnnualEstablishmentReviewCard">
+    <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Page/AnnualEstablishmentReviewCard">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\AnnualEstablishmentReviewReference\</RelPath>
-      <UpdateFromURL>http://10.100.0.5:8047/BC200/WS/CRONUS%2520India%2520Ltd./Page/AnnualEstablishmentReviewCard</UpdateFromURL>
+      <UpdateFromURL>http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Page/AnnualEstablishmentReviewCard</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -550,10 +563,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>WebServices_EmployeeAchvReference_EmployeeAchvCard_Service</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/CRONUS%2520India%2520Ltd./Page/EmployeeAdditionalInfoCard">
+    <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Page/EmployeeAdditionalInfoCard">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\EmployeeAdditionalCardReference\</RelPath>
-      <UpdateFromURL>http://10.100.0.5:8047/BC200/WS/CRONUS%2520India%2520Ltd./Page/EmployeeAdditionalInfoCard</UpdateFromURL>
+      <UpdateFromURL>http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Page/EmployeeAdditionalInfoCard</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -802,6 +815,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>WebServices_RTIMonitoringReference_RTIMonitoringCard_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Page/StudentFeeCollectionCard">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\StudentFeeCollectionCardReference\</RelPath>
+      <UpdateFromURL>http://10.100.0.5:8047/BC200/WS/GOVT%2520POLYTECHNIC%2520ANGUL/Page/StudentFeeCollectionCard</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>WebServices_StudentFeeCollectionCardReference_StudentFeeCollectionCard_Service</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>

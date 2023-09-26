@@ -513,20 +513,27 @@ namespace WebServices
             return result;
         }
 
-        public static bool GetFeeGeneration(string academicYear, string semester, string feeClassification, string courseCode, string studentNo, string companyName)
+        public static string GetFeeGeneration(string academicYear, string semester, string feeClassification, string courseCode, string studentNo, string companyName)
         {
-            FeeManagementCodeUnitReference2.FeeManagementCodeUnit obj = new FeeManagementCodeUnitReference2.FeeManagementCodeUnit();
-            obj = (FeeManagementCodeUnitReference2.FeeManagementCodeUnit)Configuration
-                .getNavService(new FeeManagementCodeUnitReference2.FeeManagementCodeUnit(), "FeeManagementCodeUnit", "Codeunit", companyName);
-            return obj.FeeGeneration(academicYear, semester, feeClassification, courseCode, studentNo);
+            try
+            {
+                FeeManagementCodeUnitReference2.FeeManagementCodeUnit obj = new FeeManagementCodeUnitReference2.FeeManagementCodeUnit();
+                obj = (FeeManagementCodeUnitReference2.FeeManagementCodeUnit)Configuration
+                    .getNavService(new FeeManagementCodeUnitReference2.FeeManagementCodeUnit(), "FeeManagementCodeUnit", "Codeunit", companyName);
+                return obj.FeeGeneration(academicYear, semester, feeClassification, courseCode, studentNo);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
-        public static string GetMoneyReceipt(string customerNo, DateTime postingDate, string companyName)
+        public static string GetMoneyReceipt(string customerNo, DateTime postingDate, string companyName, string dcNo)
         {
             FeeManagementCodeUnitReference2.FeeManagementCodeUnit obj = new FeeManagementCodeUnitReference2.FeeManagementCodeUnit();
             obj = (FeeManagementCodeUnitReference2.FeeManagementCodeUnit)Configuration
                 .getNavService(new FeeManagementCodeUnitReference2.FeeManagementCodeUnit(), "FeeManagementCodeUnit", "Codeunit", companyName);
-            var result = obj.MoneyReceipt(customerNo, postingDate);
+            var result = obj.MoneyReceipt(customerNo, postingDate, dcNo);
             return result;
         }
 
@@ -596,10 +603,10 @@ namespace WebServices
             _obj_Binding.Create(ref obj);
         }
 
-        public static void AddStudentFee(StudentFeeCollectionReference.FeeCollection obj, string companyName)
+        public static void AddStudentFee(StudentFeeCollectionCardReference.StudentFeeCollectionCard obj, string companyName)
         {
-            StudentFeeCollectionReference.FeeCollection_Service _obj_Binding = (StudentFeeCollectionReference.FeeCollection_Service)Configuration
-                .getNavService(new StudentFeeCollectionReference.FeeCollection_Service(), "FeeCollection", "Page", companyName);
+            StudentFeeCollectionCardReference.StudentFeeCollectionCard_Service _obj_Binding = (StudentFeeCollectionCardReference.StudentFeeCollectionCard_Service)Configuration
+                .getNavService(new StudentFeeCollectionCardReference.StudentFeeCollectionCard_Service(), "StudentFeeCollectionCard", "Page", companyName);
             _obj_Binding.Create(ref obj);
         }
         public static void PostingGeneralPayment(string paymentEntryNo, string companyName)
@@ -1684,6 +1691,22 @@ namespace WebServices
 
             _obj_Binding.Update(ref obj);
             return ResultMessages.UpdateSuccessfullMessage;
+        }
+
+        public static void LogSessionData(string userId, string sessionId, DateTime loginTime, string companyName)
+        {
+            PortalFunctionReference.PortalFunction obj = new PortalFunctionReference.PortalFunction();
+            obj = (PortalFunctionReference.PortalFunction)Configuration
+                .getNavService(new PortalFunctionReference.PortalFunction(), "PortalFunction", "Codeunit", companyName);
+            obj.CreateLoginRegister(userId, sessionId, loginTime);
+        }
+
+        public static void UpdateSessionData(string userId, string sessionId, DateTime logOutTime, string companyName)
+        {
+            PortalFunctionReference.PortalFunction obj = new PortalFunctionReference.PortalFunction();
+            obj = (PortalFunctionReference.PortalFunction)Configuration
+                .getNavService(new PortalFunctionReference.PortalFunction(), "PortalFunction", "Codeunit", companyName);
+            obj.UpdateLoginRegister(userId, sessionId, logOutTime);
         }
     }
 }

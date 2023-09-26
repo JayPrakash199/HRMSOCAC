@@ -14,22 +14,28 @@
 #pragma warning disable 1591
 
 namespace WebServices.PortalFunctionReference {
-    using System;
-    using System.Web.Services;
     using System.Diagnostics;
-    using System.Web.Services.Protocols;
+    using System;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Web.Services.Protocols;
+    using System.Web.Services;
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="PortalFunction_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction")]
     public partial class PortalFunction : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback ChangePasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CreateLoginRegisterOperationCompleted;
+        
         private System.Threading.SendOrPostCallback PostingGeneralOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateLoginRegisterOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -70,7 +76,80 @@ namespace WebServices.PortalFunctionReference {
         }
         
         /// <remarks/>
+        public event ChangePasswordCompletedEventHandler ChangePasswordCompleted;
+        
+        /// <remarks/>
+        public event CreateLoginRegisterCompletedEventHandler CreateLoginRegisterCompleted;
+        
+        /// <remarks/>
         public event PostingGeneralCompletedEventHandler PostingGeneralCompleted;
+        
+        /// <remarks/>
+        public event UpdateLoginRegisterCompletedEventHandler UpdateLoginRegisterCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/PortalFunction:ChangePassword", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction", ResponseElementName="ChangePassword_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ChangePassword(string userName, string pass1, string pass2) {
+            this.Invoke("ChangePassword", new object[] {
+                        userName,
+                        pass1,
+                        pass2});
+        }
+        
+        /// <remarks/>
+        public void ChangePasswordAsync(string userName, string pass1, string pass2) {
+            this.ChangePasswordAsync(userName, pass1, pass2, null);
+        }
+        
+        /// <remarks/>
+        public void ChangePasswordAsync(string userName, string pass1, string pass2, object userState) {
+            if ((this.ChangePasswordOperationCompleted == null)) {
+                this.ChangePasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChangePasswordOperationCompleted);
+            }
+            this.InvokeAsync("ChangePassword", new object[] {
+                        userName,
+                        pass1,
+                        pass2}, this.ChangePasswordOperationCompleted, userState);
+        }
+        
+        private void OnChangePasswordOperationCompleted(object arg) {
+            if ((this.ChangePasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChangePasswordCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/PortalFunction:CreateLoginRegister", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction", ResponseElementName="CreateLoginRegister_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void CreateLoginRegister(string userID, string sessionID, System.DateTime loginDateTime) {
+            this.Invoke("CreateLoginRegister", new object[] {
+                        userID,
+                        sessionID,
+                        loginDateTime});
+        }
+        
+        /// <remarks/>
+        public void CreateLoginRegisterAsync(string userID, string sessionID, System.DateTime loginDateTime) {
+            this.CreateLoginRegisterAsync(userID, sessionID, loginDateTime, null);
+        }
+        
+        /// <remarks/>
+        public void CreateLoginRegisterAsync(string userID, string sessionID, System.DateTime loginDateTime, object userState) {
+            if ((this.CreateLoginRegisterOperationCompleted == null)) {
+                this.CreateLoginRegisterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateLoginRegisterOperationCompleted);
+            }
+            this.InvokeAsync("CreateLoginRegister", new object[] {
+                        userID,
+                        sessionID,
+                        loginDateTime}, this.CreateLoginRegisterOperationCompleted, userState);
+        }
+        
+        private void OnCreateLoginRegisterOperationCompleted(object arg) {
+            if ((this.CreateLoginRegisterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CreateLoginRegisterCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/PortalFunction:PostingGeneral", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction", ResponseElementName="PostingGeneral_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -101,6 +180,38 @@ namespace WebServices.PortalFunctionReference {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/PortalFunction:UpdateLoginRegister", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction", ResponseElementName="UpdateLoginRegister_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/PortalFunction", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateLoginRegister(string userID, string sessionID, System.DateTime logoutDateTime) {
+            this.Invoke("UpdateLoginRegister", new object[] {
+                        userID,
+                        sessionID,
+                        logoutDateTime});
+        }
+        
+        /// <remarks/>
+        public void UpdateLoginRegisterAsync(string userID, string sessionID, System.DateTime logoutDateTime) {
+            this.UpdateLoginRegisterAsync(userID, sessionID, logoutDateTime, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateLoginRegisterAsync(string userID, string sessionID, System.DateTime logoutDateTime, object userState) {
+            if ((this.UpdateLoginRegisterOperationCompleted == null)) {
+                this.UpdateLoginRegisterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateLoginRegisterOperationCompleted);
+            }
+            this.InvokeAsync("UpdateLoginRegister", new object[] {
+                        userID,
+                        sessionID,
+                        logoutDateTime}, this.UpdateLoginRegisterOperationCompleted, userState);
+        }
+        
+        private void OnUpdateLoginRegisterOperationCompleted(object arg) {
+            if ((this.UpdateLoginRegisterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateLoginRegisterCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -120,8 +231,20 @@ namespace WebServices.PortalFunctionReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ChangePasswordCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void CreateLoginRegisterCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void PostingGeneralCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void UpdateLoginRegisterCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

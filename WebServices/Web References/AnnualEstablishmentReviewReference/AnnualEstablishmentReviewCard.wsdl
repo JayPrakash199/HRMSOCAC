@@ -35,7 +35,7 @@
           <xsd:element minOccurs="0" maxOccurs="1" name="Dept_Trade_Section" type="xsd:string" />
           <xsd:element minOccurs="0" maxOccurs="1" name="Designation" type="xsd:string" />
           <xsd:element minOccurs="0" maxOccurs="1" name="Pay_Scale_GP" type="xsd:decimal" />
-          <xsd:element minOccurs="0" maxOccurs="1" name="Pay_scale_6th_pay" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Pay_scale_6th_pay" type="xsd:string" />
           <xsd:element minOccurs="0" maxOccurs="1" name="Sanctioned_Strength" type="xsd:int" />
           <xsd:element minOccurs="0" maxOccurs="1" name="Persons_in_Position" type="xsd:int" />
           <xsd:element minOccurs="0" maxOccurs="1" name="Vacancy_Position" type="xsd:int" />
@@ -420,7 +420,7 @@
   </binding>
   <service name="AnnualEstablishmentReviewCard_Service">
     <port name="AnnualEstablishmentReviewCard_Port" binding="tns:AnnualEstablishmentReviewCard_Binding">
-      <address location="http://10.100.0.5:8047/BC200/WS/CRONUS%20India%20Ltd./Page/AnnualEstablishmentReviewCard" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <address location="http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Page/AnnualEstablishmentReviewCard" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
     </port>
   </service>
 </definitions>

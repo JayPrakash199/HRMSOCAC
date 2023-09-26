@@ -210,10 +210,7 @@
                                                                 <th runat="server">Description</th>
                                                                 <th runat="server">Fees Type</th>
                                                                 <th runat="server">Amount</th>
-                                                                <th runat="server">Currency Code</th>
                                                                 <th runat="server">Component Type</th>
-                                                                <th runat="server">VAT %</th>
-                                                                <th runat="server">VAT Amount</th>
                                                                 <th runat="server">Session</th>
                                                                 <th runat="server">Timing</th>
                                                             </tr>
@@ -236,16 +233,7 @@
                                                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("Amount")%>'> </asp:Label>
                                                             </td>
                                                             <td>
-                                                                <asp:Label ID="Label3" runat="server" Text='<%# Eval("Currency_Code")%>'> </asp:Label>
-                                                            </td>
-                                                            <td>
                                                                 <asp:Label ID="Label4" runat="server" Text='<%# Eval("Component_Type")%>'> </asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="Label5" runat="server" Text='<%# Eval("VAT_Percent")%>'> </asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="Label6" runat="server" Text='<%# Eval("VAT_Amount")%>'> </asp:Label>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("Session")%>'> </asp:Label>

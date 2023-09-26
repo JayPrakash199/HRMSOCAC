@@ -227,6 +227,39 @@ namespace WebServices
 
             return q;
         }
+
+        public static IList<HRMSODATA.DesignationList> GetDesignation(string companyName)
+        {
+            string serviceUrl = GetOdataURL(companyName);
+            Uri uri = new Uri(serviceUrl);
+            var container = new HRMSODATA.NAV(uri);
+            container.BuildingRequest += Context_BuildingRequest;
+            List<HRMSODATA.DesignationList> lstDesignation = container.CreateQuery<HRMSODATA.DesignationList>("DesignationList").ToList();
+
+            return lstDesignation;
+        }
+
+
+
+        public static IList<HRMSODATA.FinancialYearList> GetFinancialYearList(string companyName)
+        {
+            string serviceUrl = GetOdataURL(companyName);
+            Uri uri = new Uri(serviceUrl);
+            var container = new HRMSODATA.NAV(uri);
+            container.BuildingRequest += Context_BuildingRequest;
+            List<HRMSODATA.FinancialYearList> lstFy = container.CreateQuery<HRMSODATA.FinancialYearList>("FinancialYearList").ToList();
+
+            return lstFy;
+        }
+        public static IList<HRMSODATA.Districtlist> GetHomeDist(string companyName)
+        {
+            string serviceUrl = GetOdataURL(companyName);
+            Uri uri = new Uri(serviceUrl);
+            var container = new HRMSODATA.NAV(uri);
+            container.BuildingRequest += Context_BuildingRequest;
+            List<HRMSODATA.Districtlist> lstDist = container.CreateQuery<HRMSODATA.Districtlist>("Districtlist").ToList();
+            return lstDist;
+        }
         #endregion
 
         #region Library
@@ -950,6 +983,18 @@ namespace WebServices
             return q;
         }
 
+
+        public static IList<HRMSODATA.DimValueList> GetDimentionList(string companyName)
+        {
+            string serviceUrl = GetOdataURL(companyName);
+            Uri uri = new Uri(serviceUrl);
+            var container = new HRMSODATA.NAV(uri);
+            container.BuildingRequest += Context_BuildingRequest;
+            List<HRMSODATA.DimValueList> dmlist = container.CreateQuery<HRMSODATA.DimValueList>("DimValueList").ToList();
+
+            return dmlist;
+        }
+
         #endregion
 
         #region Odata Connection Manager
@@ -965,6 +1010,16 @@ namespace WebServices
         private static string GetOdataURL(string companyName = "GOVT%20POLYTECHNIC%20ANGUL")
         {
             return string.Format(Configuration.ODataServiceUrl()) + "('" + companyName + "')/";
+        }
+
+        public static IList<HRMSODATA.CustomerDocumentList> GetDocumentData(string companyName)
+        {
+            string serviceUrl = GetOdataURL(companyName);
+            Uri uri = new Uri(serviceUrl);
+            var container = new HRMSODATA.NAV(uri);
+            container.BuildingRequest += Context_BuildingRequest;
+            List<HRMSODATA.CustomerDocumentList> lst = container.CreateQuery<HRMSODATA.CustomerDocumentList>("CustomerDocumentList").ToList();
+            return lst;
         }
         #endregion
     }

@@ -113,7 +113,6 @@
                                                         <asp:ListItem>Select</asp:ListItem>
                                                         <asp:ListItem Value="StudentFee">Student Fee</asp:ListItem>
                                                         <asp:ListItem Value="OtherIncome">Other Income</asp:ListItem>
-                                                        <%--<asp:ListItem Value="StudentRefund">Student Refund</asp:ListItem>--%>
                                                         <asp:ListItem Value="InternalTransfer">Internal Transfer</asp:ListItem>
                                                         <asp:ListItem Value="AdvancePayment">Advance Payment</asp:ListItem>
                                                         <asp:ListItem Value="StaffAdvanceRefund">Staff Advance Refund</asp:ListItem>
@@ -124,31 +123,6 @@
                                                     <asp:DropDownList ID="ddlCustomerNo" CssClass="form-control" runat="server">
                                                     </asp:DropDownList>
                                                 </div>
-                                                <%--<div class="form-group">
-                                                    <label>Name</label>
-                                                    <asp:TextBox ID="txtName" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>--%>
-                                                <%--<div class="form-group">
-                                                    <label>Grade Code</label>
-                                                    <asp:TextBox ID="txtGradeCode" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>--%>
-                                                <%--<div class="form-group">
-                                                    <label>Grade Code</label>
-                                                    <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>--%>
-                                                <%-- <div class="form-group">
-                                                    <label for="exampleAccount">Academic Year</label>
-                                                    <asp:DropDownList ID="ddlAcademicYear" CssClass="form-control ajax__calendar_body" runat="server">
-                                                    </asp:DropDownList>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Grade</label>
-                                                    <asp:TextBox ID="txtGrade" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Section</label>
-                                                    <asp:TextBox ID="txtSection" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>--%>
                                                 <div class="form-group" runat="server" id="divFeeClassiifcationType" visible="false">
                                                     <label for="exampleAccount">Fee Classification Type</label>
                                                     <asp:DropDownList ID="ddlFeeClassSpecification" CssClass="form-control" runat="server">
@@ -158,16 +132,6 @@
                                         </div>
                                         <div class="col-md-6 contact-info">
                                             <div class="container">
-                                                <%--<div class="form-group">
-                                                    <label>No Series</label>
-                                                    <asp:DropDownList ID="ddlNoSeries" CssClass="form-control" runat="server">
-                                                    </asp:DropDownList>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Currency Code</label>
-                                                    <asp:DropDownList ID="ddlCurrencyCode" CssClass="form-control" runat="server">
-                                                    </asp:DropDownList>
-                                                </div>--%>
                                                 <div class="form-group">
                                                     <label>Amount</label>
                                                     <asp:TextBox ID="txtAmount" CssClass="form-control" runat="server"></asp:TextBox>
@@ -199,22 +163,74 @@
                                                     <asp:DropDownList ID="ddlBankAccountNo" CssClass="form-control" runat="server">
                                                     </asp:DropDownList>
                                                 </div>
-                                                <%--<div class="form-group">
-                                                    <label>Ext Doc No</label>
-                                                    <asp:TextBox ID="txtExtDocNo" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>--%>
+                                            </div>
+                                        </div>
+
+                                        <div id="dvdimension" visible="false" runat="server">
+                                            <p style="border-bottom: 1px solid black; width: 96%; float: left; margin-left: 2%; font-weight: 700; font-size: larger;">
+                                                Dimension
+                                            </p>
+                                            <div class="col-md-6 contact-info">
+                                                <div class="container">
+                                                    <div class="form-group">
+                                                        <label for="InstiuteCode">Instiute Code</label>
+                                                        <asp:DropDownList ID="ddlInstiuteCode" AutoPostBack="true" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div class="form-group" runat="server">
+                                                        <label for="exampleAccount">Department Code</label>
+                                                        <asp:DropDownList ID="ddlDepartmentCode" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div class="form-group" runat="server">
+                                                        <label for="exampleAccount">Slcmno Code</label>
+                                                        <asp:DropDownList ID="ddlSlcmnoCode" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div class="form-group" runat="server">
+                                                        <label for="exampleAccount">Employee Code</label>
+                                                        <asp:DropDownList ID="ddlEmployeeCode" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div class="form-group" runat="server">
+                                                        <label for="exampleAccount">Funding source Code</label>
+                                                        <asp:DropDownList ID="ddlFundingsourceCode" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 contact-info">
+                                                <div class="container">
+                                                    <div class="form-group">
+                                                        <label for="InstiuteCode">Shortcut Dimension 6 Code</label>
+                                                        <asp:DropDownList ID="ddlShortcutDimension6" AutoPostBack="true" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div class="form-group" runat="server">
+                                                        <label for="exampleAccount">Shortcut Dimension 7 Code</label>
+                                                        <asp:DropDownList ID="ddlShortcutDimension7" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div class="form-group" runat="server">
+                                                        <label for="exampleAccount">Shortcut Dimension 8 Code</label>
+                                                        <asp:DropDownList ID="ddlShortcutDimension8" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" CssClass="btn-s float-right btn-primary" Text="Submit" />
-                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" CssClass="btn-s float-right btn-primary" Text="Submit" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </asp:Content>

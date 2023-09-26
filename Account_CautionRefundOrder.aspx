@@ -4,6 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
     <style>
         .summary-box {
             margin-top: 75px;
@@ -197,6 +199,29 @@
         function HideLoader() {
             $('#loader').hide();
         };
+
+        $(document).ready(function () {
+            debugger;
+            $('.selectall').on('click', function () {
+                if (this.checked) {
+                    $('.selectone').each(function () {
+                        this.checked = true;
+                    });
+                } else {
+                    $('.selectone').each(function () {
+                        this.checked = false;
+                    });
+                }
+            });
+
+            $('.selectone').on('click', function () {
+                if ($('.selectone:checked').length == $('.selectone').length) {
+                    $('.selectall').prop('checked', true);
+                } else {
+                    $('.selectall').prop('checked', false);
+                }
+            });
+        });
     </script>
     <div class="container box">
         <div class="row">
@@ -278,16 +303,18 @@
                             <div class="right_col_content label-responsive">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div id="exportto" style="height: 390px; overflow: visible">
+                                        <div id="exportto" style="overflow: visible">
                                             <asp:ListView ID="CautionMoneySubFormListView" runat="server">
                                                 <LayoutTemplate>
                                                     <table runat="server" class="table table-bordered">
                                                         <tr runat="server">
-                                                            <th runat="server">Refund Document No</th>
-                                                            <th runat="server">Line No</th>
-                                                            <th runat="server">Student No</th>
-                                                            <th runat="server">Amount</th>
-                                                            <th runat="server"></th>
+                                                            <th style="text-align: center" runat="server">
+                                                                <input type="checkbox" class="selectall" /></th>
+                                                            <th style="text-align: center" runat="server">Refund Document No</th>
+                                                            <th style="text-align: center" runat="server">Line No</th>
+                                                            <th style="text-align: center" runat="server">Student No</th>
+                                                            <th style="text-align: center" runat="server">Amount</th>
+                                                            <th style="text-align: center" runat="server">Action</th>
                                                         </tr>
                                                         <tr id="ItemPlaceholder" runat="server">
                                                         </tr>
@@ -295,6 +322,9 @@
                                                 </LayoutTemplate>
                                                 <ItemTemplate>
                                                     <tr class="TableData">
+                                                        <td>
+                                                            <asp:CheckBox ID="chkitem" class="selectone" runat="server"></asp:CheckBox>
+                                                        </td>
                                                         <td>
                                                             <asp:Label ID="lblRefundDocNo" runat="server" Text='<%# Eval("Refund_Document_No")%>'> </asp:Label>
                                                         </td>
@@ -314,6 +344,9 @@
                                                 </ItemTemplate>
                                             </asp:ListView>
                                         </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <asp:Button runat="server" ID="btndeleteall" OnClick="btndeleteall_Click" Text="Delete" CssClass="btn-s float-right submit" />
                                     </div>
                                 </div>
                             </div>

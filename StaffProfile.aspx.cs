@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using WebServices;
 
 namespace HRMS
@@ -10,14 +12,32 @@ namespace HRMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+            if (!IsPostBack)
             {
-                string message = string.Format("Message: {0}\\n\\n", "Please select a company");
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
-                Response.Redirect("Default.aspx");
+                if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+                {
+                    string message = string.Format("Message: {0}\\n\\n", "Please select a company");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
+                    Response.Redirect("Default.aspx");
+                }
+                BindAcademicyear();
             }
         }
+        private void BindAcademicyear()
+        {
+            var FyList = ODataServices.GetFinancialYearList(Session["SessionCompanyName"] as string);
 
+            ddlAcademicYear.DataSource = FyList;
+            ddlAcademicYear.DataTextField = "Financial_Code";
+            ddlAcademicYear.DataValueField = "Financial_Code";
+            ddlAcademicYear.DataBind();
+            ddlAcademicYear.Items.Insert(0, new ListItem("Select Year", "0"));
+        }
+        protected override void Render(HtmlTextWriter writer)
+        {
+            ClientScript.RegisterForEventValidation(btnSearch.UniqueID.ToString());
+            base.Render(writer);
+        }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             List<HRMSODATA.UserAuthorizationList> lstUserRole = ODataServices.GetUserAuthorizationList();
@@ -49,6 +69,7 @@ namespace HRMS
                 txtEmployeeName.Text = employeeResult.First_Name;
                 txtDesignation.Text = employeeResult.Designation;
                 LblMessage.Text = string.Empty;
+                txtBaseQualification.Text = employeeResult.Base_Qualification;
             }
             else
             {

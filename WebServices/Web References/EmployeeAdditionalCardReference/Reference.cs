@@ -487,6 +487,10 @@ namespace WebServices.EmployeeAdditionalCardReference {
         
         private string dept_Trade_SectionField;
         
+        private string designationField;
+        
+        private string home_DistField;
+        
         /// <remarks/>
         public string Key {
             get {
@@ -694,6 +698,26 @@ namespace WebServices.EmployeeAdditionalCardReference {
                 this.dept_Trade_SectionField = value;
             }
         }
+        
+        /// <remarks/>
+        public string Designation {
+            get {
+                return this.designationField;
+            }
+            set {
+                this.designationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Home_Dist {
+            get {
+                return this.home_DistField;
+            }
+            set {
+                this.home_DistField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -833,6 +857,12 @@ namespace WebServices.EmployeeAdditionalCardReference {
         
         /// <remarks/>
         Dept_Trade_Section,
+        
+        /// <remarks/>
+        Designation,
+        
+        /// <remarks/>
+        Home_Dist,
     }
     
     /// <remarks/>

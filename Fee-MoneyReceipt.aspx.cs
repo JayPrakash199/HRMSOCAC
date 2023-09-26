@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Web.UI.WebControls;
 using WebServices;
@@ -22,6 +23,7 @@ namespace HRMS
                     Response.Redirect("Default.aspx");
                 }
                 BindStudentDropDownList();
+                BindDocumentDropDownList();
             }
         }
 
@@ -41,14 +43,35 @@ namespace HRMS
             ddlStudentNo.DataBind();
             ddlStudentNo.Items.Insert(0, new ListItem("Select Student", "0"));
         }
+        public void BindDocumentDropDownList()
+        {
+            var list = ODataServices.GetDocumentData(Session["SessionCompanyName"] as string);
+            var data = list.Where(x => string.Equals(x.Customer_No, ddlStudentNo.SelectedValue, StringComparison.OrdinalIgnoreCase)).ToList();
 
+            var DcList = new List<DocumentList>();
+
+            foreach (var dc in data)
+            {
+                DcList.Add(new HRMS.DocumentList
+                {
+                    DocumentNo = dc.Document_No,
+                    DocumentName = dc.Document_No + " " + dc.Document_Type + " " + dc.Customer_No + " " + dc.Amount_LCY
+                });
+            }
+
+            ddlDocumentNo.DataSource = DcList;
+            ddlDocumentNo.DataTextField = "DocumentName";
+            ddlDocumentNo.DataValueField = "DocumentNo";
+            ddlDocumentNo.DataBind();
+            ddlDocumentNo.Items.Insert(0, new ListItem("Select Document", "0"));
+        }
         protected void btnExport_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(ddlStudentNo.SelectedValue) && !string.IsNullOrEmpty(txtPostingDate.Text))
             {
-               var servicePath = SOAPServices.GetMoneyReceipt(ddlStudentNo.SelectedValue, 
-                                                               DateTimeParser.ParseDateTime(txtPostingDate.Text),
-                                                               Session["SessionCompanyName"] as string);
+                var servicePath = SOAPServices.GetMoneyReceipt(ddlStudentNo.SelectedValue,
+                                                                DateTimeParser.ParseDateTime(txtPostingDate.Text),
+                                                                Session["SessionCompanyName"] as string, ddlDocumentNo.SelectedValue);
 
                 var FileName = "Money-Receipt.pdf";
                 string exportedFilePath = ConfigurationManager.AppSettings["ExportFilePath"].ToString() + StringHelper.GetFileNameFromURL(servicePath);
@@ -61,6 +84,11 @@ namespace HRMS
                 base.Response.BinaryWrite(buffer);
                 base.Response.End();
             }
+        }
+
+        protected void ddlStudentNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindDocumentDropDownList();
         }
     }
 }

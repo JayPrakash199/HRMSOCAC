@@ -11,6 +11,7 @@ using WebServices;
 using WebServices.BookIssueCardReference;
 using static System.Collections.Specialized.BitVector32;
 using System.Web;
+using HRMS.Common;
 
 namespace HRMS
 {
@@ -25,6 +26,9 @@ namespace HRMS
         public static void SetCompanyForDirector(String companyName)
         {
             HttpContext.Current.Session["SessionCompanyName"] = HttpUtility.UrlPathEncode(companyName);
+            string sessionId = System.Web.HttpContext.Current.Session.SessionID;
+            SOAPServices.LogSessionData(Helper.UserName, sessionId, System.DateTime.Now, HttpContext.Current.Session["SessionCompanyName"] as string);
+
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
@@ -67,12 +71,13 @@ namespace HRMS
                                 ddlCompany.DataValueField = "Name";
                                 ddlCompany.DataBind();
                                 ddlCompany.Items.Insert(0, new ListItem("Select company", "0"));
-
                                 ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#CompanyPopup').modal('show')", true);
                             }
                             else
                             {
                                 Session["SessionCompanyName"] = System.Web.HttpUtility.UrlPathEncode(user.Company_Name);
+                                string sessionId = System.Web.HttpContext.Current.Session.SessionID;
+                                SOAPServices.LogSessionData(Helper.UserName, sessionId, System.DateTime.Now, Session["SessionCompanyName"] as string);
                                 Response.Redirect("Default.aspx");
                             }
                         }
@@ -89,6 +94,6 @@ namespace HRMS
             }
         }
 
-       
+
     }
 }

@@ -14,16 +14,16 @@
 #pragma warning disable 1591
 
 namespace WebServices.FeeManagementCodeUnitReference2 {
-    using System;
-    using System.Web.Services;
     using System.Diagnostics;
-    using System.Web.Services.Protocols;
+    using System;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Web.Services.Protocols;
+    using System.Web.Services;
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="FeeManagementCodeUnit_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit")]
@@ -119,14 +119,14 @@ namespace WebServices.FeeManagementCodeUnitReference2 {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit:FeeGeneration", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit", ResponseElementName="FeeGeneration_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public bool FeeGeneration(string academicYear, string semester, string feeClassification, string courseCode, string studentNo) {
+        public string FeeGeneration(string academicYear, string semester, string feeClassification, string courseCode, string studentNo) {
             object[] results = this.Invoke("FeeGeneration", new object[] {
                         academicYear,
                         semester,
                         feeClassification,
                         courseCode,
                         studentNo});
-            return ((bool)(results[0]));
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
@@ -157,26 +157,28 @@ namespace WebServices.FeeManagementCodeUnitReference2 {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit:MoneyReceipt", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit", ResponseElementName="MoneyReceipt_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FeeManagementCodeUnit", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string MoneyReceipt(string customerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime postingDate) {
+        public string MoneyReceipt(string customerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime postingDate, string docNo) {
             object[] results = this.Invoke("MoneyReceipt", new object[] {
                         customerNo,
-                        postingDate});
+                        postingDate,
+                        docNo});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void MoneyReceiptAsync(string customerNo, System.DateTime postingDate) {
-            this.MoneyReceiptAsync(customerNo, postingDate, null);
+        public void MoneyReceiptAsync(string customerNo, System.DateTime postingDate, string docNo) {
+            this.MoneyReceiptAsync(customerNo, postingDate, docNo, null);
         }
         
         /// <remarks/>
-        public void MoneyReceiptAsync(string customerNo, System.DateTime postingDate, object userState) {
+        public void MoneyReceiptAsync(string customerNo, System.DateTime postingDate, string docNo, object userState) {
             if ((this.MoneyReceiptOperationCompleted == null)) {
                 this.MoneyReceiptOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMoneyReceiptOperationCompleted);
             }
             this.InvokeAsync("MoneyReceipt", new object[] {
                         customerNo,
-                        postingDate}, this.MoneyReceiptOperationCompleted, userState);
+                        postingDate,
+                        docNo}, this.MoneyReceiptOperationCompleted, userState);
         }
         
         private void OnMoneyReceiptOperationCompleted(object arg) {
@@ -206,11 +208,11 @@ namespace WebServices.FeeManagementCodeUnitReference2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void FeeDemandCompletedEventHandler(object sender, FeeDemandCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FeeDemandCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -232,11 +234,11 @@ namespace WebServices.FeeManagementCodeUnitReference2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void FeeGenerationCompletedEventHandler(object sender, FeeGenerationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FeeGenerationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -249,20 +251,20 @@ namespace WebServices.FeeManagementCodeUnitReference2 {
         }
         
         /// <remarks/>
-        public bool Result {
+        public string Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((string)(this.results[0]));
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void MoneyReceiptCompletedEventHandler(object sender, MoneyReceiptCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MoneyReceiptCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

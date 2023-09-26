@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMasterPage.Master" AutoEventWireup="true" CodeBehind="StaffProfile.aspx.cs" Inherits="HRMS.StaffProfile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMasterPage.Master"EnableEventValidation="false"  AutoEventWireup="true" CodeBehind="StaffProfile.aspx.cs" Inherits="HRMS.StaffProfile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -349,15 +349,6 @@
                 $("#<%= inserviceCheck.ClientID %>").removeAttr('disabled');
                 $("#<%= inserviceCheck.ClientID %>").removeAttr('readonly');
             }
-        }
-
-        var yearsLength = 30;
-        var currentYear = new Date().getFullYear();
-        for (var i = 0; i < 10; i++) {
-            var next = currentYear + 1;
-            var year = currentYear + '-' + next.toString().slice(-2);
-            $("#<%= ddlAcademicYear.ClientID %>").append(new Option(year, year));
-            currentYear--;
         }
     </script>
 </asp:Content>

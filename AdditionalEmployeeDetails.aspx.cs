@@ -20,32 +20,65 @@ namespace HRMS
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
                     Response.Redirect("Default.aspx");
                 }
-                var trades = ODataServices.GetDepartmentTradeSections(Session["SessionCompanyName"] as string);
-                if (trades != null && trades.Count > 0)
-                {
-                    ddlTrade.DataSource = trades;
-                    ddlTrade.DataTextField = "Departments_Trades_Section";
-                    ddlTrade.DataValueField = "Entry_No";
-                    ddlTrade.DataBind();
-                    ddlTrade.Items.Insert(0, new ListItem("Select Trade", "0"));
-                }
-
-                var stations = ODataServices.GetStationList(Session["SessionCompanyName"] as string);
-                if (stations != null && stations.Count > 0)
-                {
-                    ddlCurrentStation.DataSource = stations;
-                    ddlCurrentStation.DataTextField = "Institute_Name";
-                    ddlCurrentStation.DataValueField = "Institute_Code";
-                    ddlCurrentStation.DataBind();
-                    ddlCurrentStation.Items.Insert(0, new ListItem("Select Current Station", "0"));
-
-                    ddlSeviceJoiningStation.DataSource = stations;
-                    ddlSeviceJoiningStation.DataTextField = "Institute_Name";
-                    ddlSeviceJoiningStation.DataValueField = "Institute_Code";
-                    ddlSeviceJoiningStation.DataBind();
-                    ddlSeviceJoiningStation.Items.Insert(0, new ListItem("Select Joining Station", "0"));
-                }
+                BindDesignation();
+                BindTrade();
+                BindStation();
+                BindHomeDist();
             }
+        }
+        private void BindHomeDist()
+        {
+            var trades = ODataServices.GetHomeDist(Session["SessionCompanyName"] as string);
+            if (trades != null && trades.Count > 0)
+            {
+                ddlDistrict.DataSource = trades;
+                ddlDistrict.DataTextField = "Name";
+                ddlDistrict.DataValueField = "Code";
+                ddlDistrict.DataBind();
+                ddlDistrict.Items.Insert(0, new ListItem("Select District", "0"));
+            }
+        }
+
+        private void BindStation()
+        {
+            var stations = ODataServices.GetStationList(Session["SessionCompanyName"] as string);
+            if (stations != null && stations.Count > 0)
+            {
+                ddlCurrentStation.DataSource = stations;
+                ddlCurrentStation.DataTextField = "Institute_Name";
+                ddlCurrentStation.DataValueField = "Institute_Code";
+                ddlCurrentStation.DataBind();
+                ddlCurrentStation.Items.Insert(0, new ListItem("Select Current Station", "0"));
+
+                ddlSeviceJoiningStation.DataSource = stations;
+                ddlSeviceJoiningStation.DataTextField = "Institute_Name";
+                ddlSeviceJoiningStation.DataValueField = "Institute_Code";
+                ddlSeviceJoiningStation.DataBind();
+                ddlSeviceJoiningStation.Items.Insert(0, new ListItem("Select Joining Station", "0"));
+            }
+        }
+
+        private void BindTrade()
+        {
+            var trades = ODataServices.GetDepartmentTradeSections(Session["SessionCompanyName"] as string);
+            if (trades != null && trades.Count > 0)
+            {
+                ddlTrade.DataSource = trades;
+                ddlTrade.DataTextField = "Departments_Trades_Section";
+                ddlTrade.DataValueField = "Entry_No";
+                ddlTrade.DataBind();
+                ddlTrade.Items.Insert(0, new ListItem("Select Trade", "0"));
+            }
+        }
+
+        private void BindDesignation()
+        {
+            var lstDesignation = ODataServices.GetDesignation(Session["SessionCompanyName"] as string);
+            ddlDesignation.DataSource = lstDesignation;
+            ddlDesignation.DataTextField = "Description";
+            ddlDesignation.DataValueField = "Code";
+            ddlDesignation.DataBind();
+            ddlDesignation.Items.Insert(0, new ListItem("Select Designation", "0"));
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -116,7 +149,7 @@ namespace HRMS
                 Service_Joining_Station = ddlSeviceJoiningStation.SelectedItem.Value,
                 Current_Station = ddlCurrentStation.SelectedItem.Value,
                 Base_Qualification = txtBaseQualification.Text,
-                Employment_Status = ddlEmplyomentStatus.SelectedItem.Value == "Ad_hoc"
+                Employment_Status = ddlEmplyomentStatus.SelectedItem.Text == "Ad hoc"
                     ? WebServices.EmployeeAdditionalCardReference.Employment_Status.Ad_hoc
                     : ddlEmplyomentStatus.SelectedItem.Value == "Temporary_status"
                         ? WebServices.EmployeeAdditionalCardReference.Employment_Status.Temporary_status
@@ -140,7 +173,10 @@ namespace HRMS
                     : ddlPensionRemark.SelectedValue == "NPS"
                         ? WebServices.EmployeeAdditionalCardReference.Pension_Remark.NPS
                         : WebServices.EmployeeAdditionalCardReference.Pension_Remark._blank_,
-                Dept_Trade_Section = ddlTrade.SelectedItem.Text
+                Dept_Trade_Section = ddlTrade.SelectedItem.Text,
+                Designation = ddlDesignation.SelectedValue,
+                Home_Dist = ddlDistrict.SelectedItem.Text
+               
             };
             var resultMessage = SOAPServices.AddEmployeeAdditionalInfo(obj, Session["SessionCompanyName"] as string);
             Alert.ShowAlert(this, resultMessage == ResultMessages.SuccessfullMessage ? "s" : "e", resultMessage);

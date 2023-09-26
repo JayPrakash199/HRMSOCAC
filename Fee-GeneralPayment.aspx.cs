@@ -16,6 +16,7 @@ namespace HRMS
                 string message = string.Format("Message: {0}\\n\\n", "Please select a company");
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
                 Response.Redirect("Default.aspx");
+                txtPostingDate.Text = System.DateTime.Now.ToString();
             }
         }
 

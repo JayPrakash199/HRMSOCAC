@@ -224,18 +224,6 @@
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Designation</label>
                                                     <asp:DropDownList ID="ddlDesignation" CssClass="form-control" runat="server">
-                                                        <asp:ListItem>Select</asp:ListItem>
-                                                        <asp:ListItem>Principal</asp:ListItem>
-                                                        <asp:ListItem>Senior Lecturer</asp:ListItem>
-                                                        <asp:ListItem>Lecturer</asp:ListItem>
-                                                        <asp:ListItem>ATO</asp:ListItem>
-                                                        <asp:ListItem>TO</asp:ListItem>
-                                                        <asp:ListItem>Training Superintendent</asp:ListItem>
-                                                        <asp:ListItem>Section Officer</asp:ListItem>
-                                                        <asp:ListItem>Assistant Section Officer</asp:ListItem>
-                                                        <asp:ListItem>Laboratory Assistant</asp:ListItem>
-                                                        <asp:ListItem>Librarian</asp:ListItem>
-                                                        <asp:ListItem>Junior Assistant</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -281,13 +269,5 @@
             return true;
         }
 
-        var yearsLength = 30;
-        var currentYear = new Date().getFullYear();
-        for (var i = 0; i < 10; i++) {
-            var next = currentYear + 1;
-            var year = currentYear + '-' + next.toString().slice(-2);
-            $("#<%= ddlFinancialYear.ClientID %>").append(new Option(year, year));
-            currentYear--;
-        }
     </script>
 </asp:Content>

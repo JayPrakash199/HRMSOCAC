@@ -11,14 +11,26 @@ namespace HRMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+            if (!IsPostBack)
             {
-                string message = string.Format("Message: {0}\\n\\n", "Please select a company");
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
-                Response.Redirect("Default.aspx");
+                if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+                {
+                    string message = string.Format("Message: {0}\\n\\n", "Please select a company");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
+                    Response.Redirect("Default.aspx");
+                }
+                BindAcademicyear();
             }
         }
+        private void BindAcademicyear()
+        {
+            var FyList = ODataServices.GetFinancialYearList(Session["SessionCompanyName"] as string);
 
+            ddlFinancialYear.DataSource = FyList;
+            ddlFinancialYear.DataTextField = "Financial_Code";
+            ddlFinancialYear.DataValueField = "Financial_Code";
+            ddlFinancialYear.DataBind();
+        }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
@@ -52,7 +64,7 @@ namespace HRMS
                 Persons_in_PositionSpecified = true,
                 Establishment_Type = WebServices.AnnualEstablishmentReviewReference.Establishment_Type
                     .Part__x2013__E_Outsourced_on_contract,
-                Persons_in_Position = NumericHandler.ConvertToInteger(txtPersonsinPosition.Text),
+                Persons_in_Position = !string.IsNullOrEmpty(txtPersonsinPosition.Text) ? NumericHandler.ConvertToInteger(txtPersonsinPosition.Text) : 0,
                 Academic_Year = ddlFinancialYear.SelectedItem.Text,
                 Remark = txtRemark.Text
             };

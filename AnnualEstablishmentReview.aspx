@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMasterPage.Master" AutoEventWireup="true" CodeBehind="AnnualEstablishmentReview.aspx.cs" Inherits="HRMS.AnnualEstablishmentReview" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMasterPage.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="AnnualEstablishmentReview.aspx.cs" Inherits="HRMS.AnnualEstablishmentReview" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -206,48 +206,22 @@
                                     <div class="row">
                                         <div class="col-md-6 contact-info">
                                             <div class="container">
-                                                <%--<div class="form-group">
-                                                    <label for="exampleAccount">Post Group</label>
-                                                    <asp:DropDownList ID="ddlPostGroup" CssClass="form-control" runat="server">
-                                                        <asp:ListItem>Select</asp:ListItem>
-                                                        <asp:ListItem>A</asp:ListItem>
-                                                        <asp:ListItem>C</asp:ListItem>
-                                                        <asp:ListItem>E</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>--%>
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Designation</label>
                                                     <asp:DropDownList ID="ddlDesignation" CssClass="form-control" runat="server">
-                                                        <asp:ListItem>Select</asp:ListItem>
-                                                        <asp:ListItem>Principal</asp:ListItem>
-                                                        <asp:ListItem>Senior Lecturer</asp:ListItem>
-                                                        <asp:ListItem>Lecturer</asp:ListItem>
-                                                        <asp:ListItem>ATO</asp:ListItem>
-                                                        <asp:ListItem>TO</asp:ListItem>
-                                                        <asp:ListItem>Training Superintendent</asp:ListItem>
-                                                        <asp:ListItem>Section Officer</asp:ListItem>
-                                                        <asp:ListItem>Assistant Section Officer</asp:ListItem>
-                                                        <asp:ListItem>Laboratory Assistant</asp:ListItem>
-                                                        <asp:ListItem>Librarian</asp:ListItem>
-                                                        <asp:ListItem>Junior Assistant</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Pay scale 6th pay</label>
-                                                    <asp:TextBox ID="txtPayScale6thPay" onkeypress="return isDecimalNumberKey(event)" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtPayScale6thPay" onkeypress="return isDecimalNumberAndHypenKey(event)" CssClass="form-control" runat="server"></asp:TextBox>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Sanctioned Strength</label>
                                                     <asp:TextBox ID="txtSanctionedStrength" onkeypress="return isDecimalNumberKey(event)" CssClass="form-control" runat="server"></asp:TextBox>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleAccount">Academic Year</label>
+                                                    <label for="exampleAccount">Financial year</label>
                                                     <asp:DropDownList ID="ddlAcademicYear" CssClass="form-control" runat="server">
-                                                    </asp:DropDownList>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleAccount">Financial Year</label>
-                                                    <asp:DropDownList ID="ddlFinancialYear" CssClass="form-control" runat="server">
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="form-group">
@@ -290,7 +264,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" CssClass="btn-s float-right submit" type="submit" Text="Submit" />
+                                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" CssClass="btn-s float-right submit" Text="Submit" />
                                 </div>
                             </div>
                         </div>
@@ -310,16 +284,16 @@
 
             return true;
         }
+        function isDecimalNumberAndHypenKey(evt) {
+            debugger;
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode != 46 && charCode != 45 && charCode > 31
+                && (charCode < 48 || charCode > 57))
+                return false;
 
-        var yearsLength = 30;
-        var currentYear = new Date().getFullYear();
-        for (var i = 0; i < 10; i++) {
-            var next = currentYear + 1;
-            var year = currentYear + '-' + next.toString().slice(-2);
-            $("#<%= ddlAcademicYear.ClientID %>").append(new Option(year, year));
-            $("#<%= ddlFinancialYear.ClientID %>").append(new Option(year, year));
-            //$('#academicYear').append(new Option(year, year));
-            currentYear--;
+            return true;
         }
+
+
     </script>
 </asp:Content>

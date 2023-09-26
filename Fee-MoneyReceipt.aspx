@@ -223,12 +223,17 @@
                                             <div class="container">
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Select Student</label>
-                                                    <asp:DropDownList ID="ddlStudentNo" CssClass="form-control" runat="server">
+                                                    <asp:DropDownList ID="ddlStudentNo" AutoPostBack="true" OnSelectedIndexChanged="ddlStudentNo_SelectedIndexChanged" CssClass="form-control" runat="server">
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Posting Date</label>
                                                     <asp:TextBox ID="txtPostingDate" CssClass="form-control ajax__calendar_body" type="date" runat="server"></asp:TextBox>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleAccount">Document No</label>
+                                                     <asp:DropDownList ID="ddlDocumentNo" CssClass="form-control" runat="server">
+                                                    </asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>

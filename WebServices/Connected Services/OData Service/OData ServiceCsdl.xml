@@ -217,8 +217,11 @@
         <NavigationProperty Name="CourtCaseCard" Type="Collection(NAV.CourtCaseCard)" ContainsTarget="true" />
         <NavigationProperty Name="CourtCaseList" Type="Collection(NAV.CourtCaseList)" ContainsTarget="true" />
         <NavigationProperty Name="Curr" Type="Collection(NAV.Curr)" ContainsTarget="true" />
+        <NavigationProperty Name="CustomerDocumentList" Type="Collection(NAV.CustomerDocumentList)" ContainsTarget="true" />
         <NavigationProperty Name="CustomerList" Type="Collection(NAV.CustomerList)" ContainsTarget="true" />
         <NavigationProperty Name="DepartmentList" Type="Collection(NAV.DepartmentList)" ContainsTarget="true" />
+        <NavigationProperty Name="DesignationList" Type="Collection(NAV.DesignationList)" ContainsTarget="true" />
+        <NavigationProperty Name="DimValueList" Type="Collection(NAV.DimValueList)" ContainsTarget="true" />
         <NavigationProperty Name="Districtlist" Type="Collection(NAV.Districtlist)" ContainsTarget="true" />
         <NavigationProperty Name="EmployeeAchvCard" Type="Collection(NAV.EmployeeAchvCard)" ContainsTarget="true" />
         <NavigationProperty Name="EmployeeAchvList" Type="Collection(NAV.EmployeeAchvList)" ContainsTarget="true" />
@@ -242,6 +245,7 @@
         <NavigationProperty Name="FeeComponentList" Type="Collection(NAV.FeeComponentList)" ContainsTarget="true" />
         <NavigationProperty Name="FinancialUpgradeCard" Type="Collection(NAV.FinancialUpgradeCard)" ContainsTarget="true" />
         <NavigationProperty Name="FinancialUpgradeList" Type="Collection(NAV.FinancialUpgradeList)" ContainsTarget="true" />
+        <NavigationProperty Name="FinancialYearList" Type="Collection(NAV.FinancialYearList)" ContainsTarget="true" />
         <NavigationProperty Name="GeneralLandBuildingCard" Type="Collection(NAV.GeneralLandBuildingCard)" ContainsTarget="true" />
         <NavigationProperty Name="GeneralLandBuildingList" Type="Collection(NAV.GeneralLandBuildingList)" ContainsTarget="true" />
         <NavigationProperty Name="GeneralPayment" Type="Collection(NAV.GeneralPayment)" ContainsTarget="true" />
@@ -285,12 +289,14 @@
         <NavigationProperty Name="StaffQuartersList" Type="Collection(NAV.StaffQuartersList)" ContainsTarget="true" />
         <NavigationProperty Name="StudentAddList" Type="Collection(NAV.StudentAddList)" ContainsTarget="true" />
         <NavigationProperty Name="StudentFeeCollection" Type="Collection(NAV.StudentFeeCollection)" ContainsTarget="true" />
+        <NavigationProperty Name="StudentFeeCollectionCard" Type="Collection(NAV.StudentFeeCollectionCard)" ContainsTarget="true" />
         <NavigationProperty Name="StudentList" Type="Collection(NAV.StudentList)" ContainsTarget="true" />
         <NavigationProperty Name="StudentType" Type="Collection(NAV.StudentType)" ContainsTarget="true" />
         <NavigationProperty Name="SubjectList" Type="Collection(NAV.SubjectList)" ContainsTarget="true" />
         <NavigationProperty Name="UserAuthenticationCard" Type="Collection(NAV.UserAuthenticationCard)" ContainsTarget="true" />
         <NavigationProperty Name="UserAuthenticationList" Type="Collection(NAV.UserAuthenticationList)" ContainsTarget="true" />
         <NavigationProperty Name="UserAuthorizationList" Type="Collection(NAV.UserAuthorizationList)" ContainsTarget="true" />
+        <NavigationProperty Name="UserLoginRegister" Type="Collection(NAV.UserLoginRegister)" ContainsTarget="true" />
         <NavigationProperty Name="UserTaskSetComplete" Type="Collection(NAV.UserTaskSetComplete)" ContainsTarget="true" />
         <NavigationProperty Name="VendorList" Type="Collection(NAV.VendorList)" ContainsTarget="true" />
         <NavigationProperty Name="ItemSalesAndProfit" Type="Collection(NAV.ItemSalesAndProfit)" ContainsTarget="true" />
@@ -1645,10 +1651,10 @@
             <EnumMember>NAV.NavType/Real</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="Pay_scale_6th_pay" Type="Edm.Decimal" Scale="Variable">
+        <Property Name="Pay_scale_6th_pay" Type="Edm.String" MaxLength="250">
           <Annotation Term="NAV.LabelId" String="Pay scale 6th pay" />
           <Annotation Term="NAV.NavType">
-            <EnumMember>NAV.NavType/Real</EnumMember>
+            <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
         <Property Name="Sanctioned_Strength" Type="Edm.Int32">
@@ -1708,6 +1714,9 @@
         <NavigationProperty Name="Dept_Trade_Section_Link" Type="Collection(NAV.DepartmentList)" ContainsTarget="true">
           <ReferentialConstraint Property="Dept_Trade_Section" ReferencedProperty="Departments_Trades_Section" />
         </NavigationProperty>
+        <NavigationProperty Name="Academic_Year_Link" Type="Collection(NAV.FinancialYearList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Academic_Year" ReferencedProperty="Financial_Code" />
+        </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="AnnualEstablishmentReviewCard" />
       </EntityType>
       <EntityType Name="AnnualEstablishmentReviewList">
@@ -1753,10 +1762,10 @@
             <EnumMember>NAV.NavType/Real</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="Pay_scale_6th_pay" Type="Edm.Decimal" Scale="Variable">
+        <Property Name="Pay_scale_6th_pay" Type="Edm.String" MaxLength="250">
           <Annotation Term="NAV.LabelId" String="Pay scale 6th pay" />
           <Annotation Term="NAV.NavType">
-            <EnumMember>NAV.NavType/Real</EnumMember>
+            <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
         <Property Name="Sanctioned_Strength" Type="Edm.Int32">
@@ -1815,6 +1824,9 @@
         </Property>
         <NavigationProperty Name="Dept_Trade_Section_Link" Type="Collection(NAV.DepartmentList)" ContainsTarget="true">
           <ReferentialConstraint Property="Dept_Trade_Section" ReferencedProperty="Departments_Trades_Section" />
+        </NavigationProperty>
+        <NavigationProperty Name="Academic_Year_Link" Type="Collection(NAV.FinancialYearList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Academic_Year" ReferencedProperty="Financial_Code" />
         </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="AnnualEstablishmentReviewList" />
       </EntityType>
@@ -3120,6 +3132,12 @@
         <NavigationProperty Name="Language_Code_Link" Type="Collection(NAV.Language)" ContainsTarget="true">
           <ReferentialConstraint Property="Language_Code" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="BankAccountList" />
         <Annotation Term="NAV.IsReadOnly" Bool="true" />
       </EntityType>
@@ -4062,12 +4080,6 @@
             <EnumMember>NAV.NavType/Real</EnumMember>
           </Annotation>
         </Property>
-        <Property Name="_Publisher_Name" Type="Edm.String" MaxLength="150">
-          <Annotation Term="NAV.LabelId" String="Publisher Name" />
-          <Annotation Term="NAV.NavType">
-            <EnumMember>NAV.NavType/String</EnumMember>
-          </Annotation>
-        </Property>
         <NavigationProperty Name="Place__x0026__Publisher_Name_Link" Type="Collection(NAV.PublisherName)" ContainsTarget="true">
           <ReferentialConstraint Property="Place__x0026__Publisher_Name" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -4960,6 +4972,12 @@
           <ReferentialConstraint Property="Fee_Code" ReferencedProperty="Code" />
           <ReferentialConstraint Property="Fee_Code" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="Academic_Year_Link" Type="Collection(NAV.AcademicYearList)" ContainsTarget="true">
           <ReferentialConstraint Property="Academic_Year" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -5081,6 +5099,12 @@
         </Property>
         <NavigationProperty Name="Fee_Classification_Link" Type="Collection(NAV.FeeClassification)" ContainsTarget="true">
           <ReferentialConstraint Property="Fee_Classification" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="Program_Link" Type="Collection(NAV.GraduationList)" ContainsTarget="true">
           <ReferentialConstraint Property="Program" ReferencedProperty="Code" />
@@ -5260,6 +5284,12 @@
         <NavigationProperty Name="Fee_Classification_Link" Type="Collection(NAV.FeeClassification)" ContainsTarget="true">
           <ReferentialConstraint Property="Fee_Classification" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="Currency_Code_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="Currency_Code" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -5369,6 +5399,12 @@
         </Property>
         <NavigationProperty Name="Fee_Classification_Link" Type="Collection(NAV.FeeClassification)" ContainsTarget="true">
           <ReferentialConstraint Property="Fee_Classification" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="Program_Link" Type="Collection(NAV.GraduationList)" ContainsTarget="true">
           <ReferentialConstraint Property="Program" ReferencedProperty="Code" />
@@ -5802,6 +5838,529 @@
         </Property>
         <Annotation Term="NAV.LabelId" String="Curr" />
       </EntityType>
+      <EntityType Name="CustomerDocumentList">
+        <Key>
+          <PropertyRef Name="Entry_No" />
+        </Key>
+        <Property Name="Entry_No" Type="Edm.Int32" Nullable="false">
+          <Annotation Term="NAV.LabelId" String="Entry No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Int</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="Posting_Date" Type="Edm.Date">
+          <Annotation Term="NAV.LabelId" String="Posting Date" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Date</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Document_Type" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Document Type" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Document_No" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Document No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Customer_No" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Customer No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Customer_Name" Type="Edm.String" MaxLength="100">
+          <Annotation Term="NAV.LabelId" String="Customer Name" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Description" Type="Edm.String" MaxLength="100">
+          <Annotation Term="NAV.LabelId" String="Description" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Global_Dimension_1_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Global Dimension 1 Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Global_Dimension_2_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Global Dimension 2 Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Customer_Posting_Group" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Customer Posting Group" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="IC_Partner_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="IC Partner Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Salesperson_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Salesperson Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Currency_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Currency Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Original_Amount" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Original Amount" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Original_Amt_LCY" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Original Amt. (LCY)" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Amount" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Amount" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Certificate_No" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Certificate No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="TDS_Certificate_Rcpt_Date" Type="Edm.Date">
+          <Annotation Term="NAV.LabelId" String="TDS Certificate Rcpt Date" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Date</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="TDS_Certificate_Amount" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="TDS Certificate Amount" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="TDS_Certificate_Receivable" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="TDS Certificate Receivable" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="TDS_Certificate_Received" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="TDS Certificate Received" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="TDS_Section_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="TDS Section Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Certificate_Received" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="Certificate Received" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Amount_LCY" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Amount (LCY)" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Debit_Amount" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Debit Amount" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Debit_Amount_LCY" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Debit Amount (LCY)" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Credit_Amount" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Credit Amount" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Credit_Amount_LCY" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Credit Amount (LCY)" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Remaining_Amount" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Remaining Amount" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Remaining_Amt_LCY" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Remaining Amt. (LCY)" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Sales_LCY" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Sales (LCY)" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Bal_Account_Type" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Bal. Account Type" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Bal_Account_No" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Bal. Account No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Due_Date" Type="Edm.Date">
+          <Annotation Term="NAV.LabelId" String="Due Date" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Date</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Payment_Prediction" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Payment Prediction" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Prediction_Confidence" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Prediction Confidence" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Prediction_Confidence_Percent" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Prediction Confidence %" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Pmt_Discount_Date" Type="Edm.Date">
+          <Annotation Term="NAV.LabelId" String="Pmt. Discount Date" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Date</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Pmt_Disc_Tolerance_Date" Type="Edm.Date">
+          <Annotation Term="NAV.LabelId" String="Pmt. Disc. Tolerance Date" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Date</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Original_Pmt_Disc_Possible" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Original Pmt. Disc. Possible" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Remaining_Pmt_Disc_Possible" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Remaining Pmt. Disc. Possible" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Max_Payment_Tolerance" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Max. Payment Tolerance" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Payment_Method_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Payment Method Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Open" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="Open" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="On_Hold" Type="Edm.String" MaxLength="3">
+          <Annotation Term="NAV.LabelId" String="On Hold" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="User_ID" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="User ID" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Source_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Source Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Reason_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Reason Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Reversed" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="Reversed" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Reversed_by_Entry_No" Type="Edm.Int32">
+          <Annotation Term="NAV.LabelId" String="Reversed by Entry No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Int</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Reversed_Entry_No" Type="Edm.Int32">
+          <Annotation Term="NAV.LabelId" String="Reversed Entry No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Int</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Exported_to_Payment_File" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="Exported to Payment File" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Message_to_Recipient" Type="Edm.String" MaxLength="140">
+          <Annotation Term="NAV.LabelId" String="Message to Recipient" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Direct_Debit_Mandate_ID" Type="Edm.String" MaxLength="35">
+          <Annotation Term="NAV.LabelId" String="Direct Debit Mandate ID" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Dimension_Set_ID" Type="Edm.Int32">
+          <Annotation Term="NAV.LabelId" String="Dimension Set ID" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Int</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="External_Document_No" Type="Edm.String" MaxLength="35">
+          <Annotation Term="NAV.LabelId" String="External Document No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="RecipientBankAccount" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Recipient Bank Account" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_3_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 3 Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Shortcut_Dimension_4_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 4 Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Shortcut_Dimension_5_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 5 Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Shortcut_Dimension_6_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 6 Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Shortcut_Dimension_7_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 7 Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Shortcut_Dimension_8_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 8 Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="GST_Group_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="GST Group Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="HSN_SAC_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="HSN/SAC Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="GST_on_Advance_Payment" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="GST on Advance Payment" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="GST_Without_Payment_of_Duty" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="GST Without Payment of Duty" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="GST_Customer_Type" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="GST Customer Type" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Seller_State_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Seller State Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Seller_GST_Reg_No" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Seller GST Reg. No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Location_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Location Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="GST_Jurisdiction_Type" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="GST Jurisdiction Type" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Location_State_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Location State Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Location_GST_Reg_No" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Location GST Reg. No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Date_Filter" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Date_Filter" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <NavigationProperty Name="Customer_No_Link" Type="Collection(NAV.CustomerList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Customer_No" ReferencedProperty="No" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Currency_Code_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
+          <ReferentialConstraint Property="Currency_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Location_Code_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
+          <ReferentialConstraint Property="Location_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <Annotation Term="NAV.LabelId" String="CustomerDocumentList" />
+      </EntityType>
       <EntityType Name="CustomerList">
         <Key>
           <PropertyRef Name="No" />
@@ -6111,6 +6670,12 @@
         <NavigationProperty Name="Language_Code_Link" Type="Collection(NAV.Language)" ContainsTarget="true">
           <ReferentialConstraint Property="Language_Code" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="Currency_Filter_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="Currency_Filter" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -6165,6 +6730,83 @@
           <ReferentialConstraint Property="Location" ReferencedProperty="Code" />
         </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="DepartmentList" />
+      </EntityType>
+      <EntityType Name="DesignationList">
+        <Key>
+          <PropertyRef Name="Code" />
+        </Key>
+        <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Designation Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="Description" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="Description" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Annotation Term="NAV.LabelId" String="DesignationList" />
+      </EntityType>
+      <EntityType Name="DimValueList">
+        <Key>
+          <PropertyRef Name="Dimension_Code" />
+          <PropertyRef Name="Code" />
+        </Key>
+        <Property Name="Dimension_Code" Type="Edm.String" Nullable="false" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Dimension Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="Name" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="Name" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Dimension_Value_Type" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Dimension Value Type" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Totaling" Type="Edm.String" MaxLength="250">
+          <Annotation Term="NAV.LabelId" String="Totaling" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Blocked" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="Blocked" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Consolidation_Code" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Consolidation Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Image" Type="Edm.Stream">
+          <Annotation Term="NAV.LabelId" String="Image" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Binary</EnumMember>
+          </Annotation>
+        </Property>
+        <Annotation Term="NAV.LabelId" String="DimValueList" />
+        <Annotation Term="NAV.IsReadOnly" Bool="true" />
       </EntityType>
       <EntityType Name="Districtlist">
         <Key>
@@ -6407,11 +7049,26 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
+        <Property Name="Designation" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Designation" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Home_Dist" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Home Dist" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
         <NavigationProperty Name="HRMS_ID_Link" Type="Collection(NAV.EmployeeList)" ContainsTarget="true">
           <ReferentialConstraint Property="HRMS_ID" ReferencedProperty="No" />
         </NavigationProperty>
         <NavigationProperty Name="Dept_Trade_Section_Link" Type="Collection(NAV.DepartmentList)" ContainsTarget="true">
           <ReferentialConstraint Property="Dept_Trade_Section" ReferencedProperty="Departments_Trades_Section" />
+        </NavigationProperty>
+        <NavigationProperty Name="Designation_Link" Type="Collection(NAV.DesignationList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Designation" ReferencedProperty="Code" />
         </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="EmployeeAdditionalInfoCard" />
       </EntityType>
@@ -6856,6 +7513,9 @@
             <EnumMember>NAV.NavType/Date</EnumMember>
           </Annotation>
         </Property>
+        <NavigationProperty Name="Designation_Link" Type="Collection(NAV.DesignationList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Designation" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="Dept_Trade_Section_Link" Type="Collection(NAV.DepartmentList)" ContainsTarget="true">
           <ReferentialConstraint Property="Dept_Trade_Section" ReferencedProperty="Departments_Trades_Section" />
         </NavigationProperty>
@@ -7406,6 +8066,9 @@
             <EnumMember>NAV.NavType/Date</EnumMember>
           </Annotation>
         </Property>
+        <NavigationProperty Name="To_Designation_Link" Type="Collection(NAV.DesignationList)" ContainsTarget="true">
+          <ReferentialConstraint Property="To_Designation" ReferencedProperty="Code" />
+        </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="EmployeeTransferHistoryCard" />
       </EntityType>
       <EntityType Name="EmployeeTransferHistoryList">
@@ -7515,6 +8178,9 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
+        <NavigationProperty Name="To_Designation_Link" Type="Collection(NAV.DesignationList)" ContainsTarget="true">
+          <ReferentialConstraint Property="To_Designation" ReferencedProperty="Code" />
+        </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="EmployeeTransferHistoryList" />
         <Annotation Term="NAV.IsReadOnly" Bool="true" />
       </EntityType>
@@ -8082,6 +8748,25 @@
           <ReferentialConstraint Property="HRMS_ID" ReferencedProperty="No" />
         </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="FinancialUpgradeList" />
+      </EntityType>
+      <EntityType Name="FinancialYearList">
+        <Key>
+          <PropertyRef Name="Financial_Code" />
+        </Key>
+        <Property Name="Financial_Code" Type="Edm.String" Nullable="false" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Financial Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="Description" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="Financial Year Description" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Annotation Term="NAV.LabelId" String="FinancialYearList" />
       </EntityType>
       <EntityType Name="GeneralLandBuildingCard">
         <Key>
@@ -10149,6 +10834,12 @@
         <NavigationProperty Name="Item_Category_Code_Link" Type="Collection(NAV.ItemCategories)" ContainsTarget="true">
           <ReferentialConstraint Property="Item_Category_Code" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="Location_Filter_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="Location_Filter" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -11124,6 +11815,12 @@
         <NavigationProperty Name="Admit_Year_Link" Type="Collection(NAV.AcademicYearList)" ContainsTarget="true">
           <ReferentialConstraint Property="Admit_Year" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="PotalPaymentWS" />
       </EntityType>
       <EntityType Name="powerbifinance">
@@ -11515,6 +12212,12 @@
         </NavigationProperty>
         <NavigationProperty Name="Currency_Code_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="Currency_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="ApplnCurrencyCode_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="ApplnCurrencyCode" ReferencedProperty="Code" />
@@ -12867,6 +13570,12 @@
           <ReferentialConstraint Property="Company_Bank_Account_Code" ReferencedProperty="No" />
           <ReferentialConstraint Property="Currency_Code" ReferencedProperty="Currency_Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_2_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="Ship_to_Customer_Link" Type="Collection(NAV.CustomerList)" ContainsTarget="true">
           <ReferentialConstraint Property="Ship_to_Customer" ReferencedProperty="No" />
         </NavigationProperty>
@@ -13580,6 +14289,30 @@
         </Property>
         <NavigationProperty Name="Location_Code_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="Location_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_2_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="ShortcutDimCode3_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="ShortcutDimCode3" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="ShortcutDimCode4_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="ShortcutDimCode4" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="ShortcutDimCode5_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="ShortcutDimCode5" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="ShortcutDimCode6_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="ShortcutDimCode6" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="ShortcutDimCode7_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="ShortcutDimCode7" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="ShortcutDimCode8_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="ShortcutDimCode8" ReferencedProperty="Code" />
         </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="SalesOrderSalesLines" />
       </EntityType>
@@ -14476,6 +15209,214 @@
           <ReferentialConstraint Property="Bank_Account_No" ReferencedProperty="No" />
         </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="StudentFeeCollection" />
+      </EntityType>
+      <EntityType Name="StudentFeeCollectionCard">
+        <Key>
+          <PropertyRef Name="Entry_No" />
+        </Key>
+        <Property Name="Entry_No" Type="Edm.String" Nullable="false" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Entry No" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="Type" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Type" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Customer_No" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Customer No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Status" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Status" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEdit" Bool="false" />
+        </Property>
+        <Property Name="Name" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="Name" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Academic_Year" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Academic Year" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Grade" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Grade" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Section" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Section" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Amount" Type="Edm.Decimal" Scale="Variable">
+          <Annotation Term="NAV.LabelId" String="Amount" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Real</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Payment_Type_Collection_Method" Type="Edm.String">
+          <Annotation Term="NAV.LabelId" String="Payment Type/Collection Method" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Currency_Code" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Currency Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Fee_Class_Specification" Type="Edm.String" MaxLength="30">
+          <Annotation Term="NAV.LabelId" String="Fee Class Specification" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Cash_G_L_Account_No" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Cash G/L Account No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Bank_Account_No" Type="Edm.String" MaxLength="10">
+          <Annotation Term="NAV.LabelId" String="Bank Account No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Ext_Doc_No" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Ext. Doc. No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Narration" Type="Edm.String" Nullable="false" MaxLength="250">
+          <Annotation Term="NAV.LabelId" String="Narration" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="UserID" Type="Edm.String" MaxLength="150">
+          <Annotation Term="NAV.LabelId" String="UserID" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_1" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 1" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_2" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 2" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_3" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 3" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_4" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 4" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_5" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 5" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_6" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 6" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_7" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 7" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_8" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 8" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Shortcut_Dimension_9" Type="Edm.String" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Shortcut Dimension 9" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <NavigationProperty Name="Customer_No_Link" Type="Collection(NAV.CustomerList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Customer_No" ReferencedProperty="No" />
+        </NavigationProperty>
+        <NavigationProperty Name="Academic_Year_Link" Type="Collection(NAV.AcademicYearList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Academic_Year" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Currency_Code_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
+          <ReferentialConstraint Property="Currency_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Fee_Class_Specification_Link" Type="Collection(NAV.FeeClassification)" ContainsTarget="true">
+          <ReferentialConstraint Property="Fee_Class_Specification" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Bank_Account_No_Link" Type="Collection(NAV.BankAccountList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Bank_Account_No" ReferencedProperty="No" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_1_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_1" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_2_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_2" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_3_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_3" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_4_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_4" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_5_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_5" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_6_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_6" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_7_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_7" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_8_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_8" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Shortcut_Dimension_9_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Shortcut_Dimension_9" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <Annotation Term="NAV.LabelId" String="StudentFeeCollectionCard" />
       </EntityType>
       <EntityType Name="StudentList">
         <Key>
@@ -15435,6 +16376,12 @@
         <NavigationProperty Name="Admitted_Year_Link" Type="Collection(NAV.AcademicYearList)" ContainsTarget="true">
           <ReferentialConstraint Property="Admitted_Year" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="Graduation_Link" Type="Collection(NAV.GraduationList)" ContainsTarget="true">
           <ReferentialConstraint Property="Graduation" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -15723,6 +16670,12 @@
         <NavigationProperty Name="Academic_Year_Link" Type="Collection(NAV.AcademicYearList)" ContainsTarget="true">
           <ReferentialConstraint Property="Academic_Year" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="SubjectList" />
         <Annotation Term="NAV.IsReadOnly" Bool="true" />
       </EntityType>
@@ -15846,6 +16799,43 @@
           </Annotation>
         </Property>
         <Annotation Term="NAV.LabelId" String="UserAuthorizationList" />
+      </EntityType>
+      <EntityType Name="UserLoginRegister">
+        <Key>
+          <PropertyRef Name="Entry_No" />
+        </Key>
+        <Property Name="Entry_No" Type="Edm.Int32" Nullable="false">
+          <Annotation Term="NAV.LabelId" String="Entry No." />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Int</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="UserID" Type="Edm.String" MaxLength="50">
+          <Annotation Term="NAV.LabelId" String="UserID" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="SessionID" Type="Edm.String" MaxLength="250">
+          <Annotation Term="NAV.LabelId" String="SessionID" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="Login_Date_Time" Type="Edm.DateTimeOffset">
+          <Annotation Term="NAV.LabelId" String="Login Date Time" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/DateTime</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="LogOut_Date_Time" Type="Edm.DateTimeOffset">
+          <Annotation Term="NAV.LabelId" String="LogOut Date Time" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/DateTime</EnumMember>
+          </Annotation>
+        </Property>
+        <Annotation Term="NAV.LabelId" String="UserLoginRegister" />
       </EntityType>
       <EntityType Name="UserTaskSetComplete">
         <Key>
@@ -16159,6 +17149,12 @@
         </NavigationProperty>
         <NavigationProperty Name="Language_Code_Link" Type="Collection(NAV.Language)" ContainsTarget="true">
           <ReferentialConstraint Property="Language_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Filter" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="Currency_Filter_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="Currency_Filter" ReferencedProperty="Code" />
@@ -17195,6 +18191,12 @@
             <EnumMember>NAV.NavType/String</EnumMember>
           </Annotation>
         </Property>
+        <NavigationProperty Name="Global_Dimension_1_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="Chart_of_Accounts" />
         <Annotation Term="NAV.IsReadOnly" Bool="true" />
       </EntityType>
@@ -18529,6 +19531,12 @@
         </Property>
         <NavigationProperty Name="Job_No_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="Job_No" ReferencedProperty="No" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_1_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_1_Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="Global_Dimension_2_Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="Global_Dimension_2_Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <Annotation Term="NAV.LabelId" String="Job_Task_Lines" />
       </EntityType>
@@ -20098,6 +21106,12 @@
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
         </NavigationProperty>
@@ -21033,6 +22047,12 @@
         </Property>
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="currencyCode_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="currencyCode" ReferencedProperty="Code" />
@@ -22281,6 +23301,12 @@
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
         </NavigationProperty>
@@ -23452,6 +24478,12 @@
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
         </NavigationProperty>
@@ -24510,6 +25542,12 @@
         </NavigationProperty>
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="currencyCode_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="currencyCode" ReferencedProperty="Code" />
@@ -25685,6 +26723,12 @@
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
         </NavigationProperty>
@@ -26706,6 +27750,12 @@
             <EnumMember>NAV.NavType/Guid</EnumMember>
           </Annotation>
         </Property>
+        <NavigationProperty Name="globalDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="globalDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="currencyCode_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="currencyCode" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -26717,6 +27767,12 @@
         </NavigationProperty>
         <NavigationProperty Name="billToCustomerNumber_Link" Type="Collection(NAV.CustomerList)" ContainsTarget="true">
           <ReferentialConstraint Property="billToCustomerNumber" ReferencedProperty="No" />
+        </NavigationProperty>
+        <NavigationProperty Name="globalDimension1Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension1Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="globalDimension2Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension2Filter" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
@@ -27940,6 +28996,12 @@
         </NavigationProperty>
         <NavigationProperty Name="billToPayToNumber_Link" Type="Collection(NAV.CustomerList)" ContainsTarget="true">
           <ReferentialConstraint Property="billToPayToNumber" ReferencedProperty="No" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
@@ -29303,10 +30365,22 @@
         <NavigationProperty Name="alternativeItemNumber_Link" Type="Collection(NAV.ItemList)" ContainsTarget="true">
           <ReferentialConstraint Property="alternativeItemNumber" ReferencedProperty="No" />
         </NavigationProperty>
+        <NavigationProperty Name="globalDimension1Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension1Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="globalDimension2Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension2Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="locationFilter_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationFilter" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="picture" Type="Collection(NAV.Media)" ContainsTarget="true" />
+        <NavigationProperty Name="globalDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="globalDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="itemCategoryCode_Link" Type="Collection(NAV.ItemCategories)" ContainsTarget="true">
           <ReferentialConstraint Property="itemCategoryCode" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -30541,6 +31615,12 @@
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
         </NavigationProperty>
@@ -31476,6 +32556,12 @@
         </Property>
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="currencyCode_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="currencyCode" ReferencedProperty="Code" />
@@ -32724,6 +33810,12 @@
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
         </NavigationProperty>
@@ -33895,6 +34987,12 @@
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
         </NavigationProperty>
@@ -34953,6 +36051,12 @@
         </NavigationProperty>
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="currencyCode_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="currencyCode" ReferencedProperty="Code" />
@@ -36128,6 +37232,12 @@
         <NavigationProperty Name="locationCode_Link" Type="Collection(NAV.Locations)" ContainsTarget="true">
           <ReferentialConstraint Property="locationCode" ReferencedProperty="Code" />
         </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="shortcutDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="shortcutDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="jobNumber_Link" Type="Collection(NAV.Job_List)" ContainsTarget="true">
           <ReferentialConstraint Property="jobNumber" ReferencedProperty="No" />
         </NavigationProperty>
@@ -36987,11 +38097,23 @@
             <EnumMember>NAV.NavType/Guid</EnumMember>
           </Annotation>
         </Property>
+        <NavigationProperty Name="globalDimension1Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension1Code" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="globalDimension2Code_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension2Code" ReferencedProperty="Code" />
+        </NavigationProperty>
         <NavigationProperty Name="currencyCode_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="currencyCode" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="languageCode_Link" Type="Collection(NAV.Language)" ContainsTarget="true">
           <ReferentialConstraint Property="languageCode" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="globalDimension1Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension1Filter" ReferencedProperty="Code" />
+        </NavigationProperty>
+        <NavigationProperty Name="globalDimension2Filter_Link" Type="Collection(NAV.DimValueList)" ContainsTarget="true">
+          <ReferentialConstraint Property="globalDimension2Filter" ReferencedProperty="Code" />
         </NavigationProperty>
         <NavigationProperty Name="currencyFilter_Link" Type="Collection(NAV.Curr)" ContainsTarget="true">
           <ReferentialConstraint Property="currencyFilter" ReferencedProperty="Code" />
@@ -40440,11 +41562,12 @@
         <Parameter Name="feeClassification" Type="Edm.String" />
         <Parameter Name="courseCode" Type="Edm.String" />
         <Parameter Name="studentNo" Type="Edm.String" />
-        <ReturnType Type="Edm.Boolean" />
+        <ReturnType Type="Edm.String" />
       </Action>
       <Action Name="FeeManagementCodeUnit_MoneyReceipt">
         <Parameter Name="customerNo" Type="Edm.String" />
         <Parameter Name="postingDate" Type="Edm.Date" />
+        <Parameter Name="docNo" Type="Edm.String" />
         <ReturnType Type="Edm.String" />
       </Action>
       <Action Name="HRMSCodeunit_Download_Employee_Training_History_Certificate">
@@ -40787,9 +41910,6 @@
         <Parameter Name="quarterCode" Type="Edm.String" />
         <Parameter Name="fileName" Type="Edm.String" />
       </Action>
-      <Action Name="LibraryCodeunit_DTETBookDetails">
-        <ReturnType Type="Edm.String" />
-      </Action>
       <Action Name="LibraryMgmt_AccessionList">
         <Parameter Name="bookNo" Type="Edm.String" />
       </Action>
@@ -40820,8 +41940,18 @@
         <Parameter Name="pass1" Type="Edm.String" />
         <Parameter Name="pass2" Type="Edm.String" />
       </Action>
+      <Action Name="PortalFunction_CreateLoginRegister">
+        <Parameter Name="userID" Type="Edm.String" />
+        <Parameter Name="sessionID" Type="Edm.String" />
+        <Parameter Name="loginDateTime" Type="Edm.DateTimeOffset" />
+      </Action>
       <Action Name="PortalFunction_PostingGeneral">
         <Parameter Name="paymentEntryNo" Type="Edm.String" />
+      </Action>
+      <Action Name="PortalFunction_UpdateLoginRegister">
+        <Parameter Name="userID" Type="Edm.String" />
+        <Parameter Name="sessionID" Type="Edm.String" />
+        <Parameter Name="logoutDateTime" Type="Edm.DateTimeOffset" />
       </Action>
       <Action Name="BCPTTestSuite_AddLineToTestSuiteHeader_1490807849">
         <Parameter Name="suiteCode" Type="Edm.String" />
@@ -41045,7 +42175,6 @@
         <ActionImport Name="InfraCodeunit_Upload_Project_Entry_File" Action="NAV.InfraCodeunit_Upload_Project_Entry_File" />
         <ActionImport Name="InfraCodeunit_Upload_Project_File" Action="NAV.InfraCodeunit_Upload_Project_File" />
         <ActionImport Name="InfraCodeunit_Upload_Staff_Buliding_File" Action="NAV.InfraCodeunit_Upload_Staff_Buliding_File" />
-        <ActionImport Name="LibraryCodeunit_DTETBookDetails" Action="NAV.LibraryCodeunit_DTETBookDetails" />
         <ActionImport Name="LibraryMgmt_AccessionList" Action="NAV.LibraryMgmt_AccessionList" />
         <ActionImport Name="LibraryMgmt_AccessionPost" Action="NAV.LibraryMgmt_AccessionPost" />
         <ActionImport Name="LibraryMgmt_Book_Issue" Action="NAV.LibraryMgmt_Book_Issue" />
@@ -41055,7 +42184,9 @@
         <ActionImport Name="LibraryMgmt_ItemJournalBook" Action="NAV.LibraryMgmt_ItemJournalBook" />
         <ActionImport Name="LibraryMgmt_ItemUpload" Action="NAV.LibraryMgmt_ItemUpload" />
         <ActionImport Name="PortalFunction_ChangePassword" Action="NAV.PortalFunction_ChangePassword" />
+        <ActionImport Name="PortalFunction_CreateLoginRegister" Action="NAV.PortalFunction_CreateLoginRegister" />
         <ActionImport Name="PortalFunction_PostingGeneral" Action="NAV.PortalFunction_PostingGeneral" />
+        <ActionImport Name="PortalFunction_UpdateLoginRegister" Action="NAV.PortalFunction_UpdateLoginRegister" />
         <ActionImport Name="BCPTTestSuite_AddLineToTestSuiteHeader_1490807849" Action="NAV.BCPTTestSuite_AddLineToTestSuiteHeader_1490807849" />
         <ActionImport Name="BCPTTestSuite_AddLineToTestSuiteHeader" Action="NAV.BCPTTestSuite_AddLineToTestSuiteHeader" />
         <ActionImport Name="BCPTTestSuite_AddLineToTestSuiteHeader_574159954" Action="NAV.BCPTTestSuite_AddLineToTestSuiteHeader_574159954" />
@@ -42089,6 +43220,28 @@
             </Record>
           </Annotation>
         </EntitySet>
+        <EntitySet Name="CustomerDocumentList" EntityType="NAV.CustomerDocumentList">
+          <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
+            <Record>
+              <PropertyValue Property="Supported" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record>
+              <PropertyValue Property="Deletable" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record>
+              <PropertyValue Property="Insertable" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record>
+              <PropertyValue Property="Updatable" Bool="true" />
+            </Record>
+          </Annotation>
+        </EntitySet>
         <EntitySet Name="CustomerList" EntityType="NAV.CustomerList">
           <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
             <Record>
@@ -42130,6 +43283,50 @@
           <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
             <Record>
               <PropertyValue Property="Updatable" Bool="true" />
+            </Record>
+          </Annotation>
+        </EntitySet>
+        <EntitySet Name="DesignationList" EntityType="NAV.DesignationList">
+          <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
+            <Record>
+              <PropertyValue Property="Supported" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record>
+              <PropertyValue Property="Deletable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record>
+              <PropertyValue Property="Insertable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record>
+              <PropertyValue Property="Updatable" Bool="true" />
+            </Record>
+          </Annotation>
+        </EntitySet>
+        <EntitySet Name="DimValueList" EntityType="NAV.DimValueList">
+          <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
+            <Record>
+              <PropertyValue Property="Supported" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record>
+              <PropertyValue Property="Deletable" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record>
+              <PropertyValue Property="Insertable" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record>
+              <PropertyValue Property="Updatable" Bool="false" />
             </Record>
           </Annotation>
         </EntitySet>
@@ -42631,6 +43828,28 @@
           <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
             <Record>
               <PropertyValue Property="Insertable" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record>
+              <PropertyValue Property="Updatable" Bool="true" />
+            </Record>
+          </Annotation>
+        </EntitySet>
+        <EntitySet Name="FinancialYearList" EntityType="NAV.FinancialYearList">
+          <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
+            <Record>
+              <PropertyValue Property="Supported" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record>
+              <PropertyValue Property="Deletable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record>
+              <PropertyValue Property="Insertable" Bool="true" />
             </Record>
           </Annotation>
           <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
@@ -43585,6 +44804,28 @@
             </Record>
           </Annotation>
         </EntitySet>
+        <EntitySet Name="StudentFeeCollectionCard" EntityType="NAV.StudentFeeCollectionCard">
+          <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
+            <Record>
+              <PropertyValue Property="Supported" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record>
+              <PropertyValue Property="Deletable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record>
+              <PropertyValue Property="Insertable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record>
+              <PropertyValue Property="Updatable" Bool="true" />
+            </Record>
+          </Annotation>
+        </EntitySet>
         <EntitySet Name="StudentList" EntityType="NAV.StudentList">
           <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
             <Record>
@@ -43696,6 +44937,28 @@
           </Annotation>
         </EntitySet>
         <EntitySet Name="UserAuthorizationList" EntityType="NAV.UserAuthorizationList">
+          <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
+            <Record>
+              <PropertyValue Property="Supported" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record>
+              <PropertyValue Property="Deletable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record>
+              <PropertyValue Property="Insertable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record>
+              <PropertyValue Property="Updatable" Bool="true" />
+            </Record>
+          </Annotation>
+        </EntitySet>
+        <EntitySet Name="UserLoginRegister" EntityType="NAV.UserLoginRegister">
           <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
             <Record>
               <PropertyValue Property="Supported" Bool="false" />
@@ -45721,6 +46984,24 @@
       <Annotations Target="NAV.Curr/VAT_Rounding_Type">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
+      <Annotations Target="NAV.CustomerDocumentList/Document_Type">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.CustomerDocumentList/Bal_Account_Type">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.CustomerDocumentList/Payment_Prediction">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.CustomerDocumentList/Prediction_Confidence">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.CustomerDocumentList/GST_Customer_Type">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.CustomerDocumentList/GST_Jurisdiction_Type">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
       <Annotations Target="NAV.CustomerList/Blocked">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
@@ -45737,6 +47018,9 @@
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.DepartmentList/Type">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.DimValueList/Dimension_Value_Type">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.EmployeeAdditionalInfoCard/Employment_Status">
@@ -46403,6 +47687,15 @@
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.StudentFeeCollection/Payment_Type_Collection_Method">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.StudentFeeCollectionCard/Type">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.StudentFeeCollectionCard/Status">
+        <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
+      </Annotations>
+      <Annotations Target="NAV.StudentFeeCollectionCard/Payment_Type_Collection_Method">
         <Annotation Term="Org.OData.Core.V1.IsLanguageDependent" Bool="true" />
       </Annotations>
       <Annotations Target="NAV.StudentList/Gender">

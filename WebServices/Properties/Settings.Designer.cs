@@ -26,8 +26,8 @@ namespace WebServices.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://10.100.0.5:8047/BC200/WS/CRONUS%20India%20Ltd./Page/EmployeeAdditionalInfo" +
-            "Card")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Page/EmployeeAdditiona" +
+            "lInfoCard")]
         public string WebServices_EmployeeAdditionalCardReference_EmployeeAdditionalInfoCard_Service {
             get {
                 return ((string)(this["WebServices_EmployeeAdditionalCardReference_EmployeeAdditionalInfoCard_Service"]));
@@ -145,8 +145,8 @@ namespace WebServices.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://10.100.0.5:8047/BC200/WS/CRONUS%20India%20Ltd./Page/AnnualEstablishmentRev" +
-            "iewCard")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Page/AnnualEstablishme" +
+            "ntReviewCard")]
         public string WebServices_AnnualEstablishmentReviewReference_AnnualEstablishmentReviewCard_Service {
             get {
                 return ((string)(this["WebServices_AnnualEstablishmentReviewReference_AnnualEstablishmentReviewCard_Serv" +
@@ -486,6 +486,17 @@ namespace WebServices.Properties {
         public string WebServices_LibraryCodeunitReference_LibraryCodeunit {
             get {
                 return ((string)(this["WebServices_LibraryCodeunitReference_LibraryCodeunit"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Page/StudentFeeCollect" +
+            "ionCard")]
+        public string WebServices_StudentFeeCollectionCardReference_StudentFeeCollectionCard_Service {
+            get {
+                return ((string)(this["WebServices_StudentFeeCollectionCardReference_StudentFeeCollectionCard_Service"]));
             }
         }
     }

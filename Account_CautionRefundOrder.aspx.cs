@@ -217,5 +217,32 @@ namespace HRMS
 
             }
         }
+
+
+        protected void btndeleteall_Click(object sender, EventArgs e)
+        {
+            List<string> lst = new List<string>();
+            bool result=false;
+            for (int i = 0; i < CautionMoneySubFormListView.Items.Count; i++)
+            {
+                CheckBox chkDelete = CautionMoneySubFormListView.Items[i].FindControl("chkitem") as CheckBox;
+                if (chkDelete.Checked)
+                {
+                    Label refundDocNo = CautionMoneySubFormListView.Items[i].FindControl("lblRefundDocNo") as Label;
+                    Label lineNo = CautionMoneySubFormListView.Items[i].FindControl("lblLineNo") as Label;
+                    result = SOAPServices.DeleteCautionRefundOrder(refundDocNo.Text, Convert.ToInt32(lineNo.Text), Session["SessionCompanyName"] as string);
+
+                }
+            }
+            if (result)
+            {
+                var refundOrderSerialNo = Request.QueryString["SLNO"];
+                BindSubFormListView(refundOrderSerialNo);
+                Alert.ShowAlert(this, "s", "Deleted successfully.");
+            }
+            else
+                Alert.ShowAlert(this, "e", "Delete unsuccessfully.");
+
+        }
     }
 }

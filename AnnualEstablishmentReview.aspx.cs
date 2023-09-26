@@ -3,6 +3,7 @@ using InfrastructureManagement.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebServices;
 
@@ -21,6 +22,10 @@ namespace HRMS
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
                     Response.Redirect("Default.aspx");
                 }
+                BindDesignation();
+
+                BindAcademicyear();
+
                 var trades = ODataServices.GetDepartmentTradeSections(Session["SessionCompanyName"] as string);
                 if (trades != null && trades.Count > 0)
                 {
@@ -31,6 +36,33 @@ namespace HRMS
                     ddlDeptTrade.Items.Insert(0, new ListItem("Select Trade", "0"));
                 }
             }
+        }
+
+        private void BindAcademicyear()
+        {
+            var FyList = ODataServices.GetFinancialYearList(Session["SessionCompanyName"] as string);
+
+            ddlAcademicYear.DataSource = FyList;
+            ddlAcademicYear.DataTextField = "Financial_Code";
+            ddlAcademicYear.DataValueField = "Financial_Code";
+            ddlAcademicYear.DataBind();
+            ddlAcademicYear.Items.Insert(0, new ListItem("Select Year", "0"));
+        }
+
+        protected override void Render(HtmlTextWriter writer)
+        {
+            ClientScript.RegisterForEventValidation(btnSubmit.UniqueID.ToString());
+            base.Render(writer);
+        }
+
+        private void BindDesignation()
+        {
+            var lstDesignation = ODataServices.GetDesignation(Session["SessionCompanyName"] as string);
+            ddlDesignation.DataSource = lstDesignation;
+            ddlDesignation.DataTextField = "Description";
+            ddlDesignation.DataValueField = "Code";
+            ddlDesignation.DataBind();
+            ddlDesignation.Items.Insert(0, new ListItem("Select Designation", "0"));
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -64,7 +96,6 @@ namespace HRMS
                 Establishment_TypeSpecified = true,
                 Post_GroupSpecified = true,
                 Pay_Scale_GPSpecified = true,
-                Pay_scale_6th_paySpecified = true,
                 Sanctioned_StrengthSpecified = true,
                 Persons_in_PositionSpecified = true,
                 Employee_CatagorySpecified = true,
@@ -72,16 +103,13 @@ namespace HRMS
 
                 Establishment_Type = WebServices.AnnualEstablishmentReviewReference.Establishment_Type
                     .Part__x2013__A_Regular_Establishment,
-                //Post_Group = ddlPostGroup.SelectedItem.Text == "A" ? WebServices.AnnualEstablishmentReviewReference.Post_Group.A
-                //                        : ddlPostGroup.SelectedItem.Text == "C" ? WebServices.AnnualEstablishmentReviewReference.Post_Group.C
-                //                        : ddlPostGroup.SelectedItem.Text == "E" ? WebServices.AnnualEstablishmentReviewReference.Post_Group.E
-                //                        : WebServices.AnnualEstablishmentReviewReference.Post_Group._blank_,
-                Dept_Trade_Section = ddlDeptTrade.SelectedItem.Text,
-                Designation = ddlDesignation.SelectedItem.Text,
-                Pay_Scale_GP = NumericHandler.ConvertToDecimal(txtPayScaleGP.Text),
-                Pay_scale_6th_pay = NumericHandler.ConvertToDecimal(txtPayScale6thPay.Text),
-                Sanctioned_Strength = NumericHandler.ConvertToInteger(txtSanctionedStrength.Text),
 
+                Dept_Trade_Section = ddlDeptTrade.SelectedItem.Text,
+                Designation = ddlDesignation.SelectedItem.Value,
+                Pay_Scale_GP = !string.IsNullOrEmpty(txtPayScaleGP.Text) ? NumericHandler.ConvertToDecimal(txtPayScaleGP.Text) : 0,
+                Pay_scale_6th_pay = txtPayScale6thPay.Text,
+                Sanctioned_Strength = !string.IsNullOrEmpty(txtSanctionedStrength.Text) ? NumericHandler.ConvertToInteger(txtSanctionedStrength.Text) : 0,
+                Persons_in_Position = !string.IsNullOrEmpty(txtPersonsInPosition.Text) ? NumericHandler.ConvertToInteger(txtPersonsInPosition.Text) : 0,
                 //Persons_in_Position = NumericHandler.ConvertToInteger(txtPersonsInPosition.Text),
                 Employee_Catagory = ddlCategoryofEmployee.SelectedItem.Text == "Group A"
                     ? WebServices.AnnualEstablishmentReviewReference.Employee_Catagory.Group_A
@@ -92,7 +120,7 @@ namespace HRMS
                             : WebServices.AnnualEstablishmentReviewReference.Employee_Catagory.Group_D,
                 Academic_Year = ddlAcademicYear.SelectedItem.Text,
                 Remark = txtRemark.Text,
-                Pay_Scale_level_7th_pay = NumericHandler.ConvertToDecimal(txt7thPayScale.Text)
+                Pay_Scale_level_7th_pay = !string.IsNullOrEmpty(txt7thPayScale.Text) ? NumericHandler.ConvertToDecimal(txt7thPayScale.Text) : 0
             };
             var resultMessage = SOAPServices.AddAnnualEstablishmentReviewRecord(obj, Session["SessionCompanyName"] as string);
             Alert.ShowAlert(this, resultMessage == ResultMessages.SuccessfullMessage ? "s" : "e", resultMessage);

@@ -136,7 +136,6 @@
                                                                 <th runat="server">Pension Remark</th>
                                                                 <th runat="server">Aadhaar No.</th>
                                                                 <th runat="server">Designation as per HRMS Site</th>
-                                                                <th runat="server">Designation</th>
                                                                 <th runat="server">Home Dist as per HRMS Site</th>
                                                                 <th runat="server">Home Dist</th>
                                                                 <th runat="server">Status</th>
@@ -235,9 +234,7 @@
                                                             <td>
                                                                 <asp:Label ID="Label28" runat="server" Text='<%# Eval("Designation_as_per_HRMS_Site")%>'> </asp:Label>
                                                             </td>
-                                                            <td>
-                                                                <asp:Label ID="Label31" runat="server" Text='<%# Eval("Designation")%>'> </asp:Label>
-                                                            </td>
+                                                           
                                                             <td>
                                                                 <asp:Label ID="Label29" runat="server" Text='<%# Eval("Home_Dist_as_per_HRMS_Site")%>'> </asp:Label>
                                                             </td>

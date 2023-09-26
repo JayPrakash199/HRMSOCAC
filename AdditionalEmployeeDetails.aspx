@@ -265,6 +265,16 @@
                                                         <asp:ListItem>NPS</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="exampleAccount">Designation</label>
+                                                    <asp:DropDownList ID="ddlDesignation" CssClass="form-control" runat="server">
+                                                    </asp:DropDownList>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleAccount">Home Dist</label>
+                                                    <asp:DropDownList ID="ddlDistrict" CssClass="form-control" runat="server">
+                                                    </asp:DropDownList>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 contact-info">

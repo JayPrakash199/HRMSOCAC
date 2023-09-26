@@ -65,24 +65,24 @@ namespace HRMS
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
-            var isSuccessful = false;
+            var returnVal = "";
             if (!string.IsNullOrEmpty(Request.Form[ddlacademicYear.UniqueID]) &&
             !string.IsNullOrEmpty(ddlSemester.SelectedValue) &&
             !string.IsNullOrEmpty(ddlFeeClassification.SelectedValue) &&
                 !string.IsNullOrEmpty(ddlCourseCode.SelectedValue) &&
                 !string.IsNullOrEmpty(ddlStudentNo.SelectedValue))
             {
-                isSuccessful = SOAPServices.GetFeeGeneration(Request.Form[ddlacademicYear.UniqueID],
+                returnVal = SOAPServices.GetFeeGeneration(Request.Form[ddlacademicYear.UniqueID],
                     ddlSemester.SelectedValue,
                     ddlFeeClassification.SelectedValue,
                     ddlCourseCode.SelectedValue,
                     ddlStudentNo.SelectedValue,
                     Session["SessionCompanyName"] as string);
             }
-            if (isSuccessful)
+            if (string.IsNullOrEmpty(returnVal))
                 Alert.ShowAlert(this, "s", "Fee generation completed.");
             else
-                Alert.ShowAlert(this, "e", "Fee generation not successful.");
+                Alert.ShowAlert(this, "e", returnVal);
         }
     }
 }

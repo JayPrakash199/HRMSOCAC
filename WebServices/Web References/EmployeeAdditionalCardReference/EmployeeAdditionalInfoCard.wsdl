@@ -43,6 +43,8 @@
           <xsd:element minOccurs="0" maxOccurs="1" name="MACP_Status" type="tns:MACP_Status" />
           <xsd:element minOccurs="0" maxOccurs="1" name="Pension_Remark" type="tns:Pension_Remark" />
           <xsd:element minOccurs="0" maxOccurs="1" name="Dept_Trade_Section" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Designation" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Home_Dist" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
       <xsd:complexType name="EmployeeAdditionalInfoCard_List">
@@ -65,6 +67,8 @@
           <xsd:enumeration value="MACP_Status" />
           <xsd:enumeration value="Pension_Remark" />
           <xsd:enumeration value="Dept_Trade_Section" />
+          <xsd:enumeration value="Designation" />
+          <xsd:enumeration value="Home_Dist" />
         </xsd:restriction>
       </xsd:simpleType>
       <xsd:complexType name="EmployeeAdditionalInfoCard_Filter">
@@ -415,7 +419,7 @@
   </binding>
   <service name="EmployeeAdditionalInfoCard_Service">
     <port name="EmployeeAdditionalInfoCard_Port" binding="tns:EmployeeAdditionalInfoCard_Binding">
-      <address location="http://10.100.0.5:8047/BC200/WS/CRONUS%20India%20Ltd./Page/EmployeeAdditionalInfoCard" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <address location="http://10.100.0.5:8047/BC200/WS/GOVT%20POLYTECHNIC%20ANGUL/Page/EmployeeAdditionalInfoCard" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
     </port>
   </service>
 </definitions>
