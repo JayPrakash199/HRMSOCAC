@@ -21,9 +21,8 @@
 
     <link rel="stylesheet" href="assets/css/Ajaxcal.css" />
     <link rel="stylesheet" href="assets/toastr/toastr.min.css" />
-   
+
     <style>
-       
         /*Bootstrap Datepicker END!*/
 
         @media (min-width: 768px) {
@@ -105,15 +104,14 @@
 
         .itServicePadding {
             box-shadow: 0 4px 12px rgb(20 29 56 / 75%) !important;
-            padding: 30px;
-            background-color: mediumslateblue
+            padding: 5%;
+            background-color: darkslateblue;
         }
 
             .itServicePadding:Hover {
                 background-color: #ffff;
                 cursor: pointer;
-                border-radius: 15px;
-                border: 2px solid #8e2731;
+                text-shadow: 2px 3px #5a5954;
             }
 
                 .itServicePadding:Hover .content-box {
@@ -163,7 +161,7 @@
 
         .Contenta {
             text-decoration: none;
-            font-size: 35px;
+            font-size: 30px;
             font-weight: 900;
             color: #ffff;
         }
@@ -171,6 +169,9 @@
         .pb-4 {
             padding-bottom: 4%
         }
+          header {
+    position: unset !important;
+}
     </style>
     <link rel="shortcut icon" href="images/favicon.ico" />
     <script src="assets/plugins/jQuery-lib/2.0.3/jquery.min.js"></script>
@@ -195,60 +196,57 @@
                 </div>
             </div>
         </header>
-        <div class="vh-100 gradient-custom">
-            <section class="service-page">
-                <div class="container" Style="margin-top: 5%;">
-                    <div class="row">
-                        <div class=" col-md-6 col-sm-6 pb-4 ">
-                            <div class="icon-box-s2 s1  itServicePadding">
-                                <div class="content-box">
-                                    <a class="Contenta" visible="false" href="Infra-MasterData.aspx" role="button" runat="server" id="btnInfraa">Infra</a>
-                                </div>
+        <div class="gradient-custom">
+            <div class="container" style="padding: 2%;">
+                <div class="row">
+                    <div class=" col-md-6 col-sm-6 pb-4 ">
+                        <div class="icon-box-s2 s1  itServicePadding">
+                            <div class="content-box">
+                                <a class="Contenta" visible="false" href="Infra-MasterData.aspx" role="button" runat="server" id="btnInfraa">Infra</a>
                             </div>
                         </div>
-                        <div class=" col-md-6 col-sm-6 pb-4 ">
-                            <div class="icon-box-s2 s1 itServicePadding">
-                                <div class="content-box">
-                                    <a class="Contenta" visible="false" href="RecruitmentsAndRetirements.aspx" role="button" runat="server" id="btnHRMSs">HRMS</a>
-                                </div>
+                    </div>
+                    <div class=" col-md-6 col-sm-6 pb-4 ">
+                        <div class="icon-box-s2 s1 itServicePadding">
+                            <div class="content-box">
+                                <a class="Contenta" visible="false" href="RecruitmentsAndRetirements.aspx" role="button" runat="server" id="btnHRMSs">HRMS</a>
                             </div>
                         </div>
-                        <div class=" col-md-6 col-sm-6 pb-4 ">
-                            <div class="icon-box-s2 s1  itServicePadding">
-                                <div class="content-box">
-                                    <a class="Contenta" visible="false" href="LibraryBookSearch.aspx" role="button" runat="server" id="btnLibraryMgmntt">Library Management</a>
-                                </div>
+                    </div>
+                    <div class=" col-md-6 col-sm-6 pb-4 ">
+                        <div class="icon-box-s2 s1  itServicePadding">
+                            <div class="content-box">
+                                <a class="Contenta" visible="false" href="LibraryBookSearch.aspx" role="button" runat="server" id="btnLibraryMgmntt">Library Management</a>
                             </div>
                         </div>
-                        <div class=" col-md-6 col-sm-6   pb-4">
-                            <div class="icon-box-s2 s1  itServicePadding">
-                                <div class="content-box">
-                                    <a class="Contenta" visible="false" href="FeeClassificationList.aspx" role="button" runat="server" id="btnFeeMgmntt">Accounts and Fee Management</a>
-                                </div>
+                    </div>
+                    <div class=" col-md-6 col-sm-6   pb-4">
+                        <div class="icon-box-s2 s1  itServicePadding">
+                            <div class="content-box">
+                                <a class="Contenta" visible="false" href="FeeClassificationList.aspx" role="button" runat="server" id="btnFeeMgmntt">Accounts and Fee Management</a>
                             </div>
                         </div>
-                        <div class=" col-md-6 col-sm-6 pb-4" id="divreport" visible="False" runat="server">
-                            <div class="icon-box-s2 s1 itServicePadding">
-                                <div class="content-box">
-                                    <a class="Contenta" visible="True" href="ReportManagement.aspx" role="button" runat="server" id="btnReport">Report</a>
-                                </div>
+                    </div>
+                    <div class=" col-md-6 col-sm-6 pb-4" id="divreport" visible="False" runat="server">
+                        <div class="icon-box-s2 s1 itServicePadding">
+                            <div class="content-box">
+                                <a class="Contenta" visible="True" href="ReportManagement.aspx" role="button" runat="server" id="btnReport">Report</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
             <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
             </div>
 
         </div>
 
-        <div class="card footer">
-            <div class="card-header">
-                <asp:DropDownList Visible="False" ID="ddlCompany" AutoPostBack="true" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" Style="cursor: pointer; appearance: auto !important;" CssClass="form-control" runat="server">
-                </asp:DropDownList>
-                <a class="nav-link active" id="anchrCompanyName" runat="server" aria-current="page" href="#">Company Name :
+        <div>
+            <asp:DropDownList Visible="False" ID="ddlCompany" AutoPostBack="true" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged"
+                Style="cursor: pointer; appearance: auto !important; width: auto" CssClass="form-control" runat="server">
+            </asp:DropDownList>
+            <a class="nav-link active" id="anchrCompanyName" runat="server" aria-current="page" href="#">Company Name :
                 <asp:Label runat="server" ID="lblcompanyName"></asp:Label></a>
-            </div>
         </div>
         <div id="footer">
             <footer class="p-10">©<asp:Label runat="server" ID="Label1"></asp:Label></footer>

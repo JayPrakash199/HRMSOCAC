@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 using WebServices;
-
+using System.Configuration;
 namespace HRMS
 {
     public partial class BookUpload : System.Web.UI.Page
@@ -33,7 +33,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     this.csvBookUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 try
                 {
                     SOAPServices.ItemUpload(servicePath, Session["SessionCompanyName"] as string);

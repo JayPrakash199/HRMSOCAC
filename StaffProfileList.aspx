@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -14,11 +13,6 @@
 
         table thead tr th, .table > tbody > tr > th {
             border-top: none !important;
-        }
-
-        .container.box {
-            margin-top: 61px;
-            margin-bottom: 26px;
         }
 
         p.NewEntry {
@@ -59,10 +53,6 @@
             font-size: 35px;
         }
 
-        .col-lg-12.col-md-12.summary-box {
-            margin: 94px 10px 10px -113px;
-        }
-
         .custom-file-input::-webkit-file-upload-button {
             visibility: hidden;
         }
@@ -96,7 +86,6 @@
 
         <div class="container box">
             <div class="row">
-                <div class="col-lg-3 col-md-2"></div>
                 <div class="col-lg-12 col-md-12 summary-box">
                     <div class="col-lg-12 NewEntrydiv">
                         <p class="NewEntry">Employee Profile & Award Achievement History List</p>
@@ -111,7 +100,7 @@
                                                 <asp:ListView ID="StaffProfileListView" runat="server">
                                                     <LayoutTemplate>
                                                         <table runat="server" class="table table-bordered">
-                                                            <tr runat="server">
+                                                            <tr class="FridgeHeader" runat="server">
                                                                 <th></th>
                                                                 <th runat="server">HRMS ID</th>
                                                                 <th runat="server">Employee Name</th>
@@ -138,7 +127,7 @@
                                                             </td>
                                                             <td>
                                                                 <%--<a href="StaffProfileCard.aspx?HID=<%# Eval("HRMS_ID")%>">--%>
-                                                                    <asp:Label ID="lblProjectCode" runat="server" Text='<%# Eval("HRMS_ID")%>'> </asp:Label>
+                                                                <asp:Label ID="lblProjectCode" runat="server" Text='<%# Eval("HRMS_ID")%>'> </asp:Label>
                                                                 <%--</a>--%>
                                                             </td>
                                                             <td>
@@ -159,7 +148,7 @@
                                                             <td>
                                                                 <asp:Label ID="Label3" runat="server" Text='<%# Eval("Inservice_Qualification_Upgradation")%>'> </asp:Label>
                                                             </td>
-                                                             <td>
+                                                            <td>
                                                                 <asp:Label ID="Label4" runat="server" Text='<%# Eval("In_service_Qualification_Details")%>'> </asp:Label>
                                                             </td>
                                                             <td>
@@ -191,7 +180,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 ExportFoot">
-                                        <asp:Button ID="btnExport" OnClick="btnExport_Click" CssClass="exportcss btn-yellow" runat="server" Text="Export" />
+                                        <asp:Button ID="btnExport" Style="margin: 1%" OnClick="btnExport_Click" CssClass="btn-s float-right submit btn-yellow"
+                                            runat="server" Text="Export" />
                                     </div>
                                 </div>
                             </div>

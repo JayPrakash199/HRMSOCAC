@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web.UI.WebControls;
 using WebServices;
 
 namespace HRMS
@@ -11,12 +12,25 @@ namespace HRMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+            if (!IsPostBack)
             {
-                string message = string.Format("Message: {0}\\n\\n", "Please select a company");
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
-                Response.Redirect("Default.aspx");
+                if (string.IsNullOrEmpty(Session["SessionCompanyName"] as string))
+                {
+                    string message = string.Format("Message: {0}\\n\\n", "Please select a company");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert(\"" + message + "\");", true);
+                    Response.Redirect("Default.aspx");
+                }
+                BindDesignation();
             }
+        }
+        private void BindDesignation()
+        {
+            var lstDesignation = ODataServices.GetDesignation(Session["SessionCompanyName"] as string);
+            ddlDesignation.DataSource = lstDesignation;
+            ddlDesignation.DataTextField = "Description";
+            ddlDesignation.DataValueField = "Code";
+            ddlDesignation.DataBind();
+            ddlDesignation.Items.Insert(0, new ListItem("Select Designation", "0"));
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -50,6 +64,7 @@ namespace HRMS
             {
                 txtEmployeeName.Text = employeeResult.First_Name;
                 txtDesignation.Text = employeeResult.Designation;
+                txtFromDesignation.Text = employeeResult.Designation;
                 LblMessage.Text = string.Empty;
             }
             else
@@ -93,7 +108,7 @@ namespace HRMS
                 HRMS_ID = txtHRMSIDSearch.Text,
                 Employee_Name = txtEmployeeName.Text,
                 From_Designation = txtFromDesignation.Text,
-                To_Designation = txtFromDesignation.Text,
+                To_Designation = ddlDesignation.SelectedValue,
                 Promotion_Order_Date = DateTimeParser.ParseDateTime(txtPromotionOrderDate.Text),
                 Letter_NO = txtLetterNo.Text,
                 Order_Issuing_Authority = ddlPromotionOrderIssuingAuthority.SelectedItem.Text == "DTET"
@@ -117,7 +132,7 @@ namespace HRMS
             //            path = Path.Combine(path, finalFileName);
             //            this.pdfUploader.SaveAs(path);
             //        }
-            //        string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+            //        string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
             //        //ODataServices.ImportLandFile(servicePath);
             //    }
             //    Alert.ShowAlert(this, "s", resultMessage);

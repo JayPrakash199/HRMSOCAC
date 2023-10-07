@@ -29,23 +29,16 @@ namespace HRMS
                 BindFianacialYear();
             }
         }
-
-        public void BindFianacialYear()
+        private void BindFianacialYear()
         {
-            int currentYear = DateTime.Today.Year;
-            ddlAcademicYear.Items.Clear();
-            ddlAcademicYear.Items.Add("Select");
-            for (int i = 10; i >= 0; i--)
-            {
-                int fy = currentYear - i;
-                int fy1 = fy + 1;
-                if (DateTime.Now.Date > Convert.ToDateTime(fy + "-03-31").Date)
-                {
-                    ddlAcademicYear.Items.Add(fy.ToString() + "-" + fy1.ToString().Remove(0,2));
-                }
-            }
+            var FyList = ODataServices.GetFinancialYearList(Session["SessionCompanyName"] as string);
+
+            ddlAcademicYear.DataSource = FyList;
+            ddlAcademicYear.DataTextField = "Financial_Code";
+            ddlAcademicYear.DataValueField = "Financial_Code";
+            ddlAcademicYear.DataBind();
         }
-        
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             SOAPServices.ApplyCautionMoney(ddlStudentNo.SelectedValue, ddlAcademicYear.SelectedItem.Text, Session["SessionCompanyName"] as string);

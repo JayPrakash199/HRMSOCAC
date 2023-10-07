@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
@@ -16,7 +15,6 @@
 
         .container.box {
             margin-top: 61px;
-            margin-bottom: 26px;
         }
 
         p.NewEntry {
@@ -39,7 +37,6 @@
 
         .row.md-12.marginx {
             margin: 69px;
-            padding-bottom: 36px;
         }
 
         i.fal.fa-plus-circle.full {
@@ -186,13 +183,10 @@
             text-align: justify;
         }
 
-        .col-lg-12.col-md-12.summary-box {
-            margin: 94px 10px 10px -113px;
-        }
+        
     </style>
     <div class="container box">
         <div class="row">
-            <div class="col-lg-3 col-md-2"></div>
             <div class="col-lg-12 col-md-12 model-box">
 
                 <div class="col-lg-12 col-md-12 summary-box">
@@ -264,7 +258,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" CssClass="btn-s float-right submit" Text="Submit" />
+                                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" CssClass="btn-s float-right submit btn-yellow"
+ Text="Submit" />
                                 </div>
                             </div>
                         </div>

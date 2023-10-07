@@ -9,7 +9,7 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebServices;
-
+using System.Configuration;
 namespace HRMS
 {
     public partial class ItemJournalBook : System.Web.UI.Page
@@ -117,7 +117,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     this.ItemFileUploader.SaveAs(path);
                 }
-                string filePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string filePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 try
                 {
                     SOAPServices.ItemJournalBook(filePath, Session["SessionCompanyName"] as string);

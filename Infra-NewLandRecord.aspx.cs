@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Web.UI.WebControls;
 using WebServices;
-
+using System.Configuration;
 namespace HRMS
 {
     public partial class NewLandRecord : System.Web.UI.Page
@@ -96,7 +96,7 @@ namespace HRMS
                         path = Path.Combine(path, finalFileName);
                         pdfUploader.SaveAs(path);
                     }
-                    string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                    string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                     SOAPServices.ImportPdfRoRFile(obj.Khatian_Serial_No, servicePath, Session["SessionCompanyName"] as string);
                 }
 

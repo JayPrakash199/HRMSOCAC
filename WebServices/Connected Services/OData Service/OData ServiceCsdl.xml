@@ -4080,6 +4080,12 @@
             <EnumMember>NAV.NavType/Real</EnumMember>
           </Annotation>
         </Property>
+        <Property Name="_Publisher_Name" Type="Edm.String" MaxLength="150">
+          <Annotation Term="NAV.LabelId" String="Publisher Name" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
         <NavigationProperty Name="Place__x0026__Publisher_Name_Link" Type="Collection(NAV.PublisherName)" ContainsTarget="true">
           <ReferentialConstraint Property="Place__x0026__Publisher_Name" ReferencedProperty="Code" />
         </NavigationProperty>
@@ -41910,6 +41916,9 @@
         <Parameter Name="quarterCode" Type="Edm.String" />
         <Parameter Name="fileName" Type="Edm.String" />
       </Action>
+      <Action Name="LibraryCodeunit_DTETBookDetails">
+        <ReturnType Type="Edm.String" />
+      </Action>
       <Action Name="LibraryMgmt_AccessionList">
         <Parameter Name="bookNo" Type="Edm.String" />
       </Action>
@@ -42175,6 +42184,7 @@
         <ActionImport Name="InfraCodeunit_Upload_Project_Entry_File" Action="NAV.InfraCodeunit_Upload_Project_Entry_File" />
         <ActionImport Name="InfraCodeunit_Upload_Project_File" Action="NAV.InfraCodeunit_Upload_Project_File" />
         <ActionImport Name="InfraCodeunit_Upload_Staff_Buliding_File" Action="NAV.InfraCodeunit_Upload_Staff_Buliding_File" />
+        <ActionImport Name="LibraryCodeunit_DTETBookDetails" Action="NAV.LibraryCodeunit_DTETBookDetails" />
         <ActionImport Name="LibraryMgmt_AccessionList" Action="NAV.LibraryMgmt_AccessionList" />
         <ActionImport Name="LibraryMgmt_AccessionPost" Action="NAV.LibraryMgmt_AccessionPost" />
         <ActionImport Name="LibraryMgmt_Book_Issue" Action="NAV.LibraryMgmt_Book_Issue" />

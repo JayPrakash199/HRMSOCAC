@@ -87,7 +87,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     uploadedFile.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_Hostel_Buliding_File(blockCode.Text, servicePath, Session["SessionCompanyName"] as string);
                 Alert.ShowAlert(this, "s", "file Upload successfully");
             }
@@ -172,7 +172,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     uploadedFile.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_Auditorium_Buliding_File(buildingCode.Text, servicePath, Session["SessionCompanyName"] as string);
                 Alert.ShowAlert(this, "s", "file Uploaded successfully");
             }
@@ -198,7 +198,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     uploadedFile.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_Institute_Buliding_File(blockCode.Text, servicePath, Session["SessionCompanyName"] as string);
                 Alert.ShowAlert(this, "s", "file Upload successfully");
             }
@@ -254,7 +254,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     uploadedFile.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_Staff_Buliding_File(quarterCode.Text, servicePath, Session["SessionCompanyName"] as string);
                 Alert.ShowAlert(this, "s", "file Upload successfully");
             }

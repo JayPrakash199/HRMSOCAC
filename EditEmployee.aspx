@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
@@ -199,17 +198,12 @@
             display: block;
         }
 
-        .col-lg-12.col-md-12.model-box {
-            margin: 34px 10px 10px -113px;
-        }
-
         input#ContentPlaceHolder1_txtHRMSIDSearch {
             text-align: right;
         }
     </style>
     <div class="container box">
         <div class="row">
-            <div class="col-lg-3 col-md-2"></div>
             <div class="col-lg-12 col-md-12 model-box">
                 <div class="loader" id="loader">
                     <div class="loader-img"><i class="fa fa-spinner fa-spin"></i></div>
@@ -277,7 +271,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <asp:Button ID="btnEditAdditionalEmployee" runat="server" OnClick="btnEditAdditionalEmployee_Click" CssClass="btn-s float-right submit" Text="Submit" />
+                                <asp:Button ID="btnEditAdditionalEmployee" runat="server" OnClick="btnEditAdditionalEmployee_Click" Style="margin: 2%" CssClass="btn-s float-right submit btn-yellow" Text="Submit" />
                             </div>
                         </div>
                     </div>

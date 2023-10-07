@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -16,10 +15,6 @@
             border-top: none !important;
         }
 
-        .container.box {
-            margin-top: 61px;
-            margin-bottom: 26px;
-        }
 
         p.NewEntry {
             float: left;
@@ -59,10 +54,6 @@
             font-size: 35px;
         }
 
-        .col-lg-12.col-md-12.summary-box {
-            margin: 94px 10px 10px -113px;
-        }
-
         .custom-file-input::-webkit-file-upload-button {
             visibility: hidden;
         }
@@ -96,7 +87,6 @@
 
         <div class="container box">
             <div class="row">
-                <div class="col-lg-3 col-md-2"></div>
                 <div class="col-lg-12 col-md-12 summary-box">
                     <div class="col-lg-12 NewEntrydiv">
                         <p class="NewEntry">Annual Establishment Review  Part - E (Outsourced/on contract) List</p>
@@ -111,7 +101,7 @@
                                                 <asp:ListView ID="aerPartEListView" runat="server">
                                                     <LayoutTemplate>
                                                         <table runat="server" class="table table-bordered">
-                                                            <tr runat="server">
+                                                            <tr class="FridgeHeader" runat="server">
                                                                 <th runat="server">Person in Position(Number)</th>
                                                                 <th runat="server">Financial Year</th>
                                                                 <th runat="server">Remark if Any</th>
@@ -138,7 +128,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 ExportFoot">
-                                        <asp:Button ID="btnExport" OnClick="btnExport_Click" CssClass="exportcss btn-yellow" runat="server" Text="Export" />
+                                        <asp:Button ID="btnExport" Style="margin: 1%" OnClick="btnExport_Click" CssClass="btn-s float-right submit btn-yellow"
+                                            runat="server" Text="Export" />
                                     </div>
                                 </div>
                             </div>

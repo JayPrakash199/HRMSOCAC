@@ -94,7 +94,7 @@ namespace HRMS
             {
                 path = Path.Combine(path, finalFileName);
             }
-            string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+            string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
             return new UploadedResult { Path = path, ServicePath = servicePath };
         }
 
@@ -112,7 +112,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     FileAvailablepdfUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Field_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -154,7 +154,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     SportCourtFileUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Sports_Court_photo(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -196,7 +196,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     fieldGalleryFileUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Field_Gallery_photo(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -238,7 +238,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     conferenceRoomFileUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Conference_Room_photo(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -280,7 +280,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     VideoConferenceRoomUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Video_Conference_Room_photo(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -322,7 +322,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     Library_AvailableFileUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Library_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -364,7 +364,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     CentralLibraryFileUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Central_Library_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -406,7 +406,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     mainEntranceUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Main_Entrance_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -448,7 +448,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     DispensaryAvailableUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Dispensary_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -490,7 +490,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     StaffCommonRoomAvailableUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Staff_Common_Room_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -532,7 +532,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     girlsCommonRoomAvailableUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Girls_Common_Room_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -574,7 +574,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     Boys_Common_RoomUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Boys_Common_Room_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }
@@ -616,7 +616,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     Canteen_CafUploader.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_GB_Staff_Canteena47Cafeteria_Photos(servicePath, Session["SessionCompanyName"] as string);
             }
         }

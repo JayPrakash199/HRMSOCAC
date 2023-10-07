@@ -59,8 +59,17 @@ namespace HRMS
                 ddlFeeClassification.DataValueField = "Code";
                 ddlFeeClassification.DataBind();
                 ddlFeeClassification.Items.Insert(0, new ListItem("Select Fee Classification", "0"));
-
+                BindFianacialYear();
             }
+        }
+        private void BindFianacialYear()
+        {
+            var FyList = ODataServices.GetFinancialYearList(Session["SessionCompanyName"] as string);
+
+            ddlacademicYear.DataSource = FyList;
+            ddlacademicYear.DataTextField = "Financial_Code";
+            ddlacademicYear.DataValueField = "Financial_Code";
+            ddlacademicYear.DataBind();
         }
 
         protected void btnExport_Click(object sender, EventArgs e)

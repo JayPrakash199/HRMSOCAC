@@ -7,17 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
             border: 1px solid;
-        }
-
-
-        .container.box {
-            margin-top: 61px;
-            margin-bottom: 26px;
         }
 
         p.NewEntry {
@@ -199,17 +192,12 @@
             display: block;
         }
 
-        .col-lg-12.col-md-12.model-box {
-            margin: 34px 10px 10px -113px;
-        }
-
         input#ContentPlaceHolder1_txtHRMSIDSearch {
             text-align: right;
         }
     </style>
     <div class="container box">
         <div class="row">
-            <div class="col-lg-3 col-md-2"></div>
             <div class="col-lg-12 col-md-12 model-box">                
                 <div class="col-lg-12 col-md-12 summary-box">
                     <div class="col-lg-12 NewEntrydiv">
@@ -229,7 +217,7 @@
                                                         <asp:TextBox ID="txtHRMSIDSearch" CssClass="form-control" runat="server"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-1">
-                                                        <asp:Button ID="btnSearch" OnClientClick="showLoader();" OnClick="btnSearch_Click" CssClass="btn-s float-right submit btn-yellow" Text="Search" runat="server" />
+                                                        <asp:Button ID="btnSearch" OnClick="btnSearch_Click" CssClass="btn-s float-right submit btn-yellow" Text="Search" runat="server" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,7 +233,7 @@
                                                     <asp:TextBox ID="txtdoj" CssClass="form-control ajax__calendar_body" type="date" runat="server"></asp:TextBox>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleAccount">Service Joing Station</label>
+                                                    <label for="exampleAccount">Service Joining Station</label>
                                                     <asp:DropDownList ID="ddlSeviceJoiningStation" CssClass="form-control" runat="server">
                                                     </asp:DropDownList>
                                                 </div>
@@ -285,7 +273,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Service Joining Designation</label>
-                                                    <asp:TextBox ID="txtJoiningDesignation" CssClass="form-control" runat="server"></asp:TextBox>
+                                                     <asp:DropDownList ID="ddlServiceJoiningDesignation" CssClass="form-control" runat="server">
+                                                    </asp:DropDownList>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleAccount">Current Station</label>
@@ -344,8 +333,5 @@
 
             return true;
         }
-        function showLoader() {
-            $('#loader').show();
-        };
     </script>
 </asp:Content>

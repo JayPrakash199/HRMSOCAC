@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -59,10 +58,6 @@
             font-size: 35px;
         }
 
-        .col-lg-12.col-md-12.summary-box {
-            margin: 94px 10px 10px -113px;
-        }
-
         .custom-file-input::-webkit-file-upload-button {
             visibility: hidden;
         }
@@ -96,7 +91,6 @@
 
         <div class="container box">
             <div class="row">
-                <div class="col-lg-3 col-md-2"></div>
                 <div class="col-lg-12 col-md-12 summary-box">
                     <div class="col-lg-12 NewEntrydiv">
                         <p class="NewEntry">Financial Upgradation Application Consolidated List</p>
@@ -115,7 +109,7 @@
                                                     OnItemCanceling="FinancialUpgradeListView_ItemCanceling">
                                                     <LayoutTemplate>
                                                         <table runat="server" class="table table-bordered">
-                                                            <tr runat="server">
+                                                            <tr class="FridgeHeader" runat="server">
                                                                 <th runat="server">Entry No</th>
                                                                 <th runat="server">HRMS ID</th>
                                                                 <th runat="server">Name Of the Employee</th>
@@ -219,7 +213,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 ExportFoot">
-                                        <asp:Button ID="btnExport" OnClick="btnExport_Click" CssClass="exportcss btn-yellow" runat="server" Text="Export" />
+                                        <asp:Button ID="btnExport" Style="margin:1%" OnClick="btnExport_Click" CssClass="exportcss btn-yellow" runat="server" Text="Export" />
                                     </div>
                                 </div>
                             </div>

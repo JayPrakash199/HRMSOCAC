@@ -92,21 +92,14 @@ namespace HRMS
 
             }
         }
-
-        public void BindFianacialYear()
+        private void BindFianacialYear()
         {
-            int currentYear = DateTime.Today.Year;
-            ddlacademicYear.Items.Clear();
-            ddlacademicYear.Items.Add("Select");
-            for (int i = 10; i >= 0; i--)
-            {
-                int fy = currentYear - i;
-                int fy1 = fy + 1;
-                if (DateTime.Now.Date > Convert.ToDateTime(fy + "-03-31").Date)
-                {
-                    ddlacademicYear.Items.Add(fy.ToString() + "-" + fy1.ToString().Remove(0, 2));
-                }
-            }
+            var FyList = ODataServices.GetFinancialYearList(Session["SessionCompanyName"] as string);
+
+            ddlacademicYear.DataSource = FyList;
+            ddlacademicYear.DataTextField = "Financial_Code";
+            ddlacademicYear.DataValueField = "Financial_Code";
+            ddlacademicYear.DataBind();
         }
 
         protected void ddlStudentNo_SelectedIndexChanged(object sender, EventArgs e)

@@ -259,18 +259,35 @@
             width: 72px;
             height: 36px !important;
         }
+
         .back {
             position: absolute;
-            right: 2%;
-            top: 40%;
+            right: 1%;
+            top: 8%;
             background-color: #98d7e275;
             border-radius: 50%;
             border-radius: 1px solid red;
             border: 2px solid #cf4e33;
         }
+        .NewEntrydiv {
+    background-color: #fff !important;
+}
+         header {
+    position: unset !important;
+}
+.FridgeHeader {
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index:1;
+}
+.container.box {
+    padding: 5% !important;
+    margin-top: 0% !important;
+}
     </style>
 
-  
+
     <link rel="shortcut icon" href="images/favicon.ico" />
 
     <!-- jquery: REQUIRED JQUERY FILE -->
@@ -391,130 +408,132 @@
             <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" EnablePageMethods="true" runat="server"></asp:ScriptManager>
             <asp:HiddenField ID="hdnMainMenuClass" runat="server" Value="lblMainTst" />
             <asp:HiddenField ID="hdnSubMenuClass" runat="server" Value="lblTSTSub" />
-            <header>
-                <div class="top_header_ber">
-                    <div class="container">
-                        <div class="pull-right current-user-name">
-                            <asp:Label ID="lblUserName" runat="server"></asp:Label>
-                            <asp:Button runat="server" ID="btnLogOut" OnClick="btnLogOut_Click" CssClass="btn btnColor pull-right" Text="LogOut" />
+
+            <div class="fluid-container">
+                <header>
+                    <div class="top_header_ber">
+                        <div class="container">
+                            <div class="pull-right current-user-name">
+                                <asp:Label ID="lblUserName" runat="server"></asp:Label>
+                                <asp:Button runat="server" ID="btnLogOut" OnClick="btnLogOut_Click" CssClass="btn btnColor pull-right" Text="LogOut" />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="header_bottom">
-                    <nav class="navbar navbar-default">
-                        <div class="container-fluid">
-                            <%--<div class="navbar-header">
+                    <div class="header_bottom">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand" target="_blank" href="">
-                                    <img src="images/logo.png" /></a>
-                            </div>--%>
-                            <%--<svg height="0" width="0" style="position: absolute; margin-left: -100%;">
+                              <%--  <a class="navbar-brand" target="_blank" href="">
+                                    <img src="images/logo.png" /></a>--%>
+                            </div>
+                                <%--<svg height="0" width="0" style="position: absolute; margin-left: -100%;">
                                 <path id="tab-shape" class="tab-shape" d="M116.486,29.036c-23.582-8-14.821-29-42.018-29h-62.4C5.441,0.036,0,5.376,0,12.003v28.033h122v-11H116.486z"></path>
                             </svg>--%>
-                            <div class="collapse navbar-collapse" id="myNavbar">
-                                <ul class="nav navbar-nav navbar-right user-drop">
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employee<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="lidropmenu" runat="server">
-                                            <li><a href="RecruitmentsAndRetirements.aspx">Upload Employee</a></li>
-                                            <li><a href="EmployeeList.aspx">Employee List</a></li>
-                                            <%--<li><a href="NewEmployeeDetails.aspx">Add New Employee</a></li>--%>
-                                            <li><a href="AdditionalEmployeeDetails.aspx">Add Additional Employee Details</a></li>
-                                            <li><a href="EditEmployee.aspx">Update Additional Employee Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Financial<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul1" runat="server">
-                                            <li><a href="FinancialUpgradation.aspx">Financial Upgradation Application</a></li>
-                                            <li><a href="FinancialUpgradationList.aspx">Financial Upgradation Application List</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transfer and Promo.<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul2" runat="server">
-                                            <li><a href="TransferAndPromotionManagement.aspx">Add Transfer Record</a></li>
-                                            <li><a href="TransferEmployeeJoiningForm.aspx">Joining Form</a></li>
-                                            <li><a href="PromotionEventsRecord.aspx">Add Promotion Record</a></li>
-                                            <li><a href="PromotionHistoryList.aspx">Promotion History List</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Annual Estd.<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul4" runat="server">
-                                            <li><a href="AnnualEstablishmentReview.aspx">Part A(Regular)</a></li>
-                                            <li><a href="AERPartAList.aspx">Regular List</a></li>
-                                            <li><a href="AnnualEstablishmentReviewPartC.aspx">Part C(Non-regular)</a></li>
-                                            <li><a href="AERPartCList.aspx">Non-Regular List</a></li>
-                                            <li><a href="AnnualEstablishmentReviewPartE.aspx">Part E(Outsourced)</a></li>
-                                            <li><a href="AERPartEList.aspx">Outsourced List</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transfer<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul5" runat="server">
-                                            <li><a href="TransferApplicationForm.aspx">Application Form</a></li>
-                                            <li><a href="TransferApplicationList.aspx">Application List</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Staff<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul6" runat="server">
-                                            <li><a href="StaffProfile.aspx">Employee Profile & Award Achievement</a></li>
-                                            <li><a href="StaffProfileList.aspx">Staff Profile List</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Disciplinary<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul7" runat="server">
-                                            <li><a href="NewDisciplinaryCaseInput.aspx">Add Case</a></li>
-                                            <li><a href="DisciplinaryCaseList.aspx">Disciplinary Case List</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Training<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul8" runat="server">
-                                            <li><a href="EmployeeTrainingDetailsInput.aspx">Add Training</a></li>
-                                            <li><a href="TrainingHistory.aspx">Training History</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul9" runat="server">
-                                            <li><a href="AnnualInternalPerformanceReviewForm.aspx">Add Annual Performance</a></li>
-                                            <li><a href="AnnualInternalPerformanceReviewList.aspx">Annual Performance List</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown clearfix">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">RTI<b class="caret"></b></a>
-                                        <ul class="dropdown-menu" id="Ul10" runat="server">
-                                            <li><a href="CourtCasesDetailsInput.aspx">Court Case</a></li>
-                                            <li><a href="CourtCaseList.aspx">Court Case List</a></li>
-                                            <li><a href="RTIDetailsInput.aspx">RTI Monitoring</a></li>
-                                            <li><a href="RTIMonitoringList.aspx">RTI Monitoring List</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <div class="collapse navbar-collapse" id="myNavbar">
+                                    <ul class="nav navbar-nav navbar-right user-drop">
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employee<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="lidropmenu" runat="server">
+                                                <li><a href="RecruitmentsAndRetirements.aspx">Upload Employee</a></li>
+                                                <li><a href="EmployeeList.aspx">Employee List</a></li>
+                                                <%--<li><a href="NewEmployeeDetails.aspx">Add New Employee</a></li>--%>
+                                                <li><a href="AdditionalEmployeeDetails.aspx">Add Additional Employee Details</a></li>
+                                                <li><a href="EditEmployee.aspx">Update Additional Employee Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Financial<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul1" runat="server">
+                                                <li><a href="FinancialUpgradation.aspx">Financial Upgradation Application</a></li>
+                                                <li><a href="FinancialUpgradationList.aspx">Financial Upgradation Application List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transfer and Promo.<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul2" runat="server">
+                                                <li><a href="TransferAndPromotionManagement.aspx">Add Transfer Record</a></li>
+                                                <li><a href="TransferEmployeeJoiningForm.aspx">Joining Form</a></li>
+                                                <li><a href="PromotionEventsRecord.aspx">Add Promotion Record</a></li>
+                                                <li><a href="PromotionHistoryList.aspx">Promotion History List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Annual Estd.<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul4" runat="server">
+                                                <li><a href="AnnualEstablishmentReview.aspx">Part A(Regular)</a></li>
+                                                <li><a href="AERPartAList.aspx">Regular List</a></li>
+                                                <li><a href="AnnualEstablishmentReviewPartC.aspx">Part C(Non-regular)</a></li>
+                                                <li><a href="AERPartCList.aspx">Non-Regular List</a></li>
+                                                <li><a href="AnnualEstablishmentReviewPartE.aspx">Part E(Outsourced)</a></li>
+                                                <li><a href="AERPartEList.aspx">Outsourced List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transfer<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul5" runat="server">
+                                                <li><a href="TransferApplicationForm.aspx">Application Form</a></li>
+                                                <li><a href="TransferApplicationList.aspx">Application List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Staff<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul6" runat="server">
+                                                <li><a href="StaffProfile.aspx">Employee Profile & Award Achievement</a></li>
+                                                <li><a href="StaffProfileList.aspx">Staff Profile List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Disciplinary<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul7" runat="server">
+                                                <li><a href="NewDisciplinaryCaseInput.aspx">Add Case</a></li>
+                                                <li><a href="DisciplinaryCaseList.aspx">Disciplinary Case List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Training<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul8" runat="server">
+                                                <li><a href="EmployeeTrainingDetailsInput.aspx">Add Training</a></li>
+                                                <li><a href="TrainingHistory.aspx">Training History</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul9" runat="server">
+                                                <li><a href="AnnualInternalPerformanceReviewForm.aspx">Add Annual Performance</a></li>
+                                                <li><a href="AnnualInternalPerformanceReviewList.aspx">Annual Performance List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown clearfix" >
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">RTI<b class="caret"></b></a>
+                                            <ul class="dropdown-menu" id="Ul10" style="right: 0 !important; left:auto !important" runat="server">
+                                                <li><a href="CourtCasesDetailsInput.aspx">Court Case</a></li>
+                                                <li><a href="CourtCaseList.aspx">Court Case List</a></li>
+                                                <li><a href="RTIDetailsInput.aspx">RTI Monitoring</a></li>
+                                                <li><a href="RTIMonitoringList.aspx">RTI Monitoring List</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </nav>
-                </div>
-                <div class="pull-right current-user-name back">
-                    <a href="default.aspx" class="btn btnColor pull-right" tooltip="Home">
-                        <span><i class="fa fa-arrow-left fa-3x" style="color: green"></i></span>
-                    </a>
-                </div>
-            </header>
-            <div class="banner">
+                        </nav>
+                    </div>
+                    <div class="pull-right current-user-name back">
+                        <a href="default.aspx" class="btn btnColor pull-right" tooltip="Home">
+                            <span><i class="fa fa-arrow-left fa-3x" style="color: green"></i></span>
+                        </a>
+                    </div>
+                </header>
+                <%--<div class="banner">
                 <img src="assets/vendor/images/mu-acadamic-lp.jpg" class="full-img" />
-            </div>
-            <div class="bodymain">
-                <div class="container tabbable tabs-left">
-                    <div id="divLeft" runat="server" class="left_col">
+            </div>--%>
+                <div class="bodymain">
+                    <div class="container tabbable tabs-left">
+                        <%-- <div id="divLeft" runat="server" class="left_col">
                         <div class="row">
                             <h2 class="left_col_heading text-center m-0">
                                 <asp:Label ID="lblSubManuName" runat="server"></asp:Label></h2>
@@ -525,15 +544,16 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </div>
-                    </div>
-                    <div id="divRight" runat="server" class="right_col tab-content">
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        </asp:ContentPlaceHolder>
+                    </div>--%>
+                        <div id="divRight" runat="server" class="">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="footer">
-                <footer class="p-10">©<asp:Label runat="server" ID="lblCompanyName"></asp:Label></footer>
+                <div id="footer">
+                    <footer class="p-10">©<asp:Label runat="server" ID="lblCompanyName"></asp:Label></footer>
+                </div>
             </div>
         </form>
     </div>

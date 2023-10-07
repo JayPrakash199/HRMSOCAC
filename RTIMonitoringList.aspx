@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -59,12 +58,10 @@
             font-size: 35px;
         }
 
-        .col-lg-12.col-md-12.summary-box {
-            margin: 94px 10px 10px -113px;
-        }
         .custom-file-input::-webkit-file-upload-button {
             visibility: hidden;
         }
+
         .custom-file-input::before {
             content: 'Choose File';
             display: inline-block;
@@ -80,9 +77,11 @@
             font-weight: 700;
             font-size: 10pt;
         }
+
         .custom-file-input:hover::before {
             border-color: black;
         }
+
         .custom-file-input:active::before {
             background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
         }
@@ -92,7 +91,6 @@
 
         <div class="container box">
             <div class="row">
-                <div class="col-lg-3 col-md-2"></div>
                 <div class="col-lg-12 col-md-12 summary-box">
                     <div class="col-lg-12 NewEntrydiv">
                         <p class="NewEntry">RTI Monitoring List</p>
@@ -103,11 +101,11 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <div id="exportto" style="height:390px; overflow:visible">
-                                                <asp:ListView ID="RTIMonitoringListView"  runat="server">
+                                            <div id="exportto" style="height: 390px; overflow: visible">
+                                                <asp:ListView ID="RTIMonitoringListView" runat="server">
                                                     <LayoutTemplate>
                                                         <table runat="server" class="table table-bordered">
-                                                            <tr runat="server">
+                                                            <tr class="FridgeHeader" runat="server">
                                                                 <th runat="server">Entry No</th>
                                                                 <th runat="server">Application No</th>
                                                                 <th runat="server">Type Of Application</th>
@@ -158,7 +156,7 @@
                                                                 <asp:Label ID="Label26" runat="server" Text='<%# Eval("Letter_No")%>'> </asp:Label>
                                                             </td>
                                                             <td>
-                                                                <asp:Label ID="Label7" runat="server" Text='<%# DateTime.Parse(Eval("Letter_Dispatch_Date").ToString()).ToString("d") %>'> </asp:Label>                                                                
+                                                                <asp:Label ID="Label7" runat="server" Text='<%# DateTime.Parse(Eval("Letter_Dispatch_Date").ToString()).ToString("d") %>'> </asp:Label>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="Label9" runat="server" Text='<%# Eval("Remark")%>'> </asp:Label>
@@ -170,7 +168,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 ExportFoot">
-                                        <asp:Button ID="btnExport" OnClick="btnExport_Click" CssClass="exportcss btn-yellow" runat="server" Text="Export" />
+                                        <asp:Button ID="btnExport" OnClick="btnExport_Click" Style="margin: 1%" CssClass="btn-s float-right submit btn-yellow"
+                                            runat="server" Text="Export" />
                                     </div>
                                 </div>
                             </div>

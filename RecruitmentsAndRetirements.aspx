@@ -15,8 +15,7 @@
 
 
         .container.box {
-            margin-top: 61px;
-            margin-bottom: 26px;
+            margin-bottom: 5%;
         }
 
         p.NewEntry {
@@ -189,7 +188,7 @@
                             <div class="mb-3">
                                 <asp:FileUpload ID="pdfUploader" Width="205px" CssClass="form-control form-control-sm" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" runat="server" />
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3" style="padding">
                                 <asp:LinkButton OnClick="btnUpload_Click" ID="btnUpload" CssClass="btn btn-file-upload" runat="server">Upload</asp:LinkButton>
                             </div>
 

@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
@@ -16,7 +15,6 @@
 
         .container.box {
             margin-top: 61px;
-            margin-bottom: 26px;
         }
 
         p.NewEntry {
@@ -186,10 +184,6 @@
             text-align: justify;
         }
 
-        .col-lg-12.col-md-12.summary-box {
-            margin: 94px 10px 10px -113px;
-        }
-
         .row.ab {
             border-bottom: 1px solid;
             padding: 0px 0px 52px 0px
@@ -208,10 +202,14 @@
         .blockInputClass {
             pointer-events: none;
         }
+
+        .disable {
+            border: 1px solid #7f7e7e !important;
+            background-color: #eee !important
+        }
     </style>
     <div class="container box">
         <div class="row">
-            <div class="col-lg-3 col-md-2"></div>
             <div class="col-lg-12 col-md-12 model-box">
 
                 <div class="col-lg-12 col-md-12 summary-box">
@@ -267,19 +265,20 @@
                                                 <div class="container">
                                                     <div class="form-group">
                                                         <label for="exampleAccount">From Designation</label>
-                                                        <asp:TextBox ID="txtFromDesignation" CssClass="form-control" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtFromDesignation" CssClass="form-control disable" Enabled="false" runat="server"></asp:TextBox>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleAccount">Promotion Order Date</label>
                                                         <asp:TextBox ID="txtPromotionOrderDate" type="date" CssClass="form-control ajax__calendar_body" runat="server"></asp:TextBox>
-                                                    </div>                                                    
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 contact-info">
                                                 <div class="container">
                                                     <div class="form-group">
                                                         <label for="exampleAccount">To Designation</label>
-                                                        <asp:TextBox ID="txtToDesignation" CssClass="form-control" runat="server"></asp:TextBox>
+                                                        <asp:DropDownList ID="ddlDesignation" CssClass="form-control" runat="server">
+                                                        </asp:DropDownList>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleAccount">Promotion Order Issuing Authority</label>
@@ -300,7 +299,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <asp:Button ID="btnEstimateSubmit" OnClick="btnEstimateSubmit_Click" runat="server" CssClass="btn-s float-right submit" type="submit" Text="Submit" />
+                                    <asp:Button ID="btnEstimateSubmit" OnClick="btnEstimateSubmit_Click" runat="server" CssClass="btn-s float-right submit btn-yellow" type="submit" Text="Submit" />
                                 </div>
                             </div>
                         </div>

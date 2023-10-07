@@ -143,7 +143,7 @@ namespace HRMS
                     uploadedFile.SaveAs(path);
                 }
 
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.UploadEmployeeTrainingHistoryCertificate(Convert.ToInt32(entryNo.Text), servicePath,
                     Session["SessionCompanyName"] as string);
                 Alert.ShowAlert(this, "s", "file uploaded successfully");

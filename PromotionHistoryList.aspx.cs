@@ -85,7 +85,7 @@ namespace HRMS
                     path = Path.Combine(path, finalFileName);
                     uploadedFile.SaveAs(path);
                 }
-                string servicePath = @"\\genesisnav16\PORTAL\PDF\" + finalFileName;
+                string servicePath = ConfigurationManager.AppSettings["PdfPath"].ToString() + finalFileName;
                 SOAPServices.Upload_Promotion_Order(Convert.ToInt32(entryNo.Text), servicePath, Session["SessionCompanyName"] as string);
                 Alert.ShowAlert(this, "s", "file uploaded successfully");
             }

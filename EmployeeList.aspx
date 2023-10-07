@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMasterPage.Master" AutoEventWireup="true" CodeBehind="EmployeeList.aspx.cs" Inherits="HRMS.EmployeeList" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         .summary-box {
-            margin-top: 75px;
             height: auto;
             text-align: center;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -16,8 +16,7 @@
         }
 
         .container.box {
-            margin-top: 61px;
-            margin-bottom: 26px;
+            margin-bottom: 5%;
         }
 
         p.NewEntry {
@@ -27,7 +26,7 @@
         }
 
         .col-lg-12.NewEntrydiv {
-            background-color: #eeeeee;
+            background-color: #fff;
         }
 
         p.Introduction {
@@ -58,12 +57,10 @@
             font-size: 35px;
         }
 
-        .col-lg-12.col-md-12.summary-box {
-            margin: 94px 10px 10px -113px;
-        }
         .custom-file-input::-webkit-file-upload-button {
             visibility: hidden;
         }
+
         .custom-file-input::before {
             content: 'Choose File';
             display: inline-block;
@@ -79,9 +76,11 @@
             font-weight: 700;
             font-size: 10pt;
         }
+
         .custom-file-input:hover::before {
             border-color: black;
         }
+
         .custom-file-input:active::before {
             background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
         }
@@ -91,7 +90,6 @@
 
         <div class="container box">
             <div class="row">
-                <div class="col-lg-3 col-md-2"></div>
                 <div class="col-lg-12 col-md-12 summary-box">
                     <div class="col-lg-12 NewEntrydiv">
                         <p class="NewEntry">Employee List</p>
@@ -102,11 +100,11 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <div id="exportto" style="height:390px; overflow:visible">
-                                                <asp:ListView ID="EmployeeListView"  runat="server">
+                                            <div id="exportto" style="height: 390px; overflow: visible">
+                                                <asp:ListView ID="EmployeeListView" runat="server">
                                                     <LayoutTemplate>
                                                         <table runat="server" class="table table-bordered">
-                                                            <tr runat="server">
+                                                            <tr runat="server" class="FridgeHeader">
                                                                 <th runat="server">HRMS ID</th>
                                                                 <th runat="server">Name Of the Staff</th>
                                                                 <th runat="server">Bill Group</th>
@@ -177,14 +175,14 @@
                                                                 <asp:Label ID="Label6" runat="server" Text='<%# Eval("GPF_PRAN_No")%>'> </asp:Label>
                                                             </td>
                                                             <td>
-                                                                <asp:Label ID="Label7" runat="server" Text='<%# DateTime.Parse(Eval("Birth_Date").ToString()).ToString("d") %>'> </asp:Label>                                                                
+                                                                <asp:Label ID="Label7" runat="server" Text='<%# DateTime.Parse(Eval("Birth_Date").ToString()).ToString("d") %>'> </asp:Label>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="Label9" runat="server" Text='<%# Eval("Gender")%>'> </asp:Label>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="Label10" runat="server" Text='<%# DateTime.Parse(Eval("D_O_S").ToString()).ToString("d") %>'> </asp:Label>
-                                                                
+
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("Category")%>'> </asp:Label>
@@ -193,7 +191,7 @@
                                                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("Joining_Station")%>'> </asp:Label>
                                                             </td>
                                                             <td>
-                                                                <asp:Label ID="Label13" runat="server" Text='<%# DateTime.Parse(Eval("D_O_J_Service").ToString()).ToString("d") %>'> </asp:Label>                                                                
+                                                                <asp:Label ID="Label13" runat="server" Text='<%# DateTime.Parse(Eval("D_O_J_Service").ToString()).ToString("d") %>'> </asp:Label>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="Label14" runat="server" Text='<%# Eval("Current_Station")%>'> </asp:Label>
@@ -234,7 +232,7 @@
                                                             <td>
                                                                 <asp:Label ID="Label28" runat="server" Text='<%# Eval("Designation_as_per_HRMS_Site")%>'> </asp:Label>
                                                             </td>
-                                                           
+
                                                             <td>
                                                                 <asp:Label ID="Label29" runat="server" Text='<%# Eval("Home_Dist_as_per_HRMS_Site")%>'> </asp:Label>
                                                             </td>
@@ -251,7 +249,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 ExportFoot">
-                                        <asp:Button ID="btnExport" OnClick="btnExport_Click" CssClass="exportcss btn-yellow" runat="server" Text="Export" />
+                                        <asp:Button Style="margin:1%" ID="btnExport" OnClick="btnExport_Click" CssClass="exportcss btn-yellow" runat="server" Text="Export" />
                                     </div>
                                 </div>
                             </div>

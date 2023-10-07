@@ -79,6 +79,13 @@ namespace HRMS
             ddlDesignation.DataValueField = "Code";
             ddlDesignation.DataBind();
             ddlDesignation.Items.Insert(0, new ListItem("Select Designation", "0"));
+
+            ddlServiceJoiningDesignation.DataSource = lstDesignation;
+            ddlServiceJoiningDesignation.DataTextField = "Description";
+            ddlServiceJoiningDesignation.DataValueField = "Code";
+            ddlServiceJoiningDesignation.DataBind();
+            ddlServiceJoiningDesignation.Items.Insert(0, new ListItem("Select Designation", "0"));
+            
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -94,6 +101,46 @@ namespace HRMS
                 if (employeeResult != null)
                 {
                     txtEmployeeName.Text = employeeResult.First_Name;
+                    txtdoj.Text = employeeResult.D_O_J_Service.ToString();
+                    //if (!string.IsNullOrEmpty(employeeResult.Service_Joining_Designation))
+                    //{
+                    //    ddlServiceJoiningDesignation.Items.FindByText(employeeResult.Service_Joining_Designation).Selected = true;
+                    //}
+                    txtBaseQualification.Text = employeeResult.Base_Qualification;
+
+                    //if (!string.IsNullOrEmpty(employeeResult.Current_Station))
+                    //{
+                    //    ddlCurrentStation.Items.FindByValue(employeeResult.Current_Station).Selected = true;
+                    //}
+                    if (employeeResult.Date_of_increment != null)
+                    {
+                        txtDateOfIncrement.Text = employeeResult.Date_of_increment.ToString();
+                    }
+                    //if (!string.IsNullOrEmpty(employeeResult.Employment_Status))
+                    //{
+                    //    ddlEmplyomentStatus.Items.FindByText(employeeResult.Employment_Status).Selected = true;
+                    //}
+                    //if (!string.IsNullOrEmpty(employeeResult.Pension_Remark))
+                    //{
+                    //    ddlPensionRemark.Items.FindByText(employeeResult.Pension_Remark).Selected = true;
+                    //}
+                    //if (!string.IsNullOrEmpty(employeeResult.MACP_Status))
+                    //{
+                    //    ddlMACPStatus.Items.FindByText(employeeResult.MACP_Status).Selected = true;
+                    //}
+                    //if (!string.IsNullOrEmpty(employeeResult.Designation))
+                    //{
+                    //    ddlDesignation.Items.FindByText(employeeResult.Designation).Selected = true;
+                    //}
+                    //if (!string.IsNullOrEmpty(employeeResult.Home_Dist))
+                    //{
+                    //    ddlDistrict.Items.FindByText(employeeResult.Home_Dist).Selected = true;
+                    //}
+                    //if (!string.IsNullOrEmpty(employeeResult.Dept_Trade_Section))
+                    //{
+                    //    ddlTrade.Items.FindByText(employeeResult.Dept_Trade_Section).Selected = true;
+                    //}
+
                 }
             }
             else
@@ -145,7 +192,7 @@ namespace HRMS
 
                 //Employee_Name = txtEmployeeName.Text,
                 D_O_J_Service = DateTimeParser.ParseDateTime(txtdoj.Text),
-                Service_Joining_Designation = txtJoiningDesignation.Text,
+                Service_Joining_Designation = ddlServiceJoiningDesignation.SelectedValue,
                 Service_Joining_Station = ddlSeviceJoiningStation.SelectedItem.Value,
                 Current_Station = ddlCurrentStation.SelectedItem.Value,
                 Base_Qualification = txtBaseQualification.Text,
@@ -176,7 +223,7 @@ namespace HRMS
                 Dept_Trade_Section = ddlTrade.SelectedItem.Text,
                 Designation = ddlDesignation.SelectedValue,
                 Home_Dist = ddlDistrict.SelectedItem.Text
-               
+
             };
             var resultMessage = SOAPServices.AddEmployeeAdditionalInfo(obj, Session["SessionCompanyName"] as string);
             Alert.ShowAlert(this, resultMessage == ResultMessages.SuccessfullMessage ? "s" : "e", resultMessage);
